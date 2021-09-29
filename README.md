@@ -6,7 +6,7 @@ Open your terminal, create a directory with a name of your choosing, and clone t
 
 `git clone https://github.com/nadiacollado/tictactoe.git`
 
-Change into the google-books-cli directory
+Change into the tictactoe directory
 
 `cd tictactoe`
 
