@@ -9,7 +9,8 @@ describe TicTacToe do
 
     describe "game_instructions" do
         it "returns game instructions string" do
-            expect(TicTacToe.new.game_instructions()).to eq("These are the game's instructions!")
+            expect(TicTacToe.new.game_instructions()).to eq(
+                "Each square in the board corresponds to a number 1-9.\nMake your move by entering the number in the square of your choice.")
         end
     end
     
