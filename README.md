@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-To play Tic-Tac-Toe, you must have Ruby version 2.6.8 installed on your machine. Install Ruby [here]https://www.ruby-lang.org/en/documentation/installation/. 
+To play Tic-Tac-Toe, you must have Ruby version 2.6.8 installed on your machine. Install Ruby [here](https://www.ruby-lang.org/en/documentation/installation/). 
 
 ## Instructions
 
