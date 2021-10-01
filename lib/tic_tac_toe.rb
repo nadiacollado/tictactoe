@@ -1,5 +1,5 @@
 class TicTacToe
-    def start_app()
+    def welcome()
         puts "Welcome to Tic-Tac-Toe!"
         "Welcome to Tic-Tac-Toe!"
     end
