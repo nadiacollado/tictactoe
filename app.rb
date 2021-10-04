@@ -1,7 +1,13 @@
 require_relative './lib/tic_tac_toe'
+require_relative './lib/game'
 
 # start app
 
-game = TicTacToe.new
-game.welcome()
-game.game_instructions()
+app = TicTacToe.new
+app.welcome()
+app.game_instructions()
+
+# start game
+
+game = Game.new
+game.play()
