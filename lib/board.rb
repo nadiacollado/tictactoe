@@ -22,7 +22,6 @@ class Board
     end
 
     def cell_taken?(position)
-        cell[position]
     end
 
 end
