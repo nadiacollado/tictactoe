@@ -10,9 +10,10 @@ class Game
         @player1 = Player.new(1, "X")
         @player2 = Player.new(2, "O")
         @player_move = player_move
-
+        @current_player = player1
     end
 
+    # returns the player whose turn it is
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
@@ -21,11 +22,13 @@ class Game
         board.display_board
 
         # get current move
-        current_move = get_move
+        current_move = get_move(current_player.symbol)
 
         # check if move is valid
         if board.valid_move?(current_move)
-            # change the board
+            # update board with move (add make_move method to Board class)
+            board.make_move(current_move, current_player.symbol)
+            board.display_board
             # check if game has been won or tied 
             # if won/tied, then ends the game
             # else updated the board with the move
@@ -35,12 +38,12 @@ class Game
         end
     end
 
-    def get_move
+    def get_move(player_symbol)
         # ask current player for move
-        puts "#{current_player}, you're up!\n"
+        puts "Player #{player_symbol}, you're up!\n"
 
         # saves player's move
-        @player_move = gets.chomp
+        player_move = gets.chomp
     end
 
     def horizontal_win

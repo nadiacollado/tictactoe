@@ -1,51 +1,49 @@
 class Board
-    attr_reader :cells
+    attr_reader :squares
 
     def initialize
-        @cells = %w[1 2 3 4 5 6 7 8 9]
+        @squares = %w[1 2 3 4 5 6 7 8 9]
     end
 
     def display_board
-        puts "\n #{cells[0]} | #{cells[1]} | #{cells[2]} "
+        puts "\n #{squares[0]} | #{squares[1]} | #{squares[2]} "
         puts "-----------"
-        puts " #{cells[3]} | #{cells[4]} | #{cells[5]} "
+        puts " #{squares[3]} | #{squares[4]} | #{squares[5]} "
         puts "-----------"
-        puts " #{cells[6]} | #{cells[7]} | #{cells[8]}
+        puts " #{squares[6]} | #{squares[7]} | #{squares[8]}
         \n"
-        
-        "
-         1 | 2 | 3              
-        -----------                 
-         4 | 5 | 6              
-        -----------                
-         7 | 8 | 9"
     end
 
     # checks if user move is valid
-    def valid_move(move)
+    def valid_move?(move)
+        move = move.to_i
         # checks to see if it falls within the alloted number range
         if move > 0 && move <= 9
-            cell_taken(move)
+            square_taken?(move)
         else
             false
         end
     end
 
-    # checks if all 
+    # checks is cell is already occupied 
+    def square_taken?(move)
+        squares[move - 1] != "X" && squares[move - 1] != "O"
+    end
+
+    def make_move(move, player)
+        move = move.to_i
+        squares[move - 1] = player
+    end
+
+    # checks if board is full
     def board_full?
-        cells.alls? {|cell| cell = "X" || cell = "O"}
+        squares.alls? {|square| square = "X" || square = "O"}
     end
 
 
     # checks who's turn it is by counting the number of moves made on the board
     def turn_count
-        cells.count("X") + cells.count("O")
-    end
-
-
-    # checks is cell is already occupied 
-    def cell_taken?(move)
-        cells[move] != "X" && cells[move] != "O"
+        squares.count("X") + squares.count("O")
     end
 
 end
