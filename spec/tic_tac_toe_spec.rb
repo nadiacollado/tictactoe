@@ -16,6 +16,7 @@ describe TicTacToe do
 
     describe "game_instructions" do
         it "prints game instructions string" do
+            # does not work using @app -- why?
             expect{TicTacToe.new.game_instructions()}.to output(
                 "\nEach square in the board corresponds to a number 1-9.\nMake your move by entering the number in the square of your choice.\n").to_stdout
         end
