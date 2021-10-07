@@ -59,4 +59,10 @@ describe Board do
             expect(@board.board_full?).to be(false)
         end
     end
+
+    describe "turn_count" do
+        it "returns the number of turns that have been taken during the game" do
+            expect(@board.turn_count).to be(0)
+        end
+    end
 end
