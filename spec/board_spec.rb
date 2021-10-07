@@ -13,15 +13,15 @@ describe Board do
         end
     end
 
-    #describe "valid_move?" do
+    describe "valid_move?" do
+        it "checks if player's move falls within the allotted range 1-9" do
+            move = 4
+            outcome = Board.new.valid_move?(move)
+            expect(outcome).to eq(true)
+        end
         #it "returns truthy or falsey value" do
-            
         #end
-
-        #it "checks if player's move falls within the allotted range" do
-            
+        #it "calls square_taken? once"
         #end
-
-        #it "calls square_taken? with valid player move"
-    #end
+    end
 end
