@@ -29,12 +29,15 @@ class Game
             # update board with move (add make_move method to Board class)
             board.make_move(current_move, current_player.symbol)
             board.display_board
-            # check if game has been won or tied 
-            # if won/tied, then ends the game
-            # else updated the board with the move
-            # changes player turn 
+            if board.board_full?
+                # check if game has been won or tied
+                # if won/tied, then ends the game
+            else
+                # update board with the move
+                # change player turn
+            end
         else
-            puts "Sorry that move is not valid. Please try again"
+            puts "Sorry that move is not valid. Please try again."
         end
     end
 
@@ -44,6 +47,9 @@ class Game
 
         # saves player's move
         player_move = gets.chomp
+    end
+
+    def won?
     end
 
     def horizontal_win

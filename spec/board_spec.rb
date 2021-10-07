@@ -12,4 +12,16 @@ describe Board do
             expect{Board.new.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
         end
     end
+
+    #describe "valid_move?" do
+        #it "returns truthy or falsey value" do
+            
+        #end
+
+        #it "checks if player's move falls within the allotted range" do
+            
+        #end
+
+        #it "calls square_taken? with valid player move"
+    #end
 end
