@@ -14,10 +14,15 @@ describe Board do
     end
 
     describe "valid_move?" do
-        it "checks if player's move falls within the allotted range 1-9" do
+        it "returns true if player's move falls within the allotted range 1-9" do
             move = 4
             outcome = Board.new.valid_move?(move)
             expect(outcome).to eq(true)
+        end
+        it "returns false if player's move does not fall within the alloted range 1-9" do
+            move = 25
+            outcome = Board.new.valid_move?(move)
+            expect(outcome).to eq(false)
         end
         #it "returns truthy or falsey value" do
         #end
