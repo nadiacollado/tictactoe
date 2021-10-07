@@ -43,7 +43,7 @@ describe Board do
             expect(@board.square_taken?(move)).to be(true)
         end
     end
-    
+
     describe "make_move" do
         it "updates the board with a player's move" do
             move = 4
@@ -51,6 +51,12 @@ describe Board do
             @board.make_move(move, player)
             update = @board.squares[move - 1]
             expect(update).to eq("X")
+        end
+    end
+
+    describe "board_full?" do
+        it "checks if the board is full" do
+            expect(@board.board_full?).to be(false)
         end
     end
 end

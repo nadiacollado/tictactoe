@@ -37,9 +37,8 @@ class Board
 
     # checks if board is full
     def board_full?
-        squares.alls? {|square| square = "X" || square = "O"}
+        squares.all? {|square| square == "X" || square == "O"}
     end
-
 
     # checks who's turn it is by counting the number of moves made on the board
     def turn_count
