@@ -56,16 +56,13 @@ describe Board do
 
     describe "board_full?" do
         it "returns false if the board is not full" do
-            @board.make_move(@valid_move, @player.symbol)
-            expect(@board.board_full?).to be(false)
+            board = Board.new(%w[X 2 X 4 5 O O O 9])
+            expect(board.board_full?).to be(false)
         end
 
         it "returns true if board is full" do
-            every_move = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-            every_move.each do |move|
-                @board.make_move(move, @player.symbol)
-            end
-            expect(@board.board_full?).to be(true)
+            board = Board.new(%w[X O X X X O O O O])
+            expect(board.board_full?).to be(true)
         end
     end
 
