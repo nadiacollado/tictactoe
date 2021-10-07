@@ -32,17 +32,19 @@ describe Board do
 
     describe "square_taken?" do
         # how to generate a double with the instance of the class that I need?
-        #it "returns true when the square is taken" do
-            #board = Board.new(%w[1 x 3 4 5 6 7 8 9])
-            #move = 2
-            #expect(board.square_taken?(move)).to be(false)
-        #end
-
-        it "returns false when the square is free" do
-            move = 5
+        it "returns true when the square is taken" do
+            move = 4
+            player = "X"
+            @board.make_move(move, player)
             expect(@board.square_taken?(move)).to be(true)
         end
+
+        it "returns false when the square is free" do
+            move = 3
+            expect(@board.square_taken?(move)).to be(false)
+        end
     end
+
 
     describe "make_move" do
         it "updates the board with a player's move" do
@@ -55,14 +57,30 @@ describe Board do
     end
 
     describe "board_full?" do
-        it "checks if the board is full" do
+        move = 4
+        player = "X"
+        it "returns false if the board is not full" do
+            @board.make_move(move, player)
             expect(@board.board_full?).to be(false)
+        end
+
+        it "returns true if board is full" do
+            every_move = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            every_move.each do |move|
+                @board.make_move(move, player)
+            end
+            expect(@board.board_full?).to be(true)
         end
     end
 
     describe "turn_count" do
         it "returns the number of turns that have been taken during the game" do
-            expect(@board.turn_count).to be(0)
+            player = "X"
+            some_moves = [1, 3, 4, 6]
+            some_moves.each do |move|
+                @board.make_move(move, player)
+            end
+            expect(@board.turn_count).to be(4)
         end
     end
 end

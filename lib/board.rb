@@ -27,7 +27,7 @@ class Board
 
     # checks is cell is already occupied 
     def square_taken?(move)
-        squares[move - 1] != "X" && squares[move - 1] != "O"
+        squares[move - 1] == "X" || squares[move - 1] == "O"
     end
 
     def make_move(move, player)
