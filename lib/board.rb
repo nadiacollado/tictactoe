@@ -14,10 +14,8 @@ class Board
         \n"
     end
 
-    # checks if user move is valid
     def valid_move?(move)
         move = move.to_i
-        # checks to see if it falls within the alloted number range
         if move > 0 && move <= 9
             square_taken?(move)
         else
@@ -25,7 +23,6 @@ class Board
         end
     end
 
-    # checks is cell is already occupied 
     def square_taken?(move)
         squares[move - 1] == "X" || squares[move - 1] == "O"
     end
@@ -35,14 +32,11 @@ class Board
         squares[move - 1] = player
     end
 
-    # checks if board is full
     def board_full?
         squares.all? {|square| square == "X" || square == "O"}
     end
 
-    # checks who's turn it is by counting the number of moves made on the board
     def turn_count
         squares.count("X") + squares.count("O")
     end
-
 end

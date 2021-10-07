@@ -13,7 +13,6 @@ class Game
         @current_player = player1
     end
 
-    # returns the player whose turn it is
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
@@ -42,10 +41,7 @@ class Game
     end
 
     def get_move(player_symbol)
-        # ask current player for move
         puts "Player #{player_symbol}, you're up!\n"
-
-        # saves player's move
         player_move = gets.chomp
     end
 
