@@ -5,10 +5,10 @@ describe TicTacToe do
         before do
             @app = TicTacToe.new
         end
-        # how to do this?
-        #it "prints string" do
+        #how to do this?
+        it "prints string" do
             #expect (@app.welcome()).to eq("\nWelcome to Tic-Tac-Toe!\n")
-        #end
+        end
         it "prints welcome message" do
             expect {@app.welcome()}.to output("\nWelcome to Tic-Tac-Toe!\n").to_stdout
         end
