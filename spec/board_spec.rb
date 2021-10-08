@@ -68,11 +68,8 @@ describe Board do
 
     describe "turn_count" do
         it "returns the number of turns that have been taken during the game" do
-            some_moves = [1, 3, 4, 6]
-            some_moves.each do |move|
-                @board.make_move(move, @player.symbol)
-            end
-            expect(@board.turn_count).to be(4)
+            board = Board.new(%w[X 2 X X 5 O 7 O 9])
+            expect(board.turn_count).to eq(5)
         end
     end
 end
