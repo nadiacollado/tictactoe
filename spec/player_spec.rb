@@ -1,12 +1,10 @@
 describe Player do
-    before do
-        @player = Player.new(55, "Banana")
-    end
+    let (:test_player) {Player.new(1, "X")}
 
     describe "initialize" do
         it "creates a new player with given arguments" do
-            expect(@player.player_num).to eq(55)
-            expect(@player.symbol).to eq("Banana")
+            expect(test_player.player_num).to eq(1)
+            expect(test_player.symbol).to eq("X")
         end
     end
 end
