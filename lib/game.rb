@@ -16,7 +16,6 @@ class Game
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
-
     def play
         board.display_board
 
@@ -26,7 +25,7 @@ class Game
         # check if move is valid
         if board.valid_move?(current_move)
             # update board with move (add make_move method to Board class)
-            board.make_move(current_move, current_player.symbol)
+            board.mark_square(current_move, current_player.symbol)
             board.display_board
             if board.board_full?
                 # check if game has been won or tied

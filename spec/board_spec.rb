@@ -5,12 +5,6 @@ describe Board do
     let (:board) {Board.new}
     let (:test_player) {Player.new("1", "X")}
     valid_move = 4
-    
-    describe "initialize" do
-        it "creates an array of string numbers 1-9" do
-            expect(board.squares).to eq(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-        end
-    end
      
     describe "display_board" do
         it "returns game board diplay" do
@@ -26,7 +20,9 @@ describe Board do
         end
         #ArgumentError: Cannot proxy frozen objects, rspec-mocks relies on proxies for method stubbing and expectations.
         #it "calls square_taken? once if player's move falls within 1-9 range" do
+    
             #expect(board.valid_move?(valid_move)).to receive(:square_taken?).once
+            #board.valid_move?(valid_move)
         #end
     end
 
@@ -37,16 +33,16 @@ describe Board do
         end
 
         it "returns false when the square is free" do
+            board = Board.new(%w[X 2 X 4 5 6 X 8 9])
             expect(board.square_taken?(valid_move)).to be(false)
         end
     end
 
 
-    describe "make_move" do
+    describe "mark_square" do
         it "updates the board with a player's move" do
-            board.make_move(valid_move, test_player.symbol)
-            update = board.squares[valid_move - 1]
-            expect(update).to eq("X")
+            board.mark_square(valid_move, test_player.symbol)
+            expect(board.squares).to eq(%w[1 2 3 X 5 6 7 8 9])
         end
     end
 
