@@ -17,7 +17,7 @@ class Board
     def valid_move?(move)
         move = move.to_i
         if move > 0 && move <= 9
-            square_taken?(move)
+            !square_taken?(move)
         else
             false
         end
@@ -27,7 +27,7 @@ class Board
         squares[move - 1] == "X" || squares[move - 1] == "O"
     end
 
-    def make_move(move, player)
+    def mark_square(move, player)
         move = move.to_i
         squares[move - 1] = player
     end
