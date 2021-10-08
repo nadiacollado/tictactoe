@@ -31,9 +31,8 @@ describe Board do
     end
 
     describe "square_taken?" do
-        # how to generate a double with the instance of the class that I need?
         it "returns true when the square is taken" do
-            board.make_move(valid_move, test_player.symbol)
+            board = Board.new(%w[X 2 X X 5 O O O 9])
             expect(board.square_taken?(valid_move)).to be(true)
         end
 
