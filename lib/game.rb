@@ -16,18 +16,23 @@ class Game
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
+
     def play
         until won?
-            # get current move
             current_move = get_move(current_player.symbol)
-            # check if move is valid
+
             if board.valid_move?(current_move)
-                # update board with move (add make_move method to Board class)
                 board.mark_square(current_move, current_player.symbol)
                 board.display_board
+
                 if board.board_full?
-                    # check if game has been won or tied
-                    # if won/tied, then ends the game
+                    winner = won?
+                    puts winner
+                    if winner
+                        "Player #{winner}, you have won this round!"
+                    else
+                        # tie
+                    end 
                 else
                     # update board with the move
                     # change player turn
@@ -36,6 +41,18 @@ class Game
                 puts "Sorry that move is not valid. Please try again."
             end
         end
+    end
+
+    def winning_combos
+        [[0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]]
+    end
 
     def get_move(player_symbol)
         puts "Player #{player_symbol}, you're up!\n"
@@ -43,19 +60,21 @@ class Game
     end
 
     def won?
-        false
-    end
+        winning_combos.each do |combo|
+            win_idx_1 = combo[0]
+            win_idx_2 = combo[1]
+            win_idx_3 = combo[2]
 
-    def horizontal_win
-        [[1, 2, 3], [4, 5, 6],[7, 8, 9]]
-    end
+            square_1 = board.squares[win_idx_1]
+            square_2 = board.squares[win_idx_2]
+            square_3 = board.squares[win_idx_3]
 
-    def vertical_win
-        [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    end
-
-    def diagonal_win
-        [[1, 5, 9], [3, 5, 7]]
+            if square_1 == square_2 && square_2 == square_3
+                puts "Player #{square_1} has won this round!"
+                return square_1
+            end
+        end
+        return false
     end
 end
 
