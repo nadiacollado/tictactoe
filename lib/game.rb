@@ -19,15 +19,15 @@ class Game
     end
 
     def play
-        until won? || @game_ended
-            current_move = get_move(current_player.symbol)
+        until won?(board) || @game_ended
+            current_move = get_move(current_player(board).symbol)
 
             if board.valid_move?(current_move)
-                board.mark_square(current_move, current_player.symbol)
+                board.mark_square(current_move, current_player(board).symbol)
                 board.display_board
 
                 if board.board_full?
-                    if !won?
+                    if !won?(board)
                         puts "It's a draw! Better luck next time."
                         @game_ended = true
                     end
@@ -54,7 +54,7 @@ class Game
         player_move = gets.chomp
     end
 
-    def won?
+    def won?(board)
         winning_combos.each do |combo|
             win_idx_1 = combo[0]
             win_idx_2 = combo[1]

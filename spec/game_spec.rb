@@ -11,4 +11,22 @@ describe Game do
             expect(game.current_player(board).symbol).to eq("O")
         end
     end
+
+    describe "won?" do
+        it "returns winner of game if game has been won" do
+            board = Board.new(%w[
+                X X X 
+                0 0 X
+                0 X 0])
+            expect(game.won?(board)).to eq("X")
+        end
+
+        it "returns false if game is a draw" do
+            board = Board.new(%w[
+                X 0 X 
+                0 0 X
+                0 X 0])
+            expect(game.won?(board)).to eq(false)
+        end
+    end
 end

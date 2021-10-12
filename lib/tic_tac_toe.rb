@@ -1,7 +1,7 @@
 require_relative 'board'
 
 class TicTacToe
-    attr_accessor :board
+    attr_reader :board
 
     def initialize
         @board = Board.new
