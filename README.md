@@ -16,7 +16,11 @@ Change into the root directory
 
 Install dependencies
 
-`gem install`
+`bundle install`
+
+Start game
+
+`ruby app.rb`
 
 ## Testing
 
