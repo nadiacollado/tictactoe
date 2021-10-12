@@ -17,25 +17,25 @@ class Game
         board.turn_count.odd? ? player2 : player1
     end
     def play
-        # get current move
-        current_move = get_move(current_player.symbol)
-
-        # check if move is valid
-        if board.valid_move?(current_move)
-            # update board with move (add make_move method to Board class)
-            board.mark_square(current_move, current_player.symbol)
-            board.display_board
-            if board.board_full?
-                # check if game has been won or tied
-                # if won/tied, then ends the game
+        until won?
+            # get current move
+            current_move = get_move(current_player.symbol)
+            # check if move is valid
+            if board.valid_move?(current_move)
+                # update board with move (add make_move method to Board class)
+                board.mark_square(current_move, current_player.symbol)
+                board.display_board
+                if board.board_full?
+                    # check if game has been won or tied
+                    # if won/tied, then ends the game
+                else
+                    # update board with the move
+                    # change player turn
+                end
             else
-                # update board with the move
-                # change player turn
+                puts "Sorry that move is not valid. Please try again."
             end
-        else
-            puts "Sorry that move is not valid. Please try again."
         end
-    end
 
     def get_move(player_symbol)
         puts "Player #{player_symbol}, you're up!\n"
@@ -43,6 +43,7 @@ class Game
     end
 
     def won?
+        false
     end
 
     def horizontal_win
