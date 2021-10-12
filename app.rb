@@ -6,6 +6,7 @@ require_relative './lib/game'
 app = TicTacToe.new
 app.print_welcome
 app.print_game_instructions
+app.print_board
 
 # start game
 

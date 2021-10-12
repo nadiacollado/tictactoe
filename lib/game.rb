@@ -17,8 +17,6 @@ class Game
         board.turn_count.odd? ? player2 : player1
     end
     def play
-        board.display_board
-
         # get current move
         current_move = get_move(current_player.symbol)
 
