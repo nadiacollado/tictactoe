@@ -14,7 +14,7 @@ class Game
         @game_ended = false
     end
 
-    def current_player
+    def current_player(board)
         board.turn_count.odd? ? player2 : player1
     end
 
