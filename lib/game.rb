@@ -25,15 +25,15 @@ class Game
         [2, 4, 6]
     ]
 
-    def current_player(board)
+    def current_player
         board.turn_count.odd? ? player2 : player1
     end
 
     def turn
-        current_move = get_move(current_player(board).symbol)
+        current_move = get_move(current_player.symbol)
         
         if board.valid_move?(current_move)
-            board.mark_square(current_move, current_player(board).symbol)
+            board.mark_square(current_move, current_player.symbol)
             board.display_board
         else
             puts "Sorry that move is not valid. Please try again."
@@ -62,13 +62,9 @@ class Game
 
     def won?
         WINNING_COMBOS.each do |combo|
-            win_idx_1 = combo[0]
-            win_idx_2 = combo[1]
-            win_idx_3 = combo[2]
-
-            square_1 = board.squares[win_idx_1]
-            square_2 = board.squares[win_idx_2]
-            square_3 = board.squares[win_idx_3]
+            square_1 = board.squares[combo[0]]
+            square_2 = board.squares[combo[1]]
+            square_3 = board.squares[combo[2]]
 
             if square_1 == square_2 && square_2 == square_3
                 @game_ended = true

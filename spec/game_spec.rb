@@ -7,26 +7,35 @@ describe Game do
 
     describe "current_player" do
         it "returns current_player" do
-            board = Board.new(%w[X 2 X X 5 6 7 8 9])
-            expect(game.current_player(board).symbol).to eq("O")
+            squares = [
+                "1", "X", "3", 
+                "O", "O", "X", 
+                "7", "8", "9" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.current_player.symbol).to eq("X")
         end
     end
 
     describe "won?" do
         it "returns winner of game if game has been won" do
-            board = Board.new(%w[
-                X X X 
-                0 0 X
-                0 X 0])
-            expect(game.won?(board)).to eq("X")
+            squares = [
+                "X", "X", "X", 
+                "O", "O", "X", 
+                "O", "X", "O" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.won?).to eq("X")
         end
 
         it "returns false if game is a draw" do
-            board = Board.new(%w[
-                X 0 X 
-                0 0 X
-                0 X 0])
-            expect(game.won?(board)).to eq(false)
+            squares = [
+                "X", "O", "X", 
+                "O", "O", "X", 
+                "O", "X", "O" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.won?).to eq(false)
         end
     end
 end
