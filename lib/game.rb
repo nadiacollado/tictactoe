@@ -14,41 +14,45 @@ class Game
         @game_ended = false
     end
 
-    def current_player(board)
-        board.turn_count.odd? ? player2 : player1
-    end
-
-    def play
-        until @game_ended
-            current_move = get_move(current_player(board).symbol)
-
-            if board.valid_move?(current_move)
-                board.mark_square(current_move, current_player(board).symbol)
-                board.display_board
-                if won?
-                    winner = won?
-                    puts "Player #{winner}, you have won this round!"
-                else
-                    if board.board_full?
-                        puts "It's a draw! Better luck next time."
-                        @game_ended = true
-                    end
-                end
-            else
-                puts "Sorry that move is not valid. Please try again."
-            end
-        end
-    end
-
-    def winning_combos
-        [[0, 1, 2],
+    WINNING_COMBOS = [
+        [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
         [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8],
-        [2, 4, 6]]
+        [2, 4, 6]
+    ]
+
+    def current_player(board)
+        board.turn_count.odd? ? player2 : player1
+    end
+
+    def turn
+        current_move = get_move(current_player(board).symbol)
+        
+        if board.valid_move?(current_move)
+            board.mark_square(current_move, current_player(board).symbol)
+            board.display_board
+        else
+            puts "Sorry that move is not valid. Please try again."
+        end
+    end
+
+    def play
+        until @game_ended
+            turn
+            if won?
+                winner = won?
+                puts "Player #{winner}, you have won this round!"
+            else
+                if board.board_full?
+                    puts "It's a draw! Better luck next time."
+                    @game_ended = true
+                end
+            end
+        end
     end
 
     def get_move(player_symbol)
@@ -57,7 +61,7 @@ class Game
     end
 
     def won?
-        winning_combos.each do |combo|
+        WINNING_COMBOS.each do |combo|
             win_idx_1 = combo[0]
             win_idx_2 = combo[1]
             win_idx_3 = combo[2]
