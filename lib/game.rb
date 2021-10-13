@@ -3,7 +3,7 @@ require_relative 'player'
 require_relative 'tic_tac_toe'
 
 class Game
-    attr_accessor :board, :player1, :player2, :current_player, :player_move, :game_ended
+    attr_accessor :board, :player1, :player2, :current_player, :player_move
 
     def initialize
         @board = Board.new
@@ -19,15 +19,17 @@ class Game
     end
 
     def play
-        until won?(board) || @game_ended
+        until @game_ended
             current_move = get_move(current_player(board).symbol)
 
             if board.valid_move?(current_move)
                 board.mark_square(current_move, current_player(board).symbol)
                 board.display_board
-
-                if board.board_full?
-                    if !won?(board)
+                if won?
+                    winner = won?
+                    puts "Player #{winner}, you have won this round!"
+                else
+                    if board.board_full?
                         puts "It's a draw! Better luck next time."
                         @game_ended = true
                     end
@@ -54,7 +56,7 @@ class Game
         player_move = gets.chomp
     end
 
-    def won?(board)
+    def won?
         winning_combos.each do |combo|
             win_idx_1 = combo[0]
             win_idx_2 = combo[1]
@@ -65,7 +67,7 @@ class Game
             square_3 = board.squares[win_idx_3]
 
             if square_1 == square_2 && square_2 == square_3
-                puts "Player #{square_1}, you have won this round!"
+                @game_ended = true
                 return square_1
             end
         end
