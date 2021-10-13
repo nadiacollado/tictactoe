@@ -28,14 +28,26 @@ describe Game do
             expect(game.won?).to eq("X")
         end
 
-        it "returns false if game is a draw" do
+        it "returns false if game has not been won" do
+            squares = [
+                "X", "2", "X", 
+                "O", "5", "X", 
+                "7", "X", "O" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.won?).to eq(false)
+        end
+    end
+
+    describe "draw?" do
+        it "returns true if the board is full and there is no winner" do
             squares = [
                 "X", "O", "X", 
                 "O", "O", "X", 
                 "O", "X", "O" ]
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
-            expect(game.won?).to eq(false)
+            expect(game.draw?).to eq(true)
         end
     end
 end

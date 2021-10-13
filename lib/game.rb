@@ -48,14 +48,13 @@ class Game
     def play
         until @game_ended
             turn
-            if won?
-                winner = won?
-                puts "Player #{winner}, you have won this round!"
-            else
-                if board.board_full?
-                    puts "It's a draw! Better luck next time."
-                    @game_ended = true
-                end
+            winner = won?
+            if winner
+                puts "Player #{winner} has won this round!"
+                @game_ended = true
+            elsif draw?
+                puts "It's a draw! Better luck next time."
+                @game_ended = true
             end
         end
     end
@@ -78,6 +77,10 @@ class Game
             end
         end
         return false
+    end
+
+    def draw?
+        !won? && board.board_full?
     end
 end
 
