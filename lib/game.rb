@@ -3,13 +3,12 @@ require_relative 'player'
 require_relative 'tic_tac_toe'
 
 class Game
-    attr_accessor :board, :player1, :player2, :current_player, :player_move
+    attr_accessor :board, :player1, :player2, :current_player
 
     def initialize
         @board = Board.new
         @player1 = Player.new(1, "X")
         @player2 = Player.new(2, "O")
-        @player_move = player_move
         @current_player = player1
         @game_ended = false
     end
@@ -25,13 +24,19 @@ class Game
         [2, 4, 6]
     ]
 
+    # does this belong in this class?
+
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
 
+    # how to test that methods are being called
+    # how to test that a specfic thing is being printed 
+
     def turn
-        current_move = get_move(current_player.symbol)
-        
+        puts "Player #{current_player.symbol}, you're up!\n"
+        current_move = get_move
+
         if board.valid_move?(current_move)
             board.mark_square(current_move, current_player.symbol)
             board.display_board
@@ -55,11 +60,12 @@ class Game
         end
     end
 
-    def get_move(player_symbol)
-        puts "Player #{player_symbol}, you're up!\n"
-        player_move = gets.chomp
+    # how to test for an input 
+    def get_move
+        gets.chomp
     end
 
+    # is there a better way to do this? syntax wise
     def won?
         WINNING_COMBOS.each do |combo|
             square_1 = board.squares[combo[0]]

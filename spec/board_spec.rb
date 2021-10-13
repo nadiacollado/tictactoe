@@ -20,7 +20,11 @@ describe Board do
         end
         #ArgumentError: Cannot proxy frozen objects, rspec-mocks relies on proxies for method stubbing and expectations.
         #it "calls square_taken? once if player's move falls within 1-9 range" do
+            #board = spy('board')
+            #board.deliver
+            #board.valid_move?(valid_move)
     
+            #expect(board).to have_received(:square_taken?).with(valid_move).once
             #expect(board.valid_move?(valid_move)).to receive(:square_taken?).once
             #board.valid_move?(valid_move)
         #end
