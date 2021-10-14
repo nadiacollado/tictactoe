@@ -23,6 +23,7 @@ class Game
         [2, 4, 6]
     ]
 
+
     def current_player
         board.turn_count.odd? ? player2 : player1
     end
@@ -45,11 +46,11 @@ class Game
     end
 
     def play
-        until game_ended?
+        until game_over?
             turn
             board.display_board
-            winner = won?
-            if winner
+
+            if won?
                 puts "Player #{winner} has won this round!"
             elsif draw?
                 puts "It's a draw! Better luck next time."
@@ -62,22 +63,27 @@ class Game
     end
 
     def won?
-        winner = false
         WINNING_COMBOS.each do |combo|
             square_1 = board.squares[combo[0]]
             square_2 = board.squares[combo[1]]
             square_3 = board.squares[combo[2]]
-            
-            winner = square_1 == square_2 && square_2 == square_3 ? square_1 : false
+
+            if square_1 == square_2 && square_2 == square_3
+                return combo
+            end
         end
-        winner
+        return false
+    end
+
+    def winner
+        current_player.symbol == "X" ? "O" : "X"
     end
 
     def draw?
         !won? && board.board_full?
     end
 
-    def game_ended?
+    def game_over?
         won? || draw?
     end
 end
