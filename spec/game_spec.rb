@@ -21,8 +21,6 @@ describe Game do
         it "returns player's move via the gets method" do
             allow(game).to receive(:gets).and_return("1")
             expect(game.get_move).to eq("1")
-
-
         end
     end
 

@@ -62,16 +62,15 @@ class Game
     end
 
     def won?
+        winner = false
         WINNING_COMBOS.each do |combo|
             square_1 = board.squares[combo[0]]
             square_2 = board.squares[combo[1]]
             square_3 = board.squares[combo[2]]
-
-            if square_1 == square_2 && square_2 == square_3
-                return square_1
-            end
+            
+            winner = square_1 == square_2 && square_2 == square_3 ? square_1 : false
         end
-        return false
+        winner
     end
 
     def draw?
