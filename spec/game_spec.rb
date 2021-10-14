@@ -64,6 +64,16 @@ describe Game do
             game.validate_move(4)
             expect(board.squares[3]).to eq("O")
         end
+
+        it "prints a message if move is invalid" do
+            squares = [
+                "X", "2", "3", 
+                "O", "5", "6", 
+                "7", "8", "9" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect{game.validate_move(4)}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
+        end
     end
 
     describe "won?" do
