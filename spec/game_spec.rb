@@ -27,6 +27,16 @@ describe Game do
     end
 
     describe "turn" do
+        #it "prints a message prompting next player to make a move" do
+            #squares = [
+                #"X", "2", "3", 
+                #"O", "5", "X", 
+                #"7", "8", "9" ]
+            #board.instance_variable_set(:@squares, squares)
+            #game.instance_variable_set(:@board, board)
+            #expect{game.turn}.to output("Player O, you're up!\n").to_stdout
+        #end
+
         it "calls get_move" do
             allow($stdout).to receive(:puts)
             expect(game).to receive(:get_move).and_return("3")
@@ -40,6 +50,19 @@ describe Game do
             expect(game).to receive(:validate_move).and_return(true)
 
             game.turn
+        end
+    end
+
+    describe "validate_move" do
+        it "marks the board if move is valid" do
+            squares = [
+                "X", "2", "3", 
+                "4", "5", "6", 
+                "7", "8", "9" ]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            game.validate_move(4)
+            expect(board.squares[3]).to eq("O")
         end
     end
 
