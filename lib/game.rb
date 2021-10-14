@@ -36,10 +36,12 @@ class Game
     def turn
         puts "Player #{current_player.symbol}, you're up!\n"
         current_move = get_move
+        validate_move(current_move)
+    end
 
-        if board.valid_move?(current_move)
-            board.mark_square(current_move, current_player.symbol)
-            board.display_board
+    def validate_move(move)
+        if board.valid_move?(move)
+            board.mark_square(move, current_player.symbol)
         else
             puts "Sorry that move is not valid. Please try again."
         end
@@ -48,6 +50,7 @@ class Game
     def play
         until @game_ended
             turn
+            board.display_board
             winner = won?
             if winner
                 puts "Player #{winner} has won this round!"
