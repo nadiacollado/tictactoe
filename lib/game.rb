@@ -3,7 +3,7 @@ require_relative 'player'
 require_relative 'tic_tac_toe'
 
 class Game
-    attr_accessor :board, :player1, :player2, :current_player, :player_move
+    attr_accessor :board, :player1, :player2, :current_player, :player_move, :game_ended
 
     def initialize
         @board = Board.new
@@ -11,32 +11,42 @@ class Game
         @player2 = Player.new(2, "O")
         @player_move = player_move
         @current_player = player1
+        @game_ended = false
     end
 
-    def current_player
+    def current_player(board)
         board.turn_count.odd? ? player2 : player1
     end
+
     def play
-        board.display_board
+        until won?(board) || @game_ended
+            current_move = get_move(current_player(board).symbol)
 
-        # get current move
-        current_move = get_move(current_player.symbol)
+            if board.valid_move?(current_move)
+                board.mark_square(current_move, current_player(board).symbol)
+                board.display_board
 
-        # check if move is valid
-        if board.valid_move?(current_move)
-            # update board with move (add make_move method to Board class)
-            board.mark_square(current_move, current_player.symbol)
-            board.display_board
-            if board.board_full?
-                # check if game has been won or tied
-                # if won/tied, then ends the game
+                if board.board_full?
+                    if !won?(board)
+                        puts "It's a draw! Better luck next time."
+                        @game_ended = true
+                    end
+                end
             else
-                # update board with the move
-                # change player turn
+                puts "Sorry that move is not valid. Please try again."
             end
-        else
-            puts "Sorry that move is not valid. Please try again."
         end
+    end
+
+    def winning_combos
+        [[0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]]
     end
 
     def get_move(player_symbol)
@@ -44,19 +54,22 @@ class Game
         player_move = gets.chomp
     end
 
-    def won?
-    end
+    def won?(board)
+        winning_combos.each do |combo|
+            win_idx_1 = combo[0]
+            win_idx_2 = combo[1]
+            win_idx_3 = combo[2]
 
-    def horizontal_win
-        [[1, 2, 3], [4, 5, 6],[7, 8, 9]]
-    end
+            square_1 = board.squares[win_idx_1]
+            square_2 = board.squares[win_idx_2]
+            square_3 = board.squares[win_idx_3]
 
-    def vertical_win
-        [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    end
-
-    def diagonal_win
-        [[1, 5, 9], [3, 5, 7]]
+            if square_1 == square_2 && square_2 == square_3
+                puts "Player #{square_1}, you have won this round!"
+                return square_1
+            end
+        end
+        return false
     end
 end
 
