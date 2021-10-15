@@ -27,17 +27,8 @@ class Game
     end
 
     def turn
-        puts "Player #{player.symbol}, you're up!\n"
-        current_move = get_move
-        validate_move(current_move)
-    end
-
-    def validate_move(move)
-        if board.valid_move?(move)
-            board.mark_square(move, player.symbol)
-        else
-            puts "Sorry that move is not valid. Please try again."
-        end
+        move = player.get_move
+        board.valid_move?(move, player.symbol)
     end
 
     def play
@@ -51,10 +42,6 @@ class Game
                 puts "It's a draw! Better luck next time."
             end
         end
-    end
-
-    def get_move
-        gets.chomp
     end
 
     def won?

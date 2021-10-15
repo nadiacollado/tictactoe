@@ -17,24 +17,10 @@ describe Game do
         end
     end
 
-    describe "get_move" do
-        it "returns player's move via the gets method" do
-            allow(game).to receive(:gets).and_return("1")
-            expect(game.get_move).to eq("1")
-        end
-    end
-
     describe "turn" do
-        it "calls get_move" do
-            allow($stdout).to receive(:puts)
-            expect(game).to receive(:get_move).and_return("3")
-
-            game.turn
-        end
-
         it "calls validate_move with what is returned from get_move" do
             allow($stdout).to receive(:puts)
-            expect(game).to receive(:get_move).and_return("3")
+            expect(game).to receive(:player.get_move).and_return("3")
             expect(game).to receive(:validate_move).and_return(true)
 
             game.turn
