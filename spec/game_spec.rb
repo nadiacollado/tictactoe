@@ -5,15 +5,15 @@ describe Game do
     let (:game) {Game.new}
     let (:board) {Board.new}
 
-    describe "current_player" do
-        it "returns current_player" do
+    describe "player" do
+        it "returns current player" do
             squares = [
                 "1", "X", "3", 
                 "O", "O", "X", 
                 "7", "8", "9" ]
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
-            expect(game.current_player.symbol).to eq("X")
+            expect(game.player.symbol).to eq("X")
         end
     end
 
@@ -25,16 +25,6 @@ describe Game do
     end
 
     describe "turn" do
-        #it "prints a message prompting next player to make a move" do
-            #squares = [
-                #"X", "2", "3", 
-                #"O", "5", "X", 
-                #"7", "8", "9" ]
-            #board.instance_variable_set(:@squares, squares)
-            #game.instance_variable_set(:@board, board)
-            #expect{game.turn}.to output("Player O, you're up!\n").to_stdout
-        #end
-
         it "calls get_move" do
             allow($stdout).to receive(:puts)
             expect(game).to receive(:get_move).and_return("3")

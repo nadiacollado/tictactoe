@@ -3,13 +3,12 @@ require_relative 'player'
 require_relative 'tic_tac_toe'
 
 class Game
-    attr_accessor :board, :player1, :player2, :current_player
+    attr_accessor :board, :player1, :player2
 
     def initialize
         @board = Board.new
         @player1 = Player.new(1, "X")
         @player2 = Player.new(2, "O")
-        @current_player = player1 
     end
 
     WINNING_COMBOS = [
@@ -23,23 +22,19 @@ class Game
         [2, 4, 6]
     ]
 
-
-    def current_player
+    def player
         board.turn_count.odd? ? player2 : player1
     end
 
-    # how to test that methods are being called
-    # how to test that a specfic thing is being printed 
-
     def turn
-        puts "Player #{current_player.symbol}, you're up!\n"
+        puts "Player #{player.symbol}, you're up!\n"
         current_move = get_move
         validate_move(current_move)
     end
 
     def validate_move(move)
         if board.valid_move?(move)
-            board.mark_square(move, current_player.symbol)
+            board.mark_square(move, player.symbol)
         else
             puts "Sorry that move is not valid. Please try again."
         end
@@ -76,7 +71,7 @@ class Game
     end
 
     def winner
-        current_player.symbol == "X" ? "O" : "X"
+        won?
     end
 
     def draw?
