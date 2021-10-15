@@ -69,7 +69,7 @@ class Game
             square_3 = board.squares[combo[2]]
 
             if square_1 == square_2 && square_2 == square_3
-                return combo
+                return square_1
             end
         end
         return false
