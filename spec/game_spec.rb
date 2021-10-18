@@ -22,13 +22,24 @@ describe Game do
             expect(game.board.squares).to eq(%w[1 2 X 4 5 6 7 8 9])
         end
 
-        it "does not mark the square on the board if a player's move is invalid" do
+        it "does not mark the square on the board with a player's invalid move" do
             squares = %w[1 2 3 4 X 6 7 8 9]
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
             allow(game.player).to receive(:get_move).and_return(5)
             game.turn
             expect(game.board.squares).to eq(%w[1 2 3 4 X 6 7 8 9])
+        end
+    end
+
+    describe "play" do
+        it "does not call turn method if the game has ended" do
+            squares = %w[X X O X O X X O O]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            game.play
+            expect(game.game_over?).to eq("X")
+            expect(game).not_to receive(:turn)
         end
     end
 
