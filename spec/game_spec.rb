@@ -41,6 +41,19 @@ describe Game do
             expect(game.game_over?).to eq("X")
             expect(game).not_to receive(:turn)
         end
+        
+        # fails -- does not output anything 
+        # it "prints winning message if game has been won" do
+        #     squares = [
+        #         "X", "X", "O", 
+        #         "4", "O", "X", 
+        #         "X", "O", "O" ]
+        #     board.instance_variable_set(:@squares, squares)
+        #     game.instance_variable_set(:@board, board)
+        #     allow(game.player).to receive(:get_move).and_return(4)
+        #     game.play
+        #     expect{game}.to output("Player X has won this round!").to_stdout
+        # end
     end
 
     describe "won?" do
