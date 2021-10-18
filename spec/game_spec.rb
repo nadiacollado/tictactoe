@@ -79,6 +79,13 @@ describe Game do
             game.instance_variable_set(:@board, board)
             expect(game.winner).to eq("O")
         end
+
+        it "returns false if game has not been won" do
+            squares = %w[X 2 X O 5 X 7 X O]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.winner).to eq(false)
+        end
     end
 
     describe "draw?" do
