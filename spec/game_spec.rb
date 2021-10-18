@@ -18,53 +18,15 @@ describe Game do
     end
 
     describe "turn" do
-        it "calls validate_move with what is returned from get_move" do
-            allow($stdout).to receive(:puts)
-            expect(game).to receive(:player.get_move).and_return("3")
-            expect(game).to receive(:validate_move).and_return(true)
-
+        it "marks the square on the board with a player's valid move" do
+            allow(game.player).to receive(:get_move).and_return(3)
             game.turn
-        end
-    end
-
-    describe "validate_move" do
-        it "marks the board if move is valid" do
-            squares = [
-                "X", "2", "3", 
+            expect(game.board.squares).to eq([
+                "1", "2", "X", 
                 "4", "5", "6", 
-                "7", "8", "9" ]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            game.validate_move(4)
-            expect(board.squares[3]).to eq("O")
-        end
-
-        it "prints a message if move is invalid" do
-            squares = [
-                "X", "2", "3", 
-                "O", "5", "6", 
-                "7", "8", "9" ]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect{game.validate_move(4)}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
+                "7", "8", "9" ])
         end
     end
-
-    #describe "play" do
-        #it "calls turn method if the game has not ended" do
-            #squares = [
-                #"X", "2", "3", 
-                #"O", "5", "6", 
-                #"7", "8", "9" ]
-            #board.instance_variable_set(:@squares, squares)
-            #game.instance_variable_set(:@board, board)
-            #allow($stdout).to receive(:puts)
-            #expect(game).to receive(:game_ended).and_return(false)
-            #expect(game).to receive(:turn)
-
-            #game.play
-        #end
-    #end
 
     describe "won?" do
         it "returns winner of game if game has been won" do
