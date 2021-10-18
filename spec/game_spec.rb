@@ -5,19 +5,19 @@ describe Game do
     let (:game) {Game.new}
     let (:board) {Board.new}
 
-    describe "player" do
+    describe "get_current_player" do
         it "returns current player" do
             squares = %w[1 X 3 O O X 7 8 9]
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
-            expect(game.player.symbol).to eq("X")
+            expect(game.get_current_player.symbol).to eq("X")
         end
     end
 
     describe "turn" do
         it "marks the square on the board with a player's valid move" do
             expect(game.board.squares).to eq(%w[1 2 3 4 5 6 7 8 9])
-            allow(game.player).to receive(:get_move).and_return(3)
+            allow(game.get_current_player).to receive(:get_move).and_return(3)
             game.turn
             expect(game.board.squares).to eq(%w[1 2 X 4 5 6 7 8 9])
         end
@@ -26,7 +26,7 @@ describe Game do
             squares = %w[1 2 3 4 X 6 7 8 9]
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
-            allow(game.player).to receive(:get_move).and_return(5)
+            allow(game.get_current_player).to receive(:get_move).and_return(5)
             game.turn
             expect(game.board.squares).to eq(%w[1 2 3 4 X 6 7 8 9])
         end
