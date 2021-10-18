@@ -41,7 +41,7 @@ describe Game do
             expect(game.game_over?).to eq("X")
             expect(game).not_to receive(:turn)
         end
-        
+
         # fails -- does not output anything 
         # it "prints winning message if game has been won" do
         #     squares = [
@@ -69,6 +69,15 @@ describe Game do
             board.instance_variable_set(:@squares, squares)
             game.instance_variable_set(:@board, board)
             expect(game.won?).to eq(false)
+        end
+    end
+
+    describe "winner" do
+        it "returns winner of game if game has been won" do
+            squares = %w[X O X O O O O X X]
+            board.instance_variable_set(:@squares, squares)
+            game.instance_variable_set(:@board, board)
+            expect(game.winner).to eq("O")
         end
     end
 
