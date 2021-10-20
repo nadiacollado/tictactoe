@@ -1,12 +1,7 @@
 require_relative 'board'
 
 class Rules
-    attr_reader :board
-
-    def initialize(board)
-        @board = board
-    end
-
+    
     WINNING_COMBOS = [
         [0, 1, 2],
         [3, 4, 5],
@@ -18,7 +13,7 @@ class Rules
         [2, 4, 6]
     ]
 
-    def won?
+    def won?(board)
         WINNING_COMBOS.each do |combo|
             square_1 = board.squares[combo[0]]
             square_2 = board.squares[combo[1]]
@@ -31,16 +26,16 @@ class Rules
         return false
     end
 
-    def winner
-        won?
+    def winner(board)
+        won?(board)
     end
 
-    def draw?
-        !won? && board.board_full?
+    def draw?(board)
+        !won?(board) && board.board_full?
     end
 
-    def game_over?
-        won? || draw?
+    def game_over?(board)
+        won?(board) || draw?(board)
     end
 
 end

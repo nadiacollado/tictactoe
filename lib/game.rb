@@ -1,10 +1,9 @@
 require_relative 'board'
 require_relative 'player'
-require_relative 'tic_tac_toe'
 require_relative 'rules'
 
 class Game
-    attr_accessor :board, :player1, :player2, :rules
+    attr_reader :board, :player1, :player2, :rules
 
     def initialize(board, player1, player2, rules)
         @board = board
@@ -23,13 +22,13 @@ class Game
     end
 
     def play
-        until rules.game_over?
+        until rules.game_over?(board)
             turn
             board.display_board
 
-            if rules.won?
-                puts "Player #{rules.winner} has won this round!"
-            elsif rules.draw?
+            if rules.won?(board)
+                puts "Player #{rules.winner(board)} has won this round!"
+            elsif rules.draw?(board)
                 puts "It's a draw! Better luck next time."
             end
         end
