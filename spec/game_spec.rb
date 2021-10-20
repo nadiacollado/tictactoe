@@ -41,5 +41,19 @@ describe Game do
             expect(rules.game_over?(board)).to eq("X")
             expect(game).not_to receive(:turn)
         end
+        
+        it "prints winning message if game has been won" do
+            board = Board.new(%w[X X O 4 O X X O O])
+            game = Game.new(board, player1, player2, rules)
+            allow(game.get_current_player).to receive(:get_move).and_return(4)
+            expect{game.play}.to output(a_string_including("Player X has won this round!")).to_stdout
+        end
+
+        it "prints draw message if game has been tied" do
+            board = Board.new(%w[X X O O O 6 X O O])
+            game = Game.new(board, player1, player2, rules)
+            allow(game.get_current_player).to receive(:get_move).and_return(6)
+            expect{game.play}.to output(a_string_including("It's a draw! Better luck next time.")).to_stdout
+        end
     end
 end
