@@ -13,17 +13,21 @@ describe Board do
     end
 
     describe "valid_move?" do
-        it "returns false if player's move falls outside of 1-9 range" do
-            invalid_move = 25
-            outcome = board.valid_move?(invalid_move)
-            expect(outcome).to eq(false)
+        it "returns invalid message if player's move does not fall within the alloted 1-9 range" do
+            expect{board.valid_move?(25, "X")}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
         end
-        #ArgumentError: Cannot proxy frozen objects, rspec-mocks relies on proxies for method stubbing and expectations.
-        #it "calls square_taken? once if player's move falls within 1-9 range" do
-    
-            #expect(board.valid_move?(valid_move)).to receive(:square_taken?).once
-            #board.valid_move?(valid_move)
-        #end
+
+        it "returns invalid message if the square is already taken" do
+            board = Board.new(%w[X 2 X O 5 O O O 9])
+            expect{board.valid_move?(1, "X")}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
+        end
+
+        it "marks the board if a player's move falls within range and the square is available" do
+            board = Board.new(%w[X 2 3 4 5 O 7 8 9])
+            expect(board.square_taken?(valid_move)).to eq(false)
+            board.valid_move?(valid_move, "X")
+            expect(board.squares).to eq(%w[X 2 3 X 5 O 7 8 9])
+        end
     end
 
     describe "square_taken?" do
@@ -37,7 +41,6 @@ describe Board do
             expect(board.square_taken?(valid_move)).to be(false)
         end
     end
-
 
     describe "mark_square" do
         it "updates the board with a player's move" do

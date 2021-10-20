@@ -14,12 +14,11 @@ class Board
         \n"
     end
 
-    def valid_move?(move)
-        move = move.to_i
-        if move > 0 && move <= 9
-            !square_taken?(move)
+    def valid_move?(move, player)
+        if move > 0 && move <= 9 && !square_taken?(move)
+            mark_square(move, player)
         else
-            false
+            puts "Sorry that move is not valid. Please try again."
         end
     end
 
@@ -28,7 +27,6 @@ class Board
     end
 
     def mark_square(move, player)
-        move = move.to_i
         squares[move - 1] = player
     end
 
