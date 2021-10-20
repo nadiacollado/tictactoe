@@ -6,11 +6,11 @@ require_relative 'rules'
 class Game
     attr_accessor :board, :player1, :player2, :rules
 
-    def initialize
-        @board = Board.new
-        @player1 = Player.new(1, "X")
-        @player2 = Player.new(2, "O")
-        @rules = Rules.new(board)
+    def initialize(board, player1, player2, rules)
+        @board = board
+        @player1 = player1
+        @player2 = player2
+        @rules = rules
     end
 
     def get_current_player
