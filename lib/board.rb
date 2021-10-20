@@ -38,3 +38,4 @@ class Board
         squares.count("X") + squares.count("O")
     end
 end
+
