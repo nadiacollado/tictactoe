@@ -38,7 +38,7 @@ describe Game do
             board = Board.new(%w[X X O X O X X O O])
             game = Game.new(board, player1, player2, rules, symbols)
             game.play
-            expect(rules.game_over?(board, symbols)).to eq(symbols.player1_marker)
+            expect(rules.game_over?(board)).to eq(symbols.player1_marker)
             expect(game).not_to receive(:turn)
         end
         

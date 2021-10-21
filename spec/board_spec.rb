@@ -4,7 +4,6 @@ describe Board do
     let (:board) { Board.new }
     let (:symbols) { Symbols.new }
     let (:test_player) { Player.new("1", symbols.player1_marker) }
-     
     describe "display_board" do
         it "returns game board diplay" do
             expect{board.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
@@ -51,12 +50,12 @@ describe Board do
     describe "board_full?" do
         it "returns false if the board is not full" do
             board = Board.new(%w[X 2 X 4 5 O O O 9])
-            expect(board.board_full?(symbols)).to be(false)
+            expect(board.board_full?).to be(false)
         end
 
         it "returns true if board is full" do
             board = Board.new(%w[X O X X X O O O O])
-            expect(board.board_full?(symbols)).to be(true)
+            expect(board.board_full?).to be(true)
         end
     end
 

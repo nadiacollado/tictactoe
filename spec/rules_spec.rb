@@ -30,14 +30,14 @@ describe Rules do
     describe "draw?" do
         it "returns true if the board is full and there is no winner" do
             board = Board.new(%w[X O X O O X O X O])
-            expect(rules.draw?(board, symbols)).to eq(true)
+            expect(rules.draw?(board)).to eq(true)
         end
     end
 
     describe "game_over?" do
         it "returns true if the board is full and there is no winner" do
             board = Board.new(%w[X O X O O X O X O])
-            expect(rules.game_over?(board, symbols)).to eq(true)
+            expect(rules.game_over?(board)).to eq(true)
         end
     end
 end

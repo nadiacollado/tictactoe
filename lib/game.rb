@@ -24,13 +24,13 @@ class Game
     end
 
     def play
-        until rules.game_over?(board, symbols)
+        until rules.game_over?(board)
             turn
             board.display_board
 
             if rules.won?(board)
                 puts "Player #{rules.winner(board)} has won this round!"
-            elsif rules.draw?(board, symbols)
+            elsif rules.draw?(board)
                 puts "It's a draw! Better luck next time."
             end
         end

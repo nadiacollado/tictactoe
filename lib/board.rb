@@ -32,8 +32,8 @@ class Board
         squares[move - 1] = player
     end
 
-    def board_full?(symbols)
-        squares.all? {|square| square == symbols.player1_marker || square == symbols.player2_marker}
+    def board_full?
+        squares.none? {|square| '123456789'.include?(square)}
     end
 
     def turn_count(symbols)
