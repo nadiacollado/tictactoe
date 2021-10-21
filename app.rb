@@ -14,7 +14,7 @@ app.print_board
 board = Board.new
 player1 = Player.new(1, "X")
 player2 = Player.new(2, "O")
-rules = Rules.new(board)
+rules = Rules.new
 game = Game.new(board, player1, player2, rules)
 game.play
 

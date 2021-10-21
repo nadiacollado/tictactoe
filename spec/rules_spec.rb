@@ -1,6 +1,3 @@
-require "game"
-require "board"
-
 describe Rules do
     let (:board) { Board.new }
     let (:rules) { Rules.new }

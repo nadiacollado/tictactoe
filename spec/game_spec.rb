@@ -1,12 +1,11 @@
-require "game"
-require "board"
+require 'game'
 
 describe Game do
     let (:player1) { Player.new(1, "X") }
     let (:player2) { Player.new(2, "O") }
     let (:board) { Board.new }
     let (:rules) { Rules.new }
-    let (:game) {Game.new(board, player1, player2, rules)}
+    let (:game) { Game.new(board, player1, player2, rules) }
 
     describe "get_current_player" do
         it "returns current player" do

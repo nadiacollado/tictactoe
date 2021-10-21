@@ -1,7 +1,4 @@
-require_relative 'board'
-
 class Rules
-    
     WINNING_COMBOS = [
         [0, 1, 2],
         [3, 4, 5],
@@ -37,5 +34,4 @@ class Rules
     def game_over?(board)
         won?(board) || draw?(board)
     end
-
 end
