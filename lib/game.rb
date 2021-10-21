@@ -15,12 +15,12 @@ class Game
     end
 
     def get_current_player
-        board.turn_count(symbols).odd? ? player2 : player1
+        board.turn_count.odd? ? player2 : player1
     end
 
     def turn
         move = get_current_player.get_move
-        board.valid_move?(move, get_current_player.symbol, symbols)
+        board.valid_move?(move, get_current_player.symbol)
     end
 
     def play

@@ -7,6 +7,8 @@ class Board
         @squares = squares
     end
 
+    CLEAR_BOARD = '123456789'
+
     def display_board
         puts "\n #{squares[0]} | #{squares[1]} | #{squares[2]} "
         puts "-----------"
@@ -16,16 +18,16 @@ class Board
         \n"
     end
 
-    def valid_move?(move, player, symbols)
-        if move > 0 && move <= 9 && !square_taken?(move, symbols)
+    def valid_move?(move, player)
+        if move > 0 && move <= 9 && !square_taken?(move)
             mark_square(move, player)
         else
             puts "Sorry that move is not valid. Please try again."
         end
     end
 
-    def square_taken?(move, symbols)
-        squares[move - 1] == symbols.player1_marker || squares[move - 1] == symbols.player2_marker
+    def square_taken?(move)
+        CLEAR_BOARD.include?(squares[move - 1]) ? false : true
     end
 
     def mark_square(move, player)
@@ -33,11 +35,15 @@ class Board
     end
 
     def board_full?
-        squares.none? {|square| '123456789'.include?(square)}
+        squares.none? {|square| CLEAR_BOARD.include?(square)}
     end
 
-    def turn_count(symbols)
-        squares.count(symbols.player1_marker) + squares.count(symbols.player2_marker)
+    def turn_count
+        count = 0
+        squares.each {|square|  
+            !CLEAR_BOARD.include?(square) ? count += 1 : nil
+        }
+        count
     end
 end
 
