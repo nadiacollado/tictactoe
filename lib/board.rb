@@ -1,3 +1,5 @@
+require_relative 'symbols'
+
 class Board
     attr_reader :squares
 
@@ -14,28 +16,28 @@ class Board
         \n"
     end
 
-    def valid_move?(move, player)
-        if move > 0 && move <= 9 && !square_taken?(move)
+    def valid_move?(move, player, symbols)
+        if move > 0 && move <= 9 && !square_taken?(move, symbols)
             mark_square(move, player)
         else
             puts "Sorry that move is not valid. Please try again."
         end
     end
 
-    def square_taken?(move)
-        squares[move - 1] == "X" || squares[move - 1] == "O"
+    def square_taken?(move, symbols)
+        squares[move - 1] == symbols.player1_marker || squares[move - 1] == symbols.player2_marker
     end
 
     def mark_square(move, player)
         squares[move - 1] = player
     end
 
-    def board_full?
-        squares.all? {|square| square == "X" || square == "O"}
+    def board_full?(symbols)
+        squares.all? {|square| square == symbols.player1_marker || square == symbols.player2_marker}
     end
 
-    def turn_count
-        squares.count("X") + squares.count("O")
+    def turn_count(symbols)
+        squares.count(symbols.player1_marker) + squares.count(symbols.player2_marker)
     end
 end
 

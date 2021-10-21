@@ -27,11 +27,11 @@ class Rules
         won?(board)
     end
 
-    def draw?(board)
-        !won?(board) && board.board_full?
+    def draw?(board, symbols)
+        !won?(board) && board.board_full?(symbols)
     end
 
-    def game_over?(board)
-        won?(board) || draw?(board)
+    def game_over?(board, symbols)
+        won?(board) || draw?(board, symbols)
     end
 end

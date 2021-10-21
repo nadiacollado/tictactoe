@@ -12,9 +12,10 @@ app.print_board
 
 # start game
 board = Board.new
-player1 = Player.new(1, "X")
-player2 = Player.new(2, "O")
 rules = Rules.new
-game = Game.new(board, player1, player2, rules)
+symbols = Symbols.new
+player1 = Player.new(1, symbols.player1_marker)
+player2 = Player.new(2, symbols.player2_marker)
+game = Game.new(board, player1, player2, rules, symbols)
 game.play
 
