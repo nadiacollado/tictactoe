@@ -2,8 +2,8 @@ require 'board'
 
 describe Board do
     let (:board) { Board.new }
-    let (:test_player) { Player.new("1", "X") }
     let (:symbols) { Symbols.new }
+    let (:test_player) { Player.new("1", symbols.player1_marker) }
      
     describe "display_board" do
         it "returns game board diplay" do
