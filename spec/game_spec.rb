@@ -2,15 +2,17 @@ require "game"
 require "board"
 
 describe Game do
-    let (:game) {Game.new}
-    let (:board) {Board.new}
+    let (:player1) { Player.new(1, "X") }
+    let (:player2) { Player.new(2, "O") }
+    let (:board) { Board.new }
+    let (:rules) { Rules.new }
+    let (:game) {Game.new(board, player1, player2, rules)}
 
     describe "get_current_player" do
         it "returns current player" do
-            squares = %w[1 X 3 O O X 7 8 9]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.get_current_player.symbol).to eq("X")
+            board = Board.new(%w[1 X 3 4 O X 7 8 9])
+            game = Game.new(board, player1, player2, rules)
+            expect(game.get_current_player.symbol).to eq("O")
         end
     end
 
@@ -23,9 +25,8 @@ describe Game do
         end
 
         it "does not mark the square on the board with a player's invalid move" do
-            squares = %w[1 2 3 4 X 6 7 8 9]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
+            board = Board.new(%w[1 2 3 4 X 6 7 8 9])
+            game = Game.new(board, player1, player2, rules)
             allow(game.get_current_player).to receive(:get_move).and_return(5)
             game.turn
             expect(game.board.squares).to eq(%w[1 2 3 4 X 6 7 8 9])
@@ -34,66 +35,25 @@ describe Game do
 
     describe "play" do
         it "does not call turn method if the game has ended" do
-            squares = %w[X X O X O X X O O]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
+            board = Board.new(%w[X X O X O X X O O])
+            game = Game.new(board, player1, player2, rules)
             game.play
-            expect(game.game_over?).to eq("X")
+            expect(rules.game_over?(board)).to eq("X")
             expect(game).not_to receive(:turn)
         end
-
-        # fails -- does not output anything 
-        # it "prints winning message if game has been won" do
-        #     squares = [
-        #         "X", "X", "O", 
-        #         "4", "O", "X", 
-        #         "X", "O", "O" ]
-        #     board.instance_variable_set(:@squares, squares)
-        #     game.instance_variable_set(:@board, board)
-        #     allow(game.player).to receive(:get_move).and_return(4)
-        #     game.play
-        #     expect{game}.to output("Player X has won this round!").to_stdout
-        # end
-    end
-
-    describe "won?" do
-        it "returns winner of game if game has been won" do
-            squares = %w[X X X O O X O X O]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.won?).to eq("X")
+        
+        it "prints winning message if game has been won" do
+            board = Board.new(%w[X X O 4 O X X O O])
+            game = Game.new(board, player1, player2, rules)
+            allow(game.get_current_player).to receive(:get_move).and_return(4)
+            expect{game.play}.to output(a_string_including("Player X has won this round!")).to_stdout
         end
 
-        it "returns false if game has not been won" do
-            squares = %w[X 2 X O 5 X 7 X O]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.won?).to eq(false)
-        end
-    end
-
-    describe "winner" do
-        it "returns winner of game if game has been won" do
-            squares = %w[X O X O O O O X X]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.winner).to eq("O")
-        end
-
-        it "returns false if game has not been won" do
-            squares = %w[X 2 X O 5 X 7 X O]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.winner).to eq(false)
-        end
-    end
-
-    describe "draw?" do
-        it "returns true if the board is full and there is no winner" do
-            squares = %w[X O X O O X O X O]
-            board.instance_variable_set(:@squares, squares)
-            game.instance_variable_set(:@board, board)
-            expect(game.draw?).to eq(true)
+        it "prints draw message if game has been tied" do
+            board = Board.new(%w[X X O O O 6 X O O])
+            game = Game.new(board, player1, player2, rules)
+            allow(game.get_current_player).to receive(:get_move).and_return(6)
+            expect{game.play}.to output(a_string_including("It's a draw! Better luck next time.")).to_stdout
         end
     end
 end
