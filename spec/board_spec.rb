@@ -4,6 +4,7 @@ describe Board do
     let (:board) { Board.new }
     let (:symbols) { Symbols.new }
     let (:test_player) { Player.new("1", symbols.player1_marker) }
+    
     describe "display_board" do
         it "returns game board diplay" do
             expect{board.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
@@ -62,7 +63,7 @@ describe Board do
     describe "turn_count" do
         it "returns the number of turns that have been taken during the game" do
             board = Board.new(%w[X 2 X X 5 O 7 O 9])
-            expect(board.turn_count(symbols)).to eq(5)
+            expect(board.turn_count).to eq(5)
         end
     end
 end

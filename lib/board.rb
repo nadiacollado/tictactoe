@@ -7,7 +7,7 @@ class Board
         @squares = squares
     end
 
-    CLEAR_BOARD = '123456789'
+    CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
 
     def display_board
         puts "\n #{squares[0]} | #{squares[1]} | #{squares[2]} "
@@ -35,7 +35,7 @@ class Board
     end
 
     def board_full?
-        squares.none? {|square| CLEAR_BOARD.include?(square)}
+        squares.all? {|square| square_taken?(square.to_i)}
     end
 
     def turn_count
