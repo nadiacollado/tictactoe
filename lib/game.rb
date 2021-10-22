@@ -4,7 +4,7 @@ require_relative 'rules'
 require_relative 'symbols'
 
 class Game
-    attr_reader :board, :player1, :player2, :rules, :symbols
+    attr_reader :board, :player1, :player2, :rules, :symbols, :current_player
 
     def initialize(board, player1, player2, rules, symbols)
         @board = board
@@ -12,20 +12,22 @@ class Game
         @player2 = player2
         @rules = rules
         @symbols = symbols
+        @current_player = player1
     end
 
-    def get_current_player
-        board.turn_count.odd? ? player2 : player1
+    def set_current_player
+        @current_player = current_player == player1 ? player2 : player1
     end
 
     def turn
-        move = get_current_player.get_move
-        board.valid_move?(move, get_current_player.symbol)
+        move = current_player.get_move
+        board.valid_move?(move, current_player.symbol)
     end
 
     def play
         until rules.game_over?(board)
             turn
+            set_current_player
             board.display_board
 
             if rules.won?(board)
