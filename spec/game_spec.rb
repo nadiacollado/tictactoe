@@ -1,18 +1,16 @@
 require 'game'
 
 describe Game do
-    let (:player1) { Player.new(1, "X") }
-    let (:player2) { Player.new(2, "O") }
     let (:board) { Board.new }
     let (:rules) { Rules.new }
-    let (:symbols) { Symbols.new }
-    let (:game) { Game.new(board, player1, player2, rules, symbols) }
+    let (:marker) { Marker.new("X", "O")}
+    let (:player1) { Player.new(1, marker.p1_marker) }
+    let (:player2) { Player.new(2, marker.p2_marker) }
+    let (:game) { Game.new }
 
     describe "switch_player" do
         it "sets and returns current player" do
-            board = Board.new(%w[1 X 3 4 O X 7 8 9])
-            game = Game.new(board, player1, player2, rules, symbols)
-            expect(game.switch_player.symbol).to eq(symbols.player2_marker)
+            expect(game.switch_player.marker).to eq(marker.p2_marker)
         end
     end
 
@@ -26,8 +24,7 @@ describe Game do
 
         it "does not mark the square on the board with a player's invalid move" do
             board = Board.new(%w[1 2 3 4 X 6 7 8 9])
-            game = Game.new(board, player1, player2, rules, symbols)
-            allow(game.current_player).to receive(:get_move).and_return(5)
+            allow(game.current_player).to receive(:get_move).and_return(55)
             game.turn
             expect(game.board.squares).to eq(%w[1 2 3 4 X 6 7 8 9])
         end

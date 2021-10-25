@@ -1,17 +1,17 @@
-require 'symbols'
+require 'marker'
 
-describe Symbols do
-    let (:symbols) { Symbols.new }
+describe Marker do
+    let (:marker) { Marker.new("Y", "N") }
 
     describe "player1_marker" do
         it "returns the first player's marker" do
-            expect(symbols.player1_marker).to eq ("X")
+            expect(marker.p1_marker).to eq ("Y")
         end
     end
 
     describe "player2_marker" do
         it "returns the second player's marker" do
-            expect(symbols.player2_marker).to eq ("O")
+            expect(marker.p2_marker).to eq ("N")
         end
     end
 end

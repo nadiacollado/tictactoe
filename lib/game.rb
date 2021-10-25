@@ -8,7 +8,7 @@ class Game
     def initialize
         @board = Board.new
         @rules = Rules.new
-        @marker = Marker.new
+        @marker = Marker.new("X", "O")
         @display = TicTacToe.new(board)
         @player1 = Player.new(1, marker.p1_marker)
         @player2 = Player.new(2, marker.p2_marker)
