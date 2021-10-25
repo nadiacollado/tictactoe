@@ -1,5 +1,3 @@
-require_relative 'symbols'
-
 class Board
     attr_reader :squares
 

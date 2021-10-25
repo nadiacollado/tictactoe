@@ -1,17 +1,17 @@
 require_relative 'board'
 require_relative 'player'
 require_relative 'rules'
-require_relative 'symbols'
 
 class Game
-    attr_reader :board, :player1, :player2, :rules, :symbols, :current_player
+    attr_reader :board, :marker, :rules, :player1, :player2, :current_player
 
-    def initialize(board, player1, player2, rules, symbols)
-        @board = board
-        @player1 = player1
-        @player2 = player2
-        @rules = rules
-        @symbols = symbols
+    def initialize
+        @board = Board.new
+        @rules = Rules.new
+        @marker = Marker.new
+        @display = Display.new(board)
+        @player1 = Player.new(1, marker.p1_marker)
+        @player2 = Player.new(2, marker.p2_marker)
         @current_player = player1
     end
 
@@ -21,7 +21,7 @@ class Game
 
     def turn
         move = current_player.get_move
-        board.valid_move?(move, current_player.symbol)
+        board.valid_move?(move, current_player.marker)
     end
 
     def play
