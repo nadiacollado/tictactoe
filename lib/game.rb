@@ -9,7 +9,7 @@ class Game
         @board = Board.new
         @rules = Rules.new
         @marker = Marker.new
-        @display = Display.new(board)
+        @display = TicTacToe.new(board)
         @player1 = Player.new(1, marker.p1_marker)
         @player2 = Player.new(2, marker.p2_marker)
         @current_player = player1
