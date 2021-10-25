@@ -15,7 +15,7 @@ class Game
         @current_player = player1
     end
 
-    def set_current_player
+    def switch_player
         @current_player = current_player == player1 ? player2 : player1
     end
 
@@ -27,14 +27,14 @@ class Game
     def play
         until rules.game_over?(board)
             turn
-            set_current_player
+            switch_player
             board.display_board
 
             if rules.won?(board)
                 puts "Player #{rules.winner(board)} has won this round!"
             elsif rules.draw?(board)
                 puts "It's a draw! Better luck next time."
-            end
+            end 
         end
     end
 end

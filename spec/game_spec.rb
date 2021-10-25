@@ -8,11 +8,11 @@ describe Game do
     let (:symbols) { Symbols.new }
     let (:game) { Game.new(board, player1, player2, rules, symbols) }
 
-    describe "set_current_player" do
+    describe "switch_player" do
         it "sets and returns current player" do
             board = Board.new(%w[1 X 3 4 O X 7 8 9])
             game = Game.new(board, player1, player2, rules, symbols)
-            expect(game.set_current_player.symbol).to eq(symbols.player2_marker)
+            expect(game.switch_player.symbol).to eq(symbols.player2_marker)
         end
     end
 
