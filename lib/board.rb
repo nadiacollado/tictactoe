@@ -35,5 +35,13 @@ class Board
     def board_full?
         squares.all? {|square| square_taken?(square.to_i)}
     end
+
+    def turn_count
+        count = 0
+        squares.each {|square|  
+            !CLEAR_BOARD.include?(square) ? count += 1 : nil
+        }
+        count
+    end
 end
 

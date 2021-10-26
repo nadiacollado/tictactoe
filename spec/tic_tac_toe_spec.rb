@@ -1,25 +1,20 @@
 require "tic_tac_toe"
 
 describe TicTacToe do
-    let (:app) {TicTacToe.new}
+    let (:board) {Board.new}
+    let (:app) {TicTacToe.new(board)}
 
-    describe "print_welcome" do
-        it "prints welcome message" do
-            expect {app.print_welcome()}.to output("\nWelcome to Tic-Tac-Toe!\n").to_stdout
-        end
-    end
-
-    describe "print_game_instructions" do
-        it "prints game instructions" do
-            expect{app.print_game_instructions()}.to output(
-                "\nEach square in the board corresponds to a number 1-9.\nMake your move by entering the number in the square of your choice.\n").to_stdout
+    describe "print" do
+        it "prints the message it is sent" do
+            GREETINGS = "Hello!"
+            expect {app.print(GREETINGS)}.to output(a_string_including("Hello!")).to_stdout
         end
     end
 
     describe "print_board" do
         it "prints game board" do
-            expect{app.print_board()}.to output(
-                "\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
+            expect{app.print_board(board)}.to output(a_string_including(
+                "\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n")).to_stdout
         end
     end
 end
