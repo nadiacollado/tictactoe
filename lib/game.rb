@@ -6,12 +6,12 @@ class Game
     attr_reader :board, :marker, :rules, :player1, :player2
 
     def initialize
-        @board = Board.new
+        # @board = Board.new
         @rules = Rules.new
-        @marker = Marker.new
-        # @display = TicTacToe.new(board)
-        @player1 = Player.new(1, marker.p1_marker)
-        @player2 = Player.new(2, marker.p2_marker)
+        # @marker = Marker.new
+        # # @display = TicTacToe.new(board)
+        # @player1 = Player.new(1, marker.p1_marker)
+        # @player2 = Player.new(2, marker.p2_marker)
     end
 
     def get_current_player
@@ -23,8 +23,8 @@ class Game
         board.valid_move?(move, get_current_player.marker)
     end
 
-    def setup_game
-
+    def setup_game(config)
+        
     end
 
     def play

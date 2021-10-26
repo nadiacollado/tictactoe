@@ -2,7 +2,7 @@ require "tic_tac_toe"
 
 describe TicTacToe do
     let (:board) {Board.new}
-    let (:app) {TicTacToe.new(board)}
+    let (:app) {Display.new(board)}
 
     describe "print" do
         it "prints the message it is sent" do

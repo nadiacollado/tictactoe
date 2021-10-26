@@ -4,7 +4,9 @@ class GameConfig
 
     def initialize
         @board = Board.new
-        @display = TicTacToe.new(board)
-        # @player_config = PlayerConfig.new
+        @marker = Marker.new
+        @display = Display.new(board)
+        @player1 = Player.new(1, marker.p1_marker)
+        @player2 = Player.new(2, marker.p2_marker)
     end
 end
