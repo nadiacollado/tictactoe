@@ -15,10 +15,6 @@ class Display
         puts message
     end
 
-    def get_game_choice
-        game_choice = gets.chomp
-    end
-
     def print_board(board)
         puts "\n #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]} "
         puts "-----------"
