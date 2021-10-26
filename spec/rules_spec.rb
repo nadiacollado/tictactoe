@@ -1,14 +1,14 @@
-require "game"
-require "board"
+require 'rules'
 
 describe Rules do
     let (:board) { Board.new }
     let (:rules) { Rules.new }
+    let (:marker) { Marker.new("X", "O") }
 
     describe "won?" do
         it "returns winner of game if game has been won" do
             board = Board.new(%w[X X X O O X O X O])
-            expect(rules.won?(board)).to eq("X")
+            expect(rules.won?(board)).to eq(marker.p1_marker)
         end
 
         it "returns false if game has not been won" do
@@ -20,7 +20,7 @@ describe Rules do
     describe "winner" do
         it "returns winner of game if game has been won" do
             board = Board.new(%w[X O X O O O O X X])
-            expect(rules.winner(board)).to eq("O")
+            expect(rules.winner(board)).to eq(marker.p2_marker)
         end
 
         it "returns false if game has not been won" do

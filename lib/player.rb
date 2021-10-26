@@ -1,13 +1,13 @@
 class Player
-    attr_accessor :player_num, :symbol
+    attr_accessor :id, :marker
 
-    def initialize(player_num, symbol)
-        @player_num = player_num
-        @symbol = symbol
+    def initialize(id, marker)
+        @id = id
+        @marker = marker
     end
 
     def get_move
-        puts "Player #{symbol}, you're up!\n"
+        puts "Player #{marker}, you're up!\n"
         gets.chomp.to_i
     end
 end

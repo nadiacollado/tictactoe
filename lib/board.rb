@@ -5,6 +5,8 @@ class Board
         @squares = squares
     end
 
+    CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
+
     def display_board
         puts "\n #{squares[0]} | #{squares[1]} | #{squares[2]} "
         puts "-----------"
@@ -23,7 +25,7 @@ class Board
     end
 
     def square_taken?(move)
-        squares[move - 1] == "X" || squares[move - 1] == "O"
+        CLEAR_BOARD.include?(squares[move - 1]) ? false : true
     end
 
     def mark_square(move, player)
@@ -31,11 +33,15 @@ class Board
     end
 
     def board_full?
-        squares.all? {|square| square == "X" || square == "O"}
+        squares.all? {|square| square_taken?(square.to_i)}
     end
 
     def turn_count
-        squares.count("X") + squares.count("O")
+        count = 0
+        squares.each {|square|  
+            !CLEAR_BOARD.include?(square) ? count += 1 : nil
+        }
+        count
     end
 end
 
