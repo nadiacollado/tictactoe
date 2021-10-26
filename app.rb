@@ -4,7 +4,9 @@ require_relative './lib/rules'
 require_relative './lib/tic_tac_toe'
 require_relative './lib/player'
 require_relative './lib/marker'
+require_relative './lib/game_config'
 
+config = GameConfig.new
 game = Game.new
-game.play
+game.setup_game(config)
 

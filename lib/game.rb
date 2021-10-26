@@ -9,7 +9,7 @@ class Game
         @board = Board.new
         @rules = Rules.new
         @marker = Marker.new
-        @display = TicTacToe.new(board)
+        # @display = TicTacToe.new(board)
         @player1 = Player.new(1, marker.p1_marker)
         @player2 = Player.new(2, marker.p2_marker)
     end
@@ -21,6 +21,10 @@ class Game
     def turn
         move = get_current_player.get_move
         board.valid_move?(move, get_current_player.marker)
+    end
+
+    def setup_game
+
     end
 
     def play

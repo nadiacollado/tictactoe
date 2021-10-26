@@ -2,15 +2,21 @@ class TicTacToe
 
     WELCOME = "\nWelcome to Tic-Tac-Toe!\n"
     INSTRUCTIONS = "\nEach square in the board corresponds to a number 1-9.\nMake your move by entering the number in the square of your choice.\n"
+    PLAYER_CHOICE = "\nWhat kind of game would you like to play? Enter 'H' for a single player game or 'C' to play against a computer."
 
     def initialize(board)
         @print_welcome = print(WELCOME)
-        @print_instructions = print(INSTRUCTIONS)
         @print_board = print_board(board)
+        @print_instructions = print(INSTRUCTIONS)
+        @print_game_choice = print(PLAYER_CHOICE)
     end
 
     def print(message)
         puts message
+    end
+
+    def get_game_choice
+        game_choice = gets.chomp
     end
 
     def print_board(board)
