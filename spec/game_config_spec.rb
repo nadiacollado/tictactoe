@@ -3,9 +3,9 @@ require 'game_config'
 describe GameConfig do
     let (:board) { Board.new }
     let (:marker) { Marker.new("X", "O") }
-    let (:player1) { Player.new(1, marker.p1_marker)}
-    let (:player2) { Player.new(2, marker.p2_marker)}
-    let (:game) { Game.new(board, player1, player2) }
+    let (:test_player1) { Player.new(1, marker.p1_marker)}
+    let (:test_player2) { Player.new(2, marker.p2_marker)}
+    let (:game) { Game.new(board, test_player1, test_player2) }
     let (:game_config) { GameConfig.new }
 
     before do
