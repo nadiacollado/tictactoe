@@ -1,6 +1,6 @@
-require "tic_tac_toe"
+require "display"
 
-describe TicTacToe do
+describe Display do
     let (:board) {Board.new}
     let (:app) {Display.new(board)}
 

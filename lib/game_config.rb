@@ -20,12 +20,12 @@ class GameConfig
         @game.play
     end
 
-    def isHumanOnly
+    def humans_only?
         display.get_player_type == "H" ? true : false
     end
 
     def configure_players
-        if isHumanOnly
+        if humans_only?
             @player1 = Player.new(1, marker.p1_marker)
             @player2 = Player.new(2, marker.p2_marker)
         end
