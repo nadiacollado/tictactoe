@@ -4,7 +4,6 @@ class GameConfig
     attr_accessor :board, :marker, :game, :player1, :player2, :display
 
     def initialize
-        @game = game
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
