@@ -1,7 +1,7 @@
 require_relative 'game'
 
 class GameConfig
-    attr_reader :board, :marker, :game, :player1, :player2
+    attr_reader :board, :marker, :game, :player1, :player2, :display
 
     def initialize
         @board = Board.new
@@ -10,21 +10,22 @@ class GameConfig
     end
 
     def create_game
-        configure_players(get_player_type)
+        configure_players
         @game = Game.new(board, player1, player2)
         start_game
     end
 
     def start_game
+        board.display_board
         @game.play
     end
 
-    def get_player_type
-        gets.chomp
+    def isHumanOnly
+        display.get_player_type == "H" ? true : false
     end
 
-    def configure_players(player_type)
-        if player_type == "H"
+    def configure_players
+        if isHumanOnly
             @player1 = Player.new(1, marker.p1_marker)
             @player2 = Player.new(2, marker.p2_marker)
         end

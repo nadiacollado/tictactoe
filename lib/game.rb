@@ -23,8 +23,8 @@ class Game
 
     def play
         until rules.game_over?(board)
-            board.display_board
             turn
+            board.display_board
 
             if rules.won?(board)
                 puts "Player #{rules.winner(board)} has won this round!"
