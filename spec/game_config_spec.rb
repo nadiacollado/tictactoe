@@ -13,12 +13,12 @@ describe GameConfig do
         game_config.instance_variable_set(:@game, game)
     end
 
-    # describe "create_game" do
-    #     it "creates a game by setting up players" do
-    #         game_config.create_game
-    #         expect(game_config.player1.marker).to eq("X")
-    #     end
-    # end
+    describe "create_game" do
+        it "creates a game by setting up players" do
+            game_config.create_game
+            expect(game_config.player1.marker).to eq("X")
+        end
+    end
 
     describe "humans_only?" do
         it "returns true if player chooses single player game" do
