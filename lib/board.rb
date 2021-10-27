@@ -7,20 +7,11 @@ class Board
 
     CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
 
-    def display_board
-        puts "\n #{squares[0]} | #{squares[1]} | #{squares[2]} "
-        puts "-----------"
-        puts " #{squares[3]} | #{squares[4]} | #{squares[5]} "
-        puts "-----------"
-        puts " #{squares[6]} | #{squares[7]} | #{squares[8]}
-        \n"
-    end
-
     def valid_move?(move, player)
         if move > 0 && move <= 9 && !square_taken?(move)
             mark_square(move, player)
         else
-            puts "Sorry that move is not valid. Please try again."
+            false
         end
     end
 

@@ -3,10 +3,11 @@ require 'game'
 describe Game do
     let (:board) { Board.new }
     let (:rules) { Rules.new }
+    let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
     let (:test_player1) { Player.new(1, marker.p1_marker)}
     let (:test_player2) { Player.new(2, marker.p2_marker)}
-    let (:game) { Game.new(board, test_player1, test_player2) }
+    let (:game) { Game.new(board, test_player1, test_player2, display) }
 
     describe "switch_player" do
         it "sets and returns current player" do

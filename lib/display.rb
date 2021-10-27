@@ -1,9 +1,6 @@
+require_relative 'constants'
+
 class Display
-
-    WELCOME = "\nWelcome to Tic-Tac-Toe!\n"
-    INSTRUCTIONS = "\nEach square in the board corresponds to a number 1-9.\nMake your move by entering the number in the square of your choice.\n"
-    PLAYERS_CHOICE = "\nWhat kind of game would you like to play? Enter 'H' for a single player game or 'C' to play against a computer."
-
     def initialize(board)
         @print_welcome = print(WELCOME)
         @print_board = print_board(board)
@@ -14,6 +11,15 @@ class Display
     def print(message)
         puts message
     end
+
+    def print_winner(marker)
+        puts "Player #{marker} has won this round!"
+    end
+
+    # the get_move method from Player class
+    # def get_player_input(marker)
+    #     gets.chomp.to_i
+    # end
 
     def get_player_type
         gets.chomp

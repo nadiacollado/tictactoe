@@ -1,22 +1,23 @@
 require_relative 'game'
 
 class GameConfig
-    attr_accessor :board, :marker, :game, :player1, :player2, :display
+    attr_reader :board, :marker, :game, :player1, :player2, :display
 
     def initialize
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
+        @game = nil
     end
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, player2)
+        @game = Game.new(board, player1, player2, display)
         start_game
     end
 
     def start_game
-        board.display_board
+        display.print_board(board)
         @game.play
     end
 
