@@ -3,15 +3,11 @@ require 'game'
 describe Game do
     let (:board) { Board.new }
     let (:rules) { Rules.new }
+    let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
     let (:test_player1) { Player.new(1, marker.p1_marker)}
     let (:test_player2) { Player.new(2, marker.p2_marker)}
-    let (:game) { Game.new }
-
-    before do
-        game.instance_variable_set(:@player1, test_player1)
-        game.instance_variable_set(:@player2, test_player2)
-    end
+    let (:game) { Game.new(board, test_player1, test_player2, display) }
 
     describe "switch_player" do
         it "sets and returns current player" do
@@ -21,8 +17,7 @@ describe Game do
 
     describe "turn" do
         it "marks the square on the board with the correct player's valid move" do
-            squares = %w[X 2 3 4 5 6 7 8 9]
-            board.instance_variable_set(:@squares, squares)
+            board = Board.new(%w[X 2 3 4 5 6 7 8 9])
             game.instance_variable_set(:@board, board)
             expect(game.board.squares).to eq(%w[X 2 3 4 5 6 7 8 9])
             allow(game.get_current_player).to receive(:get_move).and_return(3)
@@ -31,8 +26,7 @@ describe Game do
         end
 
         it "does not mark the square on the board with a player's invalid move" do
-            squares = %w[1 2 3 4 X 6 7 8 9]
-            board.instance_variable_set(:@squares, squares)
+            board = Board.new(%w[1 2 3 4 X 6 7 8 9])
             game.instance_variable_set(:@board, board)
             allow(game.get_current_player).to receive(:get_move).and_return(5)
             game.turn
@@ -42,8 +36,7 @@ describe Game do
 
     describe "play" do
         it "does not call turn method if the game has ended" do
-            squares = %w[X X O X O X X O O]
-            board.instance_variable_set(:@squares, squares)
+            board = Board.new(%w[X X O X O X X O O])
             game.instance_variable_set(:@board, board)
             game.play
             expect(rules.game_over?(board)).to eq(marker.p1_marker)
@@ -51,8 +44,7 @@ describe Game do
         end
         
         it "prints winning message if game has been won" do
-            squares = %w[X X O 4 O X X O O]
-            board.instance_variable_set(:@squares, squares)
+            board = Board.new(%w[X X O 4 O X X O O])
             game.instance_variable_set(:@board, board)
             allow(game.get_current_player).to receive(:get_move).and_return(4)
             expect(game.board.squares).to eq(%w[X X O 4 O X X O O])
@@ -60,8 +52,7 @@ describe Game do
         end
 
         it "prints draw message if game has been tied" do
-            squares = %w[X X O O O 6 X O O]
-            board.instance_variable_set(:@squares, squares)
+            board = Board.new(%w[X X O O O 6 X O O])
             game.instance_variable_set(:@board, board)
             allow(game.get_current_player).to receive(:get_move).and_return(6)
             expect{game.play}.to output(a_string_including("It's a draw! Better luck next time.")).to_stdout

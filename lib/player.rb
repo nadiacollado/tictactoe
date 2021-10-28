@@ -6,8 +6,8 @@ class Player
         @marker = marker
     end
 
+    # should this get moved to the Display class?
     def get_move
-        puts "Player #{marker}, you're up!\n"
         gets.chomp.to_i
     end
 end

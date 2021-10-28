@@ -5,20 +5,20 @@ describe Board do
     let (:marker) { Marker.new("X", "O") }
     let (:test_player) { Player.new("1", marker.p1_marker) }
     
-    describe "display_board" do
-        it "returns game board diplay" do
-            expect{board.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
-        end
-    end
+    # describe "display_board" do
+    #     it "returns game board diplay" do
+    #         expect{board.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
+    #     end
+    # end
 
     describe "valid_move?" do
-        it "returns invalid message if player's move does not fall within the alloted 1-9 range" do
-            expect{board.valid_move?(25, marker.p1_marker)}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
+        it "returns false message if player's move does not fall within the alloted 1-9 range" do
+            expect(board.valid_move?(25, marker.p1_marker)).to eq(false)
         end
 
-        it "returns invalid message if the square is already taken" do
+        it "returns false if the square is already taken" do
             board = Board.new(%w[X 2 X O 5 O O O 9])
-            expect{board.valid_move?(1, marker.p1_marker)}.to output("Sorry that move is not valid. Please try again.\n").to_stdout
+            expect(board.valid_move?(1, marker.p1_marker)).to eq(false)
         end
 
         it "marks the board if a player's move falls within range and the square is available" do

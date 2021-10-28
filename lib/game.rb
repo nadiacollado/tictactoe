@@ -1,37 +1,49 @@
 require_relative 'board'
 require_relative 'player'
 require_relative 'rules'
+require_relative 'game_config'
+require_relative 'constants'
 
 class Game
-    attr_reader :board, :marker, :rules, :player1, :player2
+    attr_reader :board, :rules, :player1, :player2, :display
 
-    def initialize
-        @board = Board.new
+    def initialize(board, player1, player2, display)
+        @board = board
+        @player1 = player1
+        @player2 = player2
+        @display = display
         @rules = Rules.new
-        @marker = Marker.new
-        @display = TicTacToe.new(board)
-        @player1 = Player.new(1, marker.p1_marker)
-        @player2 = Player.new(2, marker.p2_marker)
     end
 
     def get_current_player
         board.turn_count.odd? ? player2 : player1
     end
 
+    # Implementation of Turn method using Display class get_player_input method
+    # Not sure how to test this
+    # def turn
+    #     move = display.get_player_input(get_current_player.marker)
+    #     if !board.valid_move?(move, get_current_player.marker)
+    #         display.print(INVALID_MOVE)
+    #     end
+    # end
+
     def turn
         move = get_current_player.get_move
-        board.valid_move?(move, get_current_player.marker)
+        if !board.valid_move?(move, get_current_player.marker)
+            display.print(INVALID_MOVE)
+        end
     end
 
     def play
         until rules.game_over?(board)
             turn
-            board.display_board
+            display.print_board(board)
 
             if rules.won?(board)
-                puts "Player #{rules.winner(board)} has won this round!"
+                display.print_winner(rules.winner(board))
             elsif rules.draw?(board)
-                puts "It's a draw! Better luck next time."
+                display.print(TIE)
             end 
         end
     end
