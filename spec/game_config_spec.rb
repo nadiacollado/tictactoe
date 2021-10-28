@@ -14,6 +14,7 @@ describe GameConfig do
         game_config.instance_variable_set(:@game, game)
     end
 
+    # TBD whether I need this test 
     # describe "create_game" do
     #     it "creates a game by setting up players" do
     #         game_config.create_game

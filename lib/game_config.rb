@@ -13,7 +13,7 @@ class GameConfig
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, Player.new(2, marker.p2_marker, "H"), display)
+        @game = Game.new(board, player1, Player.new(2, marker.p2_marker, HUMAN_PLAYER), display)
         start_game
     end
 
@@ -23,14 +23,14 @@ class GameConfig
     end
 
     def humans_only?
-        display.get_player_type == "H" ? true : false
+        display.get_player_type == HUMAN_PLAYER ? true : false
     end
 
     def configure_players
         if humans_only?
-            @player1 = manager.set_players(marker.p1_marker, "H")
+            @player1 = manager.set_players(marker.p1_marker, HUMAN_PLAYER)
         else
-            @player1 = manager.set_players(marker.p1_marker, "C")
+            @player1 = manager.set_players(marker.p1_marker, COMPUTER_PLAYER)
         end
     end
 end

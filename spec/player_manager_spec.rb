@@ -8,6 +8,7 @@ describe PlayerManager do
         it "creates human player" do
             player_manager.set_players(marker.p1_marker, "H")
             expect(player_manager.player1.id).to eq(1)
+            expect(player_manager.player1.marker).to eq("A")
         end
     end
 end
