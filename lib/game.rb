@@ -19,15 +19,6 @@ class Game
         board.turn_count.odd? ? player2 : player1
     end
 
-    # Implementation of Turn method using Display class get_player_input method
-    # Not sure how to test this
-    # def turn
-    #     move = display.get_player_input(get_current_player.marker)
-    #     if !board.valid_move?(move, get_current_player.marker)
-    #         display.print(INVALID_MOVE)
-    #     end
-    # end
-
     def turn
         move = get_current_player.get_move
         if !board.valid_move?(move, get_current_player.marker)
