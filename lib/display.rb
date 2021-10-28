@@ -1,5 +1,3 @@
-require_relative 'constants'
-
 class Display
     def initialize(board)
         @print_welcome = print(WELCOME)

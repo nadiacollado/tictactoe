@@ -1,7 +1,3 @@
-require_relative 'board'
-require_relative 'player'
-require_relative 'rules'
-require_relative 'game_config'
 require_relative 'constants'
 
 class Game
@@ -19,6 +15,7 @@ class Game
         board.turn_count.odd? ? player2 : player1
     end
 
+    # BUG: prints invalid_move every time the Computer plays
     def turn
         move = get_current_player.get_move(board)
         if !board.valid_move?(move, get_current_player.marker) && get_current_player.type == HUMAN_PLAYER

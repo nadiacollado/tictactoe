@@ -7,6 +7,7 @@ require_relative './lib/marker'
 require_relative './lib/game_config'
 require_relative './lib/computer'
 require_relative './lib/player_manager'
+require_relative './lib/constants'
 
 game = GameConfig.new
 game.create_game

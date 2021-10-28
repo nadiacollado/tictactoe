@@ -1,5 +1,3 @@
-require_relative 'game'
-
 class GameConfig
     attr_reader :board, :marker, :game, :player1, :player2, :display, :manager
 
@@ -26,6 +24,7 @@ class GameConfig
         display.get_player_type == HUMAN_PLAYER ? true : false
     end
 
+    #BUG: will create a computer based game with any entry that is not "H"
     def configure_players
         if humans_only?
             @player1 = manager.set_players(marker.p1_marker, HUMAN_PLAYER)

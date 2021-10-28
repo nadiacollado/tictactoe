@@ -4,12 +4,6 @@ describe Board do
     let (:board) { Board.new }
     let (:marker) { Marker.new("X", "O") }
     let (:test_player) { Player.new("1", marker.p1_marker, "H") }
-    
-    # describe "display_board" do
-    #     it "returns game board diplay" do
-    #         expect{board.display_board()}.to output("\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9\n        \n").to_stdout
-    #     end
-    # end
 
     describe "valid_move?" do
         it "returns false message if player's move does not fall within the alloted 1-9 range" do
