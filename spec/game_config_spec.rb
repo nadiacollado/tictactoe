@@ -39,7 +39,6 @@ describe GameConfig do
             expect(game_config.humans_only?).to eq(true)
             game_config.configure_players
             expect(game_config.player1.marker).to eq("X")
-            expect(game_config.player2.marker).to eq("O")
         end
     end
 end
