@@ -3,7 +3,7 @@ require 'board'
 describe Board do
     let (:board) { Board.new }
     let (:marker) { Marker.new("X", "O") }
-    let (:test_player) { Player.new("1", marker.p1_marker) }
+    let (:test_player) { Player.new("1", marker.p1_marker, "H") }
     
     # describe "display_board" do
     #     it "returns game board diplay" do

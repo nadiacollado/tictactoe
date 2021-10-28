@@ -13,7 +13,7 @@ class GameConfig
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, Player.new(2, marker.p2_marker, "human"), display)
+        @game = Game.new(board, player1, Player.new(2, marker.p2_marker, "H"), display)
         start_game
     end
 

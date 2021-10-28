@@ -1,8 +1,9 @@
 require 'player_manager'
+require 'marker'
 
 describe PlayerManager do
     let (:marker) { Marker.new("A", "B")}
-    let (:player_manager) { PlayerManager.new() }
+    let (:player_manager) { PlayerManager.new(marker) }
 
     describe "set_players" do
         it "creates human player" do

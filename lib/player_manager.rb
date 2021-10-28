@@ -8,9 +8,9 @@ class PlayerManager
 
     def set_players(marker, player)
         if player == "H"
-            @player1 = Player.new(1, marker, "human")
+            @player1 = Player.new(1, marker, "H")
         elsif player == "C"
-            @player1 = Computer.new(1, marker, "computer")
+            @player1 = Computer.new(1, marker, "C")
         end
     end
 end
