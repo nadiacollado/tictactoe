@@ -11,5 +11,11 @@ class Computer
         rand(1...9)
     end
 
-    
+    def get_move(board)
+        move = move_generator
+        until board.valid_move?(move, marker)
+            move = move_generator
+        end
+        move
+    end
 end

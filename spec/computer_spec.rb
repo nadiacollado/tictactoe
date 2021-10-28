@@ -20,7 +20,10 @@ describe Computer do
     describe "get_move" do
         it "returns a valid move from computer player" do
             board = Board.new(%w[1 X 3 X O O 7 8 9 ])
-            expect(computer_player.get_move(board)).to not_be(2)
+            expect(computer_player.get_move(board)).not_to eq(2)
+            expect(computer_player.get_move(board)).not_to eq(4)
+            expect(computer_player.get_move(board)).not_to eq(5)
+            expect(computer_player.get_move(board)).not_to eq(6)
         end
     end
 end
