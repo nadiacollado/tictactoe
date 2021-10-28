@@ -1,6 +1,4 @@
 require 'player'
-require 'marker'
-require 'board'
 
 describe Player do
     let (:board) { Board.new }

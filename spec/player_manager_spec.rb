@@ -1,5 +1,4 @@
 require 'player_manager'
-require 'marker'
 
 describe PlayerManager do
     let (:marker) { Marker.new("A", "B")}

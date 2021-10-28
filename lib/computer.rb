@@ -10,4 +10,6 @@ class Computer
     def move_generator
         rand(1...9)
     end
+
+    
 end
