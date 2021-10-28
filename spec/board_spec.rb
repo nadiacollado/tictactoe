@@ -48,6 +48,13 @@ describe Board do
         end
     end
 
+    describe "board_clear?" do
+        it "returns true is board is clear" do
+            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            expect(board.board_clear?).to be(true)
+        end
+    end
+
     describe "board_full?" do
         it "returns false if the board is not full" do
             board = Board.new(%w[X 2 X 4 5 O O O 9])
