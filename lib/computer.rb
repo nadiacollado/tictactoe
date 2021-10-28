@@ -8,7 +8,7 @@ class Computer
     end
 
     def move_generator
-        rand(1...9)
+        rand(1..9)
     end
 
     def get_move(board)
