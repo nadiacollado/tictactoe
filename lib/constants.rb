@@ -6,4 +6,5 @@ INVALID_MOVE = "\nSorry that move is not valid. Please try again.\n"
 TIE = "\nIt's a draw! Better luck next time.\n"
 HUMAN_PLAYER = "H"
 COMPUTER_PLAYER = "C"
+CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
 

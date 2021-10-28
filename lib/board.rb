@@ -5,8 +5,6 @@ class Board
         @squares = squares
     end
 
-    CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
-
     def valid_move?(move, player)
         if move > 0 && move <= 9 && !square_taken?(move)
             mark_square(move, player)
@@ -21,6 +19,10 @@ class Board
 
     def mark_square(move, player)
         squares[move - 1] = player
+    end
+
+    def board_clear?
+        squares == CLEAR_BOARD
     end
 
     def board_full?

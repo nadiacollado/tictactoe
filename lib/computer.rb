@@ -12,10 +12,14 @@ class Computer
     end
 
     def get_move(board)
-        move = move_generator
-        until board.valid_move?(move, marker)
+        if board.board_clear?
+            move = 1
+        else
             move = move_generator
+            until board.valid_move?(move, marker)
+                move = move_generator
+            end
+            move
         end
-        move
     end
 end

@@ -21,7 +21,7 @@ class Game
 
     def turn
         move = get_current_player.get_move(board)
-        if !board.valid_move?(move, get_current_player.marker)
+        if !board.valid_move?(move, get_current_player.marker) && get_current_player.type == HUMAN_PLAYER
             display.print(INVALID_MOVE)
         end
     end
