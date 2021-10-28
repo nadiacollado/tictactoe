@@ -6,4 +6,8 @@ class Computer
         @marker = marker
         @type = type
     end
+
+    def move_generator
+        rand(1...9)
+    end
 end
