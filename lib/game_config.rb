@@ -1,18 +1,20 @@
 require_relative 'game'
+require_relative 'player_manager'
 
 class GameConfig
-    attr_reader :board, :marker, :game, :player1, :player2, :display
+    attr_reader :board, :marker, :game, :player1, :player2, :display, :manager
 
     def initialize
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
+        @manager = PlayerManager.new
         @game = nil
     end
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, player2, display)
+        @game = Game.new(board, player1, Player.new(2, marker.p2_marker), display)
         start_game
     end
 
@@ -27,8 +29,9 @@ class GameConfig
 
     def configure_players
         if humans_only?
-            @player1 = Player.new(1, marker.p1_marker)
-            @player2 = Player.new(2, marker.p2_marker)
+            @player1 = manager.set_players(marker.p1_marker, "H")
+        else
+            @player1 = manager.set_players(marker.p1_marker, "C")
         end
     end
 end
