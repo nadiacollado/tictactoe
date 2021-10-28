@@ -6,7 +6,6 @@ class Player
         @marker = marker
     end
 
-    # should this get moved to the Display class?
     def get_move
         gets.chomp.to_i
     end

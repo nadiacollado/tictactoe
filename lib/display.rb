@@ -16,11 +16,6 @@ class Display
         puts "Player #{marker} has won this round!"
     end
 
-    # the get_move method from Player class
-    # def get_player_input(marker)
-    #     gets.chomp.to_i
-    # end
-
     def get_player_type
         gets.chomp
     end
