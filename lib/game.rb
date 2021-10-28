@@ -20,7 +20,7 @@ class Game
     end
 
     def turn
-        move = get_current_player.get_move
+        move = get_current_player.get_move(board)
         if !board.valid_move?(move, get_current_player.marker)
             display.print(INVALID_MOVE)
         end

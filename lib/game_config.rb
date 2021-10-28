@@ -1,5 +1,4 @@
 require_relative 'game'
-require_relative 'player_manager'
 
 class GameConfig
     attr_reader :board, :marker, :game, :player1, :player2, :display, :manager
@@ -8,13 +7,13 @@ class GameConfig
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
-        @manager = PlayerManager.new
+        @manager = PlayerManager.new(marker)
         @game = nil
     end
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, Player.new(2, marker.p2_marker), display)
+        @game = Game.new(board, player1, Player.new(2, marker.p2_marker, "human"), display)
         start_game
     end
 
