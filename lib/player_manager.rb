@@ -12,4 +12,8 @@ class PlayerManager
             @player1 = Computer.new(1, marker, COMPUTER_PLAYER)
         end
     end
+
+    def get_move(player, board)
+        player.get_move(board)
+    end
 end

@@ -1,13 +1,14 @@
 require_relative 'constants'
 
 class Game
-    attr_reader :board, :rules, :player1, :player2, :display
+    attr_reader :board, :rules, :player1, :player2, :display, :manager
 
-    def initialize(board, player1, player2, display)
+    def initialize(board, player1, player2, display, manager)
         @board = board
         @player1 = player1
         @player2 = player2
         @display = display
+        @manager = manager
         @rules = Rules.new
     end
 
@@ -17,7 +18,7 @@ class Game
 
     # BUG: prints invalid_move every time the Computer plays
     def turn
-        move = get_current_player.get_move(board)
+        move = manager.get_move(get_current_player, board)
         if !board.valid_move?(move, get_current_player.marker) && get_current_player.type == HUMAN_PLAYER
             display.print(INVALID_MOVE)
         end
