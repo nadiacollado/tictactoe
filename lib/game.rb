@@ -16,10 +16,12 @@ class Game
         board.turn_count.odd? ? player2 : player1
     end
 
-    # BUG: prints invalid_move every time the Computer plays
     def turn
-        move = manager.get_move(get_current_player, board)
-        if !board.valid_move?(move, get_current_player.marker) && get_current_player.type == HUMAN_PLAYER
+        current_player = get_current_player
+        move = manager.get_move(current_player, board)
+        if board.valid_move?(move, current_player.marker)
+            board.mark_square(move, current_player.marker)
+        else
             display.print(INVALID_MOVE)
         end
     end

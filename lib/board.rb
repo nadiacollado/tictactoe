@@ -7,7 +7,7 @@ class Board
 
     def valid_move?(move, player)
         if move > 0 && move <= 9 && !square_taken?(move)
-            mark_square(move, player)
+            true
         else
             false
         end

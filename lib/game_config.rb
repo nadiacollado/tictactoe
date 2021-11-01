@@ -6,12 +6,13 @@ class GameConfig
         @marker = Marker.new
         @display = Display.new(board)
         @manager = PlayerManager.new(marker)
+        @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
         @game = nil
     end
 
     def create_game
         configure_players
-        @game = Game.new(board, player1, Human.new(2, marker.p2_marker, HUMAN_PLAYER), display, manager)
+        @game = Game.new(board, player1, player2, display, manager)
         start_game
     end
 
@@ -23,6 +24,16 @@ class GameConfig
     def humans_only?
         display.get_player_type == HUMAN_PLAYER ? true : false
     end
+
+    # def humans_only?
+    #     if display.get_player_type == HUMAN_PLAYER 
+    #         true
+    #     elsif display.get_player_type == COMPUTER_PLAYER
+    #         false
+    #     else
+    #         display.print(INVALID_SELECTION)
+    #     end
+    # end
 
     #BUG: will create a computer based game with any entry that is not "H"
     def configure_players
