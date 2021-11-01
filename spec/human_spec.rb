@@ -1,12 +1,12 @@
-require 'player'
+require 'human'
 
-describe Player do
+describe Human do
     let (:board) { Board.new }
     let (:marker) { Marker.new("X", "O") }
-    let (:test_player) { Player.new(1, marker.p1_marker, "H")}
+    let (:test_player) { Human.new(1, marker.p1_marker, "H")}
 
     describe "initialize" do
-        it "creates a new player with given arguments" do
+        it "creates a new human player with given arguments" do
             expect(test_player.id).to eq(1)
             expect(test_player.marker).to eq(marker.p1_marker)
         end

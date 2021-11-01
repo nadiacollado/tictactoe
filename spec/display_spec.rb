@@ -1,8 +1,8 @@
 require "display"
 
 describe Display do
-    let (:board) {Board.new}
-    let (:app) {Display.new(board)}
+    let (:board) { Board.new }
+    let (:app) { Display.new(board) }
 
     describe "print" do
         it "prints the message it is sent" do
