@@ -4,9 +4,10 @@ describe GameConfig do
     let (:board) { Board.new }
     let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
-    let (:test_player1) { Player.new(1, marker.p1_marker, "H")}
-    let (:test_player2) { Player.new(2, marker.p2_marker, "H")}
-    let (:game) { Game.new(board, test_player1, test_player2, display) }
+    let (:manager) { PlayerManager.new(marker) }
+    let (:test_player1) { Human.new(1, marker.p1_marker, "H")}
+    let (:test_player2) { Human.new(2, marker.p2_marker, "H")}
+    let (:game) { Game.new(board, test_player1, test_player2, display, manager) }
     let (:game_config) { GameConfig.new }
 
     before do

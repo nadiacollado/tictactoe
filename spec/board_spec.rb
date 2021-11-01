@@ -15,11 +15,9 @@ describe Board do
             expect(board.valid_move?(1, marker.p1_marker)).to eq(false)
         end
 
-        it "marks the board if a player's move falls within range and the square is available" do
+        it "returns true if a player's move falls within range and the square is available" do
             board = Board.new(%w[X 2 3 4 5 O 7 8 9])
-            expect(board.square_taken?(4)).to eq(false)
-            board.valid_move?(4, marker.p1_marker)
-            expect(board.squares).to eq(%w[X 2 3 X 5 O 7 8 9])
+            expect(board.valid_move?(4, marker.p1_marker)).to eq(true)
         end
     end
 

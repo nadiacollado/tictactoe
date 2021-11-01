@@ -20,7 +20,7 @@ class GameConfig
         display.print_board(board)
         @game.play
     end
-
+    
     def humans_only?
         display.get_player_type == HUMAN_PLAYER ? true : false
     end
