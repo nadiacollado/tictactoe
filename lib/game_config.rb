@@ -5,7 +5,7 @@ class GameConfig
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
-        @manager = PlayerManager.new(marker)
+        @manager = Player.new(marker)
         @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
         @game = nil
     end

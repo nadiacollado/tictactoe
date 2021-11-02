@@ -6,7 +6,7 @@ require_relative './lib/human'
 require_relative './lib/marker'
 require_relative './lib/game_config'
 require_relative './lib/computer'
-require_relative './lib/player_manager'
+require_relative './lib/player'
 require_relative './lib/constants'
 
 game = GameConfig.new

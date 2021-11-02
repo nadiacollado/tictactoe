@@ -1,4 +1,4 @@
-class PlayerManager
+class Player
     attr_reader :player1
 
     def initialize(marker)

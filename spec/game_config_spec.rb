@@ -4,7 +4,7 @@ describe GameConfig do
     let (:board) { Board.new }
     let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
-    let (:manager) { PlayerManager.new(marker) }
+    let (:manager) { Player.new(marker) }
     let (:test_player1) { Human.new(1, marker.p1_marker, "H")}
     let (:test_player2) { Human.new(2, marker.p2_marker, "H")}
     let (:game) { Game.new(board, test_player1, test_player2, display, manager) }
