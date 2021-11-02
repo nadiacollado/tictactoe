@@ -25,16 +25,6 @@ class GameConfig
         display.get_player_type == HUMAN_PLAYER ? true : false
     end
 
-    # def humans_only?
-    #     if display.get_player_type == HUMAN_PLAYER 
-    #         true
-    #     elsif display.get_player_type == COMPUTER_PLAYER
-    #         false
-    #     else
-    #         display.print(INVALID_SELECTION)
-    #     end
-    # end
-
     #BUG: will create a computer based game with any entry that is not "H"
     def configure_players
         if humans_only?

@@ -14,8 +14,22 @@ class Display
         puts "Player #{marker} has won this round!"
     end
 
+    # where to display invalid_selection message?
+    def validate_player_type(player_type)
+        if player_type == "H" || player_type == "C"
+            true
+        else
+            print(INVALID_SELECTION)
+            false
+        end
+    end
+
     def get_player_type
-        gets.chomp
+        player_type = gets.chomp
+        until validate_player_type(player_type)
+            player_type = gets.chomp
+        end
+        player_type
     end
 
     def print_board(board)
