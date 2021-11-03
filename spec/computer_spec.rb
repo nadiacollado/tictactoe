@@ -1,5 +1,5 @@
 require 'computer'
-require 'player'
+require 'players'
 
 describe Computer do
     let (:marker) { Marker.new("X", "O") }
