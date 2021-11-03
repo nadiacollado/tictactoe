@@ -1,4 +1,5 @@
 require 'human'
+require 'player'
 
 describe Human do
     let (:board) { Board.new }
