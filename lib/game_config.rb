@@ -24,8 +24,6 @@ class GameConfig
     end
 
     def build_players
-        # @player1 = humans_only? ? Player.new(1, marker.p1_marker, HUMAN_PLAYER) : Player.new(1, marker.p2_marker, COMPUTER_PLAYER)
-        # @player2 = Player.new(1, marker.p2_marker, HUMAN_PLAYER)
         @player1 = humans_only? ? Human.new(1, marker.p1_marker, HUMAN_PLAYER) : Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)
         @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
     end
