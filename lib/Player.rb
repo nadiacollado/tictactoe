@@ -1,3 +1,6 @@
+require_relative 'human'
+require_relative 'computer'
+
 class Player
     attr_reader :id, :marker, :type
     
