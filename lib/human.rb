@@ -1,4 +1,4 @@
-require_relative './player'
+require_relative 'player'
 
 class Human < Player
     attr_accessor :id, :marker, :type
