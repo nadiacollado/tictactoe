@@ -31,13 +31,18 @@ class Display
         player_type
     end
 
+    def print_turn_prompt(marker)
+        puts "Player #{marker}, you're up!"
+    end
+
     def print_board(board)
-        puts "\n #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]} "
-        puts "-----------"
-        puts " #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]} "
-        puts "-----------"
-        puts " #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
-        \n"
+        puts "      \n
+         #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]} "
+        puts "        -----------"
+        puts "         #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]} "
+        puts "        -----------"
+        puts "         #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
+                     \n"
     end
 end
 

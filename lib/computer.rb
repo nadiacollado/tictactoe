@@ -1,4 +1,6 @@
-class Computer
+require_relative 'player'
+
+class Computer < Player
     attr_accessor :id, :marker, :type
 
     def initialize(id, marker, type)
