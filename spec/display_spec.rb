@@ -7,7 +7,7 @@ describe Display do
 
     describe "print" do
         it "prints the message it is sent" do
-            expect {display.print(WELCOME)}.to output(a_string_including("\nWelcome to Tic-Tac-Toe!\n")).to_stdout
+            expect {display.print(WELCOME)}.to output(a_string_including("\n                   Welcome to Tic-Tac-Toe!\n")).to_stdout
         end
     end
 
