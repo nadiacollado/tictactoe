@@ -1,4 +1,4 @@
-require 'players'
+require 'player'
 require 'computer'
 require 'human'
 

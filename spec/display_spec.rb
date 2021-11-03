@@ -1,4 +1,4 @@
-require "display"
+require 'display'
 
 describe Display do
     let (:marker) { Marker.new("Y", "Z") }
