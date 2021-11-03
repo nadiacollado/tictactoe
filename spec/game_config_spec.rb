@@ -1,18 +1,7 @@
 require 'game_config'
 
 describe GameConfig do
-    let (:board) { Board.new }
-    let (:display) { Display.new(board) }
-    let (:marker) { Marker.new("X", "O") }
-    let (:test_player1) { Human.new(1, marker.p1_marker, "H")}
-    let (:test_player2) { Human.new(2, marker.p2_marker, "H")}
-    let (:game) { Game.new(board, test_player1, test_player2, display) }
     let (:game_config) { GameConfig.new }
-
-    before do
-        game_config.instance_variable_set(:@marker, marker)
-        game_config.instance_variable_set(:@game, game)
-    end
 
     describe "humans_only?" do
         it "returns true if player chooses human versus human game" do
@@ -31,7 +20,28 @@ describe GameConfig do
             allow(game_config.display).to receive(:get_player_type).and_return("H")
             expect(game_config.humans_only?).to eq(true)
             game_config.build_players
-            expect(game_config.player1.marker).to eq("X")
+            expect(game_config.player1.type).to eq(HUMAN_PLAYER)
+        end
+
+        it "creates computer player instance when prompted" do
+            allow(game_config.display).to receive(:get_player_type).and_return("C")
+            expect(game_config.humans_only?).to eq(false)
+            game_config.build_players
+            expect(game_config.player1.type).to eq(COMPUTER_PLAYER)
+        end
+
+        it "creates a human player instance for player 2 for human v computer games" do
+            allow(game_config.display).to receive(:get_player_type).and_return("C")
+            expect(game_config.humans_only?).to eq(false)
+            game_config.build_players
+            expect(game_config.player2.type).to eq(HUMAN_PLAYER)
+        end
+
+        it "creates a human player instance for player 2 for human v human games" do
+            allow(game_config.display).to receive(:get_player_type).and_return("H")
+            expect(game_config.humans_only?).to eq(true)
+            game_config.build_players
+            expect(game_config.player2.type).to eq(HUMAN_PLAYER)
         end
     end
 end
