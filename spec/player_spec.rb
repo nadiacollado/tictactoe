@@ -8,7 +8,7 @@ describe Player do
         it "creates a player with the correct marker and id" do
             expect(player.marker).to eq("A")
             expect(player.id).to eq(1)
-            expect(player.type).to eq("H")
+            expect(player.type).to eq(HUMAN_PLAYER)
         end
     end
 end
