@@ -4,10 +4,9 @@ describe GameConfig do
     let (:board) { Board.new }
     let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
-    let (:manager) { Player.new(marker) }
     let (:test_player1) { Human.new(1, marker.p1_marker, "H")}
     let (:test_player2) { Human.new(2, marker.p2_marker, "H")}
-    let (:game) { Game.new(board, test_player1, test_player2, display, manager) }
+    let (:game) { Game.new(board, test_player1, test_player2, display) }
     let (:game_config) { GameConfig.new }
 
     before do
@@ -16,7 +15,7 @@ describe GameConfig do
     end
 
     describe "humans_only?" do
-        it "returns true if player chooses single player game" do
+        it "returns true if player chooses human versus human game" do
             allow(game_config.display).to receive(:get_player_type).and_return("H")
             expect(game_config.humans_only?).to eq(true)
         end
@@ -27,11 +26,11 @@ describe GameConfig do
         end
     end
 
-    describe "configure_players" do
+    describe "build_players" do
         it "creates human player instances when prompted" do
             allow(game_config.display).to receive(:get_player_type).and_return("H")
             expect(game_config.humans_only?).to eq(true)
-            game_config.configure_players
+            game_config.build_players
             expect(game_config.player1.marker).to eq("X")
         end
     end
