@@ -36,13 +36,13 @@ class Display
     end
 
     def print_board(board)
-        puts "      \n
-         #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]} "
-        puts "        -----------"
-        puts "         #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]} "
-        puts "        -----------"
-        puts "         #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
-                     \n"
+        print("\n
+         #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]}
+        -----------
+         #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]}
+        -----------
+         #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
+        \n")
     end
 end
 
