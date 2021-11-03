@@ -58,4 +58,11 @@ describe Board do
             expect(board.board_full?).to be(true)
         end
     end
+
+    describe "turn_count" do
+        it "returns the number of turns that have been taken in a game" do
+            board = Board.new(%w[X 2 X 4 5 O O 8 9])
+            expect(board.turn_count).to eq(4)
+        end
+    end
 end

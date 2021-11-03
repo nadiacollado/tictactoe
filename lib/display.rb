@@ -10,6 +10,20 @@ class Display
         puts message
     end
 
+    def print_board(board)
+        print("\n
+         #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]}
+        -----------
+         #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]}
+        -----------
+         #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
+        \n")
+    end
+
+    def print_turn_prompt(marker)
+        puts "Player #{marker}, you're up!"
+    end
+
     def print_winner(marker)
         puts "Player #{marker} has won this round!"
     end
@@ -29,20 +43,6 @@ class Display
             player_type = gets.chomp
         end
         player_type
-    end
-
-    def print_turn_prompt(marker)
-        puts "Player #{marker}, you're up!"
-    end
-
-    def print_board(board)
-        print("\n
-         #{board.squares[0]} | #{board.squares[1]} | #{board.squares[2]}
-        -----------
-         #{board.squares[3]} | #{board.squares[4]} | #{board.squares[5]}
-        -----------
-         #{board.squares[6]} | #{board.squares[7]} | #{board.squares[8]}
-        \n")
     end
 end
 
