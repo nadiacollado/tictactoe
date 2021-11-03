@@ -1,4 +1,4 @@
-# require_relative 'player'
+require_relative './player.rb'
 
 class Computer < Player
     attr_accessor :id, :marker, :type
