@@ -1,11 +1,10 @@
 class GameConfig
-    attr_reader :board, :marker, :game, :player1, :player2, :display, :player
+    attr_reader :board, :marker, :game, :player1, :player2, :display
 
     def initialize
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
-        @player = Player.new(HUMAN_PLAYER)
         @game = nil
     end
 
