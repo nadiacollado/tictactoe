@@ -1,5 +1,5 @@
 require 'human'
-require 'player'
+require './lib/player'
 
 describe Human do
     let (:board) { Board.new }
