@@ -1,9 +1,7 @@
-require 'player'
 require 'computer'
 
 describe Computer do
     let (:marker) { Marker.new("X", "O") }
-    let (:player) { Player.new(COMPUTER_PLAYER) }
     let (:computer_player) { Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)}
 
     describe "initialize" do
