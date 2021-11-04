@@ -5,8 +5,8 @@ describe Game do
     let (:rules) { Rules.new }
     let (:display) { Display.new(board) }
     let (:marker) { Marker.new("X", "O") }
-    let (:test_player1) { Player.new(1, marker.p1_marker)}
-    let (:test_player2) { Player.new(2, marker.p2_marker)}
+    let (:test_player1) { Human.new(1, marker.p1_marker, HUMAN_PLAYER)}
+    let (:test_player2) { Computer.new(2, marker.p2_marker, COMPUTER_PLAYER)}
     let (:game) { Game.new(board, test_player1, test_player2, display) }
 
     describe "switch_player" do
@@ -32,6 +32,14 @@ describe Game do
             game.turn
             expect(game.board.squares).to eq(%w[1 2 3 4 X 6 7 8 9])
         end
+
+        it "prints invalid move message if player input is invalid" do
+            board = Board.new(%w[1 2 3 4 X 6 7 8 9])
+            game.instance_variable_set(:@board, board)
+            allow(game.get_current_player).to receive(:get_move).and_return(5)
+            game.turn
+            expect{game.turn}.to output(a_string_including(INVALID_MOVE)).to_stdout
+        end
     end
 
     describe "play" do
@@ -55,7 +63,7 @@ describe Game do
             board = Board.new(%w[X X O O O 6 X O O])
             game.instance_variable_set(:@board, board)
             allow(game.get_current_player).to receive(:get_move).and_return(6)
-            expect{game.play}.to output(a_string_including("It's a draw! Better luck next time.")).to_stdout
+            expect{game.play}.to output(a_string_including(TIE)).to_stdout
         end
     end
 end

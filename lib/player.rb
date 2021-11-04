@@ -1,12 +1,12 @@
-class Player
-    attr_accessor :id, :marker
+# require_relative 'human'
+# require_relative 'computer'
 
-    def initialize(id, marker)
-        @id = id
-        @marker = marker
-    end
-
-    def get_move
-        gets.chomp.to_i
-    end
-end
+# class Player
+#     attr_reader :id, :marker, :type
+    
+#     def initialize(id, marker, type)
+#         @id = id
+#         @marker = marker
+#         @type = type
+#     end
+# end

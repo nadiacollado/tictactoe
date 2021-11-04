@@ -1,20 +1,16 @@
-require_relative 'game'
-require_relative 'player_manager'
-
 class GameConfig
-    attr_reader :board, :marker, :game, :player1, :player2, :display, :manager
+    attr_reader :board, :marker, :game, :player1, :player2, :display
 
     def initialize
         @board = Board.new
         @marker = Marker.new
         @display = Display.new(board)
-        @manager = PlayerManager.new
         @game = nil
     end
 
     def create_game
-        configure_players
-        @game = Game.new(board, player1, Player.new(2, marker.p2_marker), display)
+        build_players
+        @game = Game.new(board, player1, player2, display)
         start_game
     end
 
@@ -22,16 +18,13 @@ class GameConfig
         display.print_board(board)
         @game.play
     end
-
+    
     def humans_only?
-        display.get_player_type == "H" ? true : false
+        display.get_player_type == HUMAN_PLAYER ? true : false
     end
 
-    def configure_players
-        if humans_only?
-            @player1 = manager.set_players(marker.p1_marker, "H")
-        else
-            @player1 = manager.set_players(marker.p1_marker, "C")
-        end
+    def build_players
+        @player1 = humans_only? ? Human.new(1, marker.p1_marker, HUMAN_PLAYER) : Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)
+        @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
     end
 end

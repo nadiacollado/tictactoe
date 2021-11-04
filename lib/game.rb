@@ -1,7 +1,3 @@
-require_relative 'board'
-require_relative 'player'
-require_relative 'rules'
-require_relative 'game_config'
 require_relative 'constants'
 
 class Game
@@ -20,8 +16,13 @@ class Game
     end
 
     def turn
-        move = get_current_player.get_move
-        if !board.valid_move?(move, get_current_player.marker)
+        current_player = get_current_player
+        display.print_turn_prompt(current_player.marker)
+        move = current_player.get_move(board)
+        if board.valid_move?(move, current_player.marker)
+            board.mark_square(move, current_player.marker)
+            display.print_board(board)
+        else
             display.print(INVALID_MOVE)
         end
     end
@@ -29,13 +30,11 @@ class Game
     def play
         until rules.game_over?(board)
             turn
-            display.print_board(board)
-
             if rules.won?(board)
                 display.print_winner(rules.winner(board))
             elsif rules.draw?(board)
                 display.print(TIE)
-            end 
+            end
         end
     end
 end
