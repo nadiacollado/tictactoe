@@ -1,6 +1,6 @@
-require_relative 'player'
+# require_relative 'player'
 
-class Human < Player
+class Human
     attr_accessor :id, :marker, :type
 
     def initialize(id, marker, type)
