@@ -1,7 +1,7 @@
 require 'human'
-require 'player'
+require_relative '../lib/player'
 
-describe Player::Human do
+describe Human do
     let (:board) { Board.new }
     let (:marker) { Marker.new("X", "O") }
     let (:player) { Player.new(HUMAN_PLAYER) }
