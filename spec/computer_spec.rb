@@ -1,7 +1,7 @@
 require 'computer'
-require './lib/player'
+require 'player'
 
-describe Computer do
+describe Player::Computer do
     let (:marker) { Marker.new("X", "O") }
     let (:player) { Player.new(COMPUTER_PLAYER) }
     let (:computer_player) { Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)}
