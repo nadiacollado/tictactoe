@@ -1,5 +1,5 @@
 class Player
-    attr_reader :player_type
+    attr_accessor :player_type
     
     def initialize(player_type)
         @player_type = player_type
