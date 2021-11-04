@@ -1,12 +1,7 @@
-# require_relative 'human'
-# require_relative 'computer'
-
-# class Player
-#     attr_reader :id, :marker, :type
+class Player
+    attr_reader :player_type
     
-#     def initialize(id, marker, type)
-#         @id = id
-#         @marker = marker
-#         @type = type
-#     end
-# end
+    def initialize(player_type)
+        @player_type = player_type
+    end
+end
