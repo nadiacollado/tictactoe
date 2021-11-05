@@ -31,12 +31,12 @@ describe Display do
     end
 
     describe "validate_player_type" do
-        it "returns true if player inputs either 'H' or 'C'" do
+        it "returns true if player inputs either #{HUMAN_PLAYER} or #{COMPUTER_PLAYER}" do
             expect(display.validate_player_type(HUMAN_PLAYER)).to be(true)
             expect(display.validate_player_type(COMPUTER_PLAYER)).to be(true)
         end
 
-        it "returns false if player input is a string other than 'H' or 'C'" do
+        it "returns false if player input is a string other than #{HUMAN_PLAYER} or #{COMPUTER_PLAYER}" do
             expect(display.validate_player_type("Banana")).to be(false)
         end
 
@@ -65,7 +65,7 @@ describe Display do
     end
 
     describe "validate_computer_type" do
-        it "returns true if player inputs either 'E' or 'AI'" do
+        it "returns true if player inputs either #{EASY_COMPUTER} or #{AI_COMPUTER}" do
             expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
             expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
         end
