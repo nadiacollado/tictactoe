@@ -1,4 +1,5 @@
 require 'display'
+require 'constants'
 
 describe Display do
     let (:marker) { Marker.new("Y", "Z") }
@@ -67,6 +68,10 @@ describe Display do
         it "returns true if player inputs either 'E' or 'AI'" do
             expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
             expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
+        end
+
+        it "returns false if player input is a string other than #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type("Apple")).to be(false)
         end
     end
 end
