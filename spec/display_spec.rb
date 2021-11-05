@@ -50,4 +50,11 @@ describe Display do
             expect(display.get_player_type).to eq(HUMAN_PLAYER)
         end
     end
+
+    describe "get_computer_type" do
+        it "returns the player's computer selection via the gets method" do
+            allow(display).to receive(:gets).and_return("E")
+            expect(display.get_computer_type).to eq("E")
+        end
+    end
 end
