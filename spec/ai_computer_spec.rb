@@ -1,4 +1,4 @@
 require 'ai_computer'
 
-describe AiComputer do
+describe AI do
 end
