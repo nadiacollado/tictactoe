@@ -29,7 +29,7 @@ class Display
     end
 
     def validate_player_type(player_type)
-        if player_type == "H" || player_type == "C"
+        if player_type == HUMAN_PLAYER || player_type == COMPUTER_PLAYER
             true
         else
             print(INVALID_SELECTION)
