@@ -46,7 +46,11 @@ class Display
     end
 
     def get_computer_type
-        gets.chomp
+        computer_type = gets.chomp
+        until validate_computer_type(computer_type)
+            computer_type = gets.chomp
+        end
+        computer_type
     end
 
     def validate_computer_type(computer_type)
