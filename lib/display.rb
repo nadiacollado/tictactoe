@@ -48,5 +48,14 @@ class Display
     def get_computer_type
         gets.chomp
     end
+
+    def validate_computer_type(computer_type)
+        if computer_type == EASY_COMPUTER || computer_type == AI_COMPUTER
+            true
+        else
+            print(INVALID_COMPUTER_SELECTION)
+            false
+        end
+    end
 end
 
