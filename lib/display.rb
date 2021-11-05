@@ -44,5 +44,9 @@ class Display
         end
         player_type
     end
+
+    def get_computer_type
+        gets.chomp
+    end
 end
 
