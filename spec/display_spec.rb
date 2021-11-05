@@ -58,8 +58,15 @@ describe Display do
         end
 
         it "returns the player's computer selection via the gets method" do
-            allow(display).to receive(:gets).and_return(ADVANCED_COMPUTER)
-            expect(display.get_computer_type).to eq(ADVANCED_COMPUTER)
+            allow(display).to receive(:gets).and_return(AI_COMPUTER)
+            expect(display.get_computer_type).to eq(AI_COMPUTER)
+        end
+    end
+
+    describe "validate_computer_type" do
+        it "returns true if player inputs either 'E' or 'AI'" do
+            expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
+            expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
         end
     end
 end
