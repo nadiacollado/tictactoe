@@ -56,5 +56,10 @@ describe Display do
             allow(display).to receive(:gets).and_return(EASY_COMPUTER)
             expect(display.get_computer_type).to eq(EASY_COMPUTER)
         end
+
+        it "returns the player's computer selection via the gets method" do
+            allow(display).to receive(:gets).and_return(ADVANCED_COMPUTER)
+            expect(display.get_computer_type).to eq(ADVANCED_COMPUTER)
+        end
     end
 end
