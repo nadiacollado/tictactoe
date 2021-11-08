@@ -9,7 +9,6 @@ INVALID_COMPUTER_SELECTION = "\n    Invalid selection! Please enter 'E' for an e
 TIE = "\n    It's a draw! Better luck next time.\n"
 HUMAN_PLAYER = "H"
 COMPUTER_PLAYER = "C"
-AI_PLAYER = "A"
 CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
 EASY_COMPUTER = "E"
 AI_COMPUTER = "A"

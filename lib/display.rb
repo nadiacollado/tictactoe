@@ -21,11 +21,11 @@ class Display
     end
 
     def print_turn_prompt(marker)
-        puts " Player #{marker}, you're up!\n"
+        print("Player #{marker}, you're up!\n")
     end
 
     def print_winner(marker)
-        puts " Player #{marker} has won this round!\n\n"
+        print("Player #{marker} has won this round!\n\n")
     end
 
     def validate_player_type(player_type)

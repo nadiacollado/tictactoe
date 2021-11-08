@@ -15,7 +15,7 @@ describe Human do
     describe "get_move" do
         it "returns the current player's move via the gets method" do
             allow(human_player).to receive(:gets).and_return("1")
-            expect(human_player.get_move(board)).to eq(1)
+            expect(human_player.get_move(board, human_player.type)).to eq(1)
         end
     end
 end
