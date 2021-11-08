@@ -61,5 +61,15 @@ class Display
             false
         end
     end
+
+    def computer_type_selection(marker)
+        print(COMPUTER_TYPE_CHOICE)
+        if get_computer_type == "E"
+            Computer.new(1, marker, COMPUTER_PLAYER)
+        else
+            AI.new(1, marker, COMPUTER_PLAYER)
+        end
+    end
+
 end
 

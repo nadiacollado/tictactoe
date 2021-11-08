@@ -1,5 +1,6 @@
 require 'display'
 require 'constants'
+require 'computer'
 
 describe Display do
     let (:marker) { Marker.new("Y", "Z") }
@@ -99,7 +100,15 @@ describe Display do
 
     describe "computer_type_selection" do
         it "creates and returns the correct computer instance" do
-            
+            allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
+            allow(display.get_computer_type).to receive(:gets).and_return(EASY_COMPUTER)
+            expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(Computer)
+        end
+
+        it "creates and returns the correct computer instance" do
+            allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
+            allow(display.get_computer_type).to receive(:gets).and_return(AI_COMPUTER)
+            expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(AI)
         end
     end
 end
