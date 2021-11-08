@@ -74,4 +74,32 @@ describe Display do
             expect(display.validate_computer_type("Apple")).to be(false)
         end
     end
+
+    describe "validate_computer_type" do
+        it "returns true if player inputs either #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
+            expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
+        end
+
+        it "returns false if player input is a string other than #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type("Apple")).to be(false)
+        end
+    end
+
+    describe "validate_computer_type" do
+        it "returns true if player inputs either #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
+            expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
+        end
+
+        it "returns false if player input is a string other than #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type("Apple")).to be(false)
+        end
+    end
+
+    describe "computer_type_selection" do
+        it "creates and returns the correct computer instance" do
+            
+        end
+    end
 end

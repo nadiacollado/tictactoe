@@ -3,7 +3,7 @@ class Display
         @print_welcome = print(WELCOME)
         @print_board = print_board(board)
         @print_instructions = print(INSTRUCTIONS)
-        @print_players_choice = print(PLAYERS_CHOICE)
+        @print_player_choice = print(PLAYER_TYPE_CHOICE)
     end
 
     def print(message)
