@@ -31,6 +31,12 @@ describe Display do
         end
     end
 
+    # describe "print_computer_type_prompt" do
+    #     it "prints a message prompting player to choose easy or AI computer" do
+    #         expect {display.print_computer_type_prompt}.to output(a_string_including(COMPUTER_TYPE_CHOICE)).to_stdout
+    #     end
+    # end
+
     describe "validate_player_type" do
         it "returns true if player inputs either #{HUMAN_PLAYER} or #{COMPUTER_PLAYER}" do
             expect(display.validate_player_type(HUMAN_PLAYER)).to be(true)
@@ -98,17 +104,17 @@ describe Display do
         end
     end
 
-    describe "computer_type_selection" do
-        it "creates and returns the correct computer instance" do
-            allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
-            allow(display.get_computer_type).to receive(:gets).and_return(EASY_COMPUTER)
-            expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(Computer)
-        end
+    # describe "computer_type_selection" do
+    #     it "creates and returns the correct computer instance" do
+    #         allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
+    #         allow(display.get_computer_type).to receive(:gets).and_return(EASY_COMPUTER)
+    #         expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(Computer)
+    #     end
 
-        it "creates and returns the correct computer instance" do
-            allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
-            allow(display.get_computer_type).to receive(:gets).and_return(AI_COMPUTER)
-            expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(AI)
-        end
-    end
+    #     it "creates and returns the correct computer instance" do
+    #         allow(display.get_player_type).to receive(:gets).and_return(COMPUTER_PLAYER)
+    #         allow(display.get_computer_type).to receive(:gets).and_return(AI_COMPUTER)
+    #         expect(display.computer_type_selection(marker.p1_marker)).to be_an_instance_of(AI)
+    #     end
+    # end
 end
