@@ -26,7 +26,19 @@ class Computer
             move
         end
     end
+
     
+    def get_available_squares(board)
+        available_squares = []
+        board.squares.each {|square|
+            square = square.to_i
+            if !board.square_taken?(square)
+                available_squares.push(square)
+            end
+        }
+        available_squares
+    end
+
     def get_move_ai(board, current_player)
         best_score = -1000
         best_move = 0

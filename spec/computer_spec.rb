@@ -31,7 +31,7 @@ describe Computer do
     describe "get_available_squares" do
         it "returns all available squares in a board" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])
-            expect(ai_player.get_available_squares(board)).to eq(board)
+            expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD_NUMERIC)
         end
     end
 

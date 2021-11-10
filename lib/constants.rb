@@ -10,6 +10,7 @@ TIE = "\n    It's a draw! Better luck next time.\n"
 HUMAN_PLAYER = "H"
 COMPUTER_PLAYER = "C"
 CLEAR_BOARD = %w[1 2 3 4 5 6 7 8 9]
+CLEAR_BOARD_NUMERIC = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 EASY_COMPUTER = "E"
 AI_COMPUTER = "A"
 
