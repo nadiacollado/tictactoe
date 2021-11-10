@@ -29,6 +29,17 @@ class Board
         squares.all? {|square| square_taken?(square.to_i)}
     end
 
+    def get_available_squares
+        available_squares = []
+        squares.each {|square|
+            square = square.to_i
+            if !square_taken?(square)
+                available_squares.push(square)
+            end
+        }
+        available_squares
+    end
+
     def turn_count
         count = 0
         squares.each {|square|  

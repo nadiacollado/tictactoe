@@ -27,18 +27,6 @@ class Computer
         end
     end
 
-    
-    def get_available_squares(board)
-        available_squares = []
-        board.squares.each {|square|
-            square = square.to_i
-            if !board.square_taken?(square)
-                available_squares.push(square)
-            end
-        }
-        available_squares
-    end
-
     def get_move_ai(board, current_player)
         best_score = -1000
         best_move = 0
@@ -46,12 +34,12 @@ class Computer
         if board.board_clear?
             best_move = 5
         end
-        # else
-        # # loop through board to check for available spots
-        # # update board by marking AI on each available spot
-        # # run minimax algorithm on the board after each update
+                # loop through board to check for available spots
+        # update board by marking AI on each available spot
+        # run minimax algorithm on the board after each update
         #             # i.e minimax(board)
-
+        # else
+        #     available_squares = board.get_availables_squares
 
 
 
