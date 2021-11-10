@@ -3,6 +3,7 @@ require 'computer'
 describe Computer do
     let (:marker) { Marker.new("X", "O") }
     let (:computer_player) { Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)}
+    let (:ai_player) { Computer.new(1, marker.p1_marker, AI_COMPUTER)}
 
     describe "initialize" do
         it "creates a computer player with given arguments" do
@@ -25,5 +26,18 @@ describe Computer do
             expect(computer_player.get_move_easy(board)).not_to eq(5)
             expect(computer_player.get_move_easy(board)).not_to eq(6)
         end
+    end
+
+    describe "get_move_ai" do
+        it "returns 5 as the best move if the board is clear" do
+            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            expect(ai_player.get_move_ai(board, AI_COMPUTER)).to eq(5)
+        end
+    end
+
+    describe "minimax" do
+    end
+
+    describe "best_move" do
     end
 end
