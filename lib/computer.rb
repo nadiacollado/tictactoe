@@ -26,12 +26,10 @@ class Computer
             move
         end
     end
-
+    
     def get_move_ai(board, current_player)
         best_score = -1000
         best_move = 0
-
-        # if board is empty then AI should choose middle square as first choice
 
         if board.board_clear?
             best_move = 5
@@ -41,6 +39,11 @@ class Computer
         # # update board by marking AI on each available spot
         # # run minimax algorithm on the board after each update
         #             # i.e minimax(board)
+
+
+
+
+
         #     board.squares.each {|square|
         #         square = square.to_i
         #         if !board.square_taken?(square)

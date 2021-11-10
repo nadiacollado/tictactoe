@@ -28,6 +28,13 @@ describe Computer do
         end
     end
 
+    describe "get_available_squares" do
+        it "returns all available squares in a board" do
+            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            expect(ai_player.get_available_squares(board)).to eq(board)
+        end
+    end
+
     describe "get_move_ai" do
         it "returns 5 as the best move if the board is clear" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])
