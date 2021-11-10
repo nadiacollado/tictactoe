@@ -55,6 +55,5 @@ class Board
         }
         board_copy
     end
-
 end
 

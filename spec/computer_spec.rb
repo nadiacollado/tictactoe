@@ -36,6 +36,10 @@ describe Computer do
     end
 
     describe "minimax" do
+        it "returns a score of 0 if the board is clear" do
+            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            expect(ai_player.minimax(board)).to eq(0)
+        end
     end
 
     describe "best_move" do

@@ -27,42 +27,39 @@ class Computer
         end
     end
 
+    # def score_comparison(score, greater_score)
+    #     greater_score = score > greater_score ? score : greater_score
+    # end
+
     def get_move_ai(board, current_player)
         best_score = -1000
         best_move = 0
 
         if board.board_clear?
             best_move = 5
-        end
-                # loop through board to check for available spots
+        # loop through board to check for available spots
         # update board by marking AI on each available spot
         # run minimax algorithm on the board after each update
         #             # i.e minimax(board)
-        # else
-        #     available_squares = board.get_availables_squares
-
-
-
-
-        #     board.squares.each {|square|
-        #         square = square.to_i
-        #         if !board.square_taken?(square)
-        #             board.mark_square(square, current_player.marker)
-        #                # minimax will return a score for that particular update
-        #                # if score is greater than current score, replace it and mark the board with the corresponding move
-        #             score = minimax(board)
-        #             if score > best_score
-        #                 best_score = score
-        #                 best_move = square
-        #             end
-        #         end
-        #     }
-        # end
+        else
+            available_squares = board.get_available_squares
+            available_squares.each{|square|
+                board_copy = board.copy_board
+                board_copy[square] = current_player.marker
+                # minimax will return a score for that particular update
+                # if score is greater than current score, replace it and mark the board with the corresponding move
+                score = minimax(board_copy)
+                if score > best_score
+                    best_score = score
+                    best_move = square
+                end
+            }
+        end
         best_move
     end
 
     def minimax(board)
-        1
+        return 5
     end
 
     # def best_move(board)
