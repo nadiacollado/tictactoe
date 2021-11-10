@@ -2,6 +2,7 @@ require 'computer'
 
 describe Computer do
     let (:marker) { Marker.new("X", "O") }
+    let (:rules) { Rules.new }
     let (:computer_player) { Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)}
     let (:ai_player) { Computer.new(1, marker.p1_marker, AI_COMPUTER)}
 
@@ -35,11 +36,47 @@ describe Computer do
         end
     end
 
-    describe "minimax" do
+    describe "get_score" do
         it "returns a score of 0 if the board is clear" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])
-            expect(ai_player.minimax(board)).to eq(0)
+            expect(ai_player.get_score(board)).to eq(0)
         end
+
+        it "returns a score of 0 if the board is tied" do
+            board = Board.new(%w[
+                X O X
+                O X X
+                O X O])
+            expect(ai_player.get_score(board)).to eq(0)
+        end
+
+        it "returns a score of 10 if AI has won the game" do
+            board = Board.new(%w[
+                X O O 
+                O 5 O 
+                X X X])
+            expect(ai_player.get_score(board)).to eq(10)
+        end
+
+        it "returns a score of -10 if AI has lost the game" do
+            board = Board.new(%w[
+                X 2 O
+                X O X
+                O 8 9])
+            expect(ai_player.get_score(board)).to eq(-10)
+        end
+    end
+
+    describe "minimax" do
+        # it "returns a score of 0 if the board is clear" do
+        #     board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+        #     expect(ai_player.minimax(board)).to eq(0)
+        # end
+
+        # it "returns a score of 0 if the board is tied" do
+        #     board = Board.new(%w[X O X O X X O X O])
+        #     expect(ai_player.minimax(board)).to eq(0)
+        # end
     end
 
     describe "best_move" do

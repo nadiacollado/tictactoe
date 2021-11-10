@@ -27,9 +27,18 @@ class Computer
         end
     end
 
-    # def score_comparison(score, greater_score)
-    #     greater_score = score > greater_score ? score : greater_score
-    # end
+    def won?(board)
+        WINNING_COMBOS.each do |combo|
+            square_1 = board.squares[combo[0]]
+            square_2 = board.squares[combo[1]]
+            square_3 = board.squares[combo[2]]
+
+            if square_1 == square_2 && square_2 == square_3
+                return square_1
+            end
+        end
+        return false
+    end
 
     def get_move_ai(board, current_player)
         best_score = -1000
@@ -48,7 +57,7 @@ class Computer
                 board_copy[square] = current_player.marker
                 # minimax will return a score for that particular update
                 # if score is greater than current score, replace it and mark the board with the corresponding move
-                score = minimax(board_copy)
+                score = minimax(board_copy, current_player)
                 if score > best_score
                     best_score = score
                     best_move = square
@@ -58,8 +67,15 @@ class Computer
         best_move
     end
 
-    def minimax(board)
-        return 5
+    def get_score(board)
+        # if there's no winner return 0
+        winner = won?(board)
+        return 0 unless winner
+        winner == marker ? 10 : -10
+    end
+
+    def minimax(board, player)
+        score = get_score(board)
     end
 
     # def best_move(board)
