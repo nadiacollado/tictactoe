@@ -29,9 +29,19 @@ describe Computer do
     end
 
     describe "get_available_squares" do
-        it "returns all available squares in a board" do
+        it "returns all available squares in a clear board" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])
             expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD_NUMERIC)
+        end
+
+        it "returns all available squares in a partially full board" do
+            board = Board.new(%w[1 2 X X 5 6 O O X])
+            expect(ai_player.get_available_squares(board)).to eq([1, 2, 5, 6])
+        end
+
+        it "returns no available squares in a full board" do
+            board = Board.new(%w[O X X X O X O O X])
+            expect(ai_player.get_available_squares(board)).to eq([])
         end
     end
 
