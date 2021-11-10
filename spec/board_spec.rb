@@ -82,4 +82,11 @@ describe Board do
             expect(board.turn_count).to eq(4)
         end
     end
+
+    describe "copy_board" do
+        it "makes a copy of the board" do
+            board = Board.new(%w[X 2 X 4 5 O O 8 9])
+            expect(board.copy_board).to eq(%w[X 2 X 4 5 O O 8 9])
+        end
+    end
 end

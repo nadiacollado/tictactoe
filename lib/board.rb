@@ -47,5 +47,14 @@ class Board
         }
         count
     end
+
+    def copy_board
+        board_copy = []
+        squares.each {|square|  
+            board_copy.push(square)
+        }
+        board_copy
+    end
+
 end
 
