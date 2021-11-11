@@ -18,7 +18,7 @@ class Game
     def turn
         current_player = get_current_player
         display.print_turn_prompt(current_player.marker)
-        move = current_player.get_move(board, current_player, rules)
+        move = current_player.get_move(board, current_player)
         if board.valid_move?(move, current_player.marker)
             board.mark_square(move, current_player.marker)
             display.print_board(board)

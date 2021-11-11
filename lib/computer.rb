@@ -29,9 +29,9 @@ class Computer
 
     def won?(board)
         WINNING_COMBOS.each do |combo|
-            square_1 = board.squares[combo[0]]
-            square_2 = board.squares[combo[1]]
-            square_3 = board.squares[combo[2]]
+            square_1 = board[combo[0]]
+            square_2 = board[combo[1]]
+            square_3 = board[combo[2]]
 
             if square_1 == square_2 && square_2 == square_3
                 return square_1
@@ -40,44 +40,59 @@ class Computer
         return false
     end
 
-    def get_move_ai(board, current_player)
-        best_score = -1000
-        best_move = 0
+    def copy_board(board)
+        board_copy = board.slice(0..-1)
+    end
 
-        if board.board_clear?
-            best_move = 5
-        # loop through board to check for available spots
-        # update board by marking AI on each available spot
-        # run minimax algorithm on the board after each update
-        #             # i.e minimax(board)
-        else
-            available_squares = board.get_available_squares
-            available_squares.each{|square|
-                board_copy = board.copy_board
-                board_copy[square] = current_player.marker
-                # minimax will return a score for that particular update
-                # if score is greater than current score, replace it and mark the board with the corresponding move
-                score = minimax(board_copy, current_player)
-                if score > best_score
-                    best_score = score
-                    best_move = square
-                end
-            }
-        end
+    def get_available_squares(board)
+        available_squares = []
+        board.each {|square|
+            if CLEAR_BOARD.include?(square)
+                available_squares.push(square)
+            end
+        }
+        available_squares
+    end
+    
+    def get_move_ai(board, current_player)
+        best_score = -100000
+        best_move = nil
+
+        available_squares = get_available_squares(board.squares)
+        available_squares.each{|square|
+            square = square.to_i
+            board_copy = copy_board(board.squares)
+            mark_board(board_copy, square, current_player.marker)
+            score = minimax(board_copy, 0, false, current_player.marker)
+            if score > best_score
+                best_score = score
+                best_move = square
+            end
+        }
         best_move
     end
 
     def get_score(board)
-        # if there's no winner return 0
         winner = won?(board)
         return 0 unless winner
         winner == marker ? 10 : -10
     end
 
-    def minimax(board, player)
-        score = get_score(board)
+    def mark_board(board, square, marker)
+        board[square - 1] = marker
     end
 
-    # def best_move(board)
-    # end
+
+    def minimax(board, depth, maximixer, player)
+        # BASE CASE
+        final_score = get_score(board)
+        if final_score != 0
+            return final_score
+        end
+
+        available_squares = get_available_squares(board)
+
+        
+        return bestScore
+    end
 end

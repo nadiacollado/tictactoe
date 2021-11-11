@@ -30,40 +30,42 @@ describe Computer do
     end
 
     describe "get_move_ai" do
-        it "returns 5 as the best move if the board is clear" do
-            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
-            expect(ai_player.get_move_ai(board, AI_COMPUTER)).to eq(5)
-        end
     end
 
     describe "get_score" do
         it "returns a score of 0 if the board is clear" do
-            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            board = %w[1 2 3 4 5 6 7 8 9]
             expect(ai_player.get_score(board)).to eq(0)
         end
 
         it "returns a score of 0 if the board is tied" do
-            board = Board.new(%w[
+            board = %w[
                 X O X
                 O X X
-                O X O])
+                O X O]
             expect(ai_player.get_score(board)).to eq(0)
         end
 
         it "returns a score of 10 if AI has won the game" do
-            board = Board.new(%w[
+            board = %w[
                 X O O 
                 O 5 O 
-                X X X])
+                X X X]
             expect(ai_player.get_score(board)).to eq(10)
         end
 
         it "returns a score of -10 if AI has lost the game" do
-            board = Board.new(%w[
+            board = %w[
                 X 2 O
                 X O X
-                O 8 9])
+                O 8 9]
             expect(ai_player.get_score(board)).to eq(-10)
+        end
+    end
+
+    describe "maximizer" do
+        it "" do
+            
         end
     end
 
@@ -80,5 +82,38 @@ describe Computer do
     end
 
     describe "best_move" do
+    end
+
+    describe "copy_board" do
+        it "makes a copy of the board" do
+            board = %w[X 2 X 4 5 O O 8 9]
+            expect(ai_player.copy_board(board)).to eq(%w[X 2 X 4 5 O O 8 9])
+        end
+    end
+
+
+    describe "get_available_squares" do
+        it "returns all available squares in a clear board" do
+            board = %w[1 2 3 4 5 6 7 8 9]
+            expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD)
+        end
+
+        it "returns all available squares in a partially full board" do
+            board = %w[1 2 X X 5 6 O O X]
+            expect(ai_player.get_available_squares(board)).to eq(%w[1 2 5 6])
+        end
+
+        it "returns no available squares in a full board" do
+            board = %w[O X X X O X O O X]
+            expect(ai_player.get_available_squares(board)).to eq([])
+        end
+    end
+
+    describe "mark_board" do
+        it "marks the square in the board" do
+            board = %w[1 2 3 4 5 6 7 8 9]
+            ai_player.mark_board(board, 4, marker.p1_marker)
+            expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
+        end
     end
 end
