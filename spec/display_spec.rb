@@ -1,4 +1,6 @@
 require 'display'
+require 'constants'
+require 'computer'
 
 describe Display do
     let (:marker) { Marker.new("Y", "Z") }
@@ -29,13 +31,19 @@ describe Display do
         end
     end
 
+    describe "print_computer_type_prompt" do
+        it "prints a message prompting player to choose easy or AI computer" do
+            expect {display.print_computer_type_prompt}.to output(a_string_including(COMPUTER_TYPE_CHOICE)).to_stdout
+        end
+    end
+
     describe "validate_player_type" do
-        it "returns true if player inputs either 'H' or 'C'" do
+        it "returns true if player inputs either #{HUMAN_PLAYER} or #{COMPUTER_PLAYER}" do
             expect(display.validate_player_type(HUMAN_PLAYER)).to be(true)
             expect(display.validate_player_type(COMPUTER_PLAYER)).to be(true)
         end
 
-        it "returns false if player input is a string other than 'H' or 'C'" do
+        it "returns false if player input is a string other than #{HUMAN_PLAYER} or #{COMPUTER_PLAYER}" do
             expect(display.validate_player_type("Banana")).to be(false)
         end
 
@@ -48,6 +56,29 @@ describe Display do
         it "returns the player's game selection via the gets method" do
             allow(display).to receive(:gets).and_return(HUMAN_PLAYER)
             expect(display.get_player_type).to eq(HUMAN_PLAYER)
+        end
+    end
+
+    describe "get_computer_type" do
+        it "returns the player's computer selection via the gets method" do
+            allow(display).to receive(:gets).and_return(EASY_COMPUTER)
+            expect(display.get_computer_type).to eq(EASY_COMPUTER)
+        end
+
+        it "returns the player's computer selection via the gets method" do
+            allow(display).to receive(:gets).and_return(AI_COMPUTER)
+            expect(display.get_computer_type).to eq(AI_COMPUTER)
+        end
+    end
+
+    describe "validate_computer_type" do
+        it "returns true if player inputs either #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type(EASY_COMPUTER)).to be(true)
+            expect(display.validate_computer_type(AI_COMPUTER)).to be(true)
+        end
+
+        it "returns false if player input is a string other than #{EASY_COMPUTER} or #{AI_COMPUTER}" do
+            expect(display.validate_computer_type("Apple")).to be(false)
         end
     end
 end

@@ -22,9 +22,14 @@ class GameConfig
     def humans_only?
         display.get_player_type == HUMAN_PLAYER ? true : false
     end
+    
+    def computer_selection
+        display.print_computer_type_prompt
+        Computer.new(1, marker.p1_marker, display.get_computer_type)
+    end
 
     def build_players
-        @player1 = humans_only? ? Human.new(1, marker.p1_marker, HUMAN_PLAYER) : Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)
+        @player1 = humans_only? ? Human.new(1, marker.p1_marker, HUMAN_PLAYER) : computer_selection
         @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
     end
 end

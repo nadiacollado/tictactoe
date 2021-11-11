@@ -11,7 +11,11 @@ class Computer
         rand(1..9)
     end
 
-    def get_move(board)
+    def get_move(board, type)
+        type == AI_COMPUTER ? get_move_for_AI(board) : get_move_easy(board)
+    end
+
+    def get_move_easy(board)
         if board.board_clear?
             move = 1
         else
@@ -21,5 +25,9 @@ class Computer
             end
             move
         end
+    end
+
+    def get_move_for_AI(board)
+        #minimax
     end
 end

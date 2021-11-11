@@ -7,7 +7,7 @@ class Human
         @type = type
     end
 
-    def get_move(board)
+    def get_move(board, type)
         gets.chomp.to_i
     end
 end
