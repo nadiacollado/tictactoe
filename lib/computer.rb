@@ -53,14 +53,15 @@ class Computer
         }
         available_squares
     end
-    
+
+
     def get_move_ai(board, current_player)
         best_score = -100000
         best_move = nil
 
         available_squares = get_available_squares(board.squares)
         available_squares.each{|square|
-            square = square.to_i
+            make_integer(square)
             board_copy = copy_board(board.squares)
             mark_board(board_copy, square, current_player.marker)
             score = minimax(board_copy, 0, false, current_player.marker)
@@ -82,6 +83,9 @@ class Computer
         board[square - 1] = marker
     end
 
+    def make_integer(square)
+        square = square.to_i
+    end
 
     def minimax(board, depth, maximixer, player)
         # BASE CASE

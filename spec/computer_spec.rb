@@ -118,4 +118,5 @@ describe Computer do
             expect(ai_player.make_integer("4")).to eq(4)
         end
     end
+
 end
