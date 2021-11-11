@@ -39,8 +39,7 @@ describe Computer do
         end
 
         it "returns a score of 0 if the board is tied" do
-            board = %w[
-                X O X
+            board = %w[X O X
                 O X X
                 O X O]
             expect(ai_player.get_score(board)).to eq(0)
@@ -81,9 +80,6 @@ describe Computer do
         # end
     end
 
-    describe "best_move" do
-    end
-
     describe "copy_board" do
         it "makes a copy of the board" do
             board = %w[X 2 X 4 5 O O 8 9]
@@ -114,6 +110,12 @@ describe Computer do
             board = %w[1 2 3 4 5 6 7 8 9]
             ai_player.mark_board(board, 4, marker.p1_marker)
             expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
+        end
+    end
+
+    describe "make_integer" do
+        it "turns a move into an integer" do
+            expect(ai_player.make_integer("4")).to eq(4)
         end
     end
 end
