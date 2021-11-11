@@ -119,4 +119,10 @@ describe Computer do
         end
     end
 
+    describe "score_comparison" do
+        it "returns true if score is greater than best score" do
+            expect(ai_player.score_comparison(30, 20)).to eq(true)
+        end
+    end
+
 end
