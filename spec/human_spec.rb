@@ -1,4 +1,6 @@
 require 'human'
+require 'board'
+require 'marker'
 
 describe Human do
     let (:board) { Board.new }

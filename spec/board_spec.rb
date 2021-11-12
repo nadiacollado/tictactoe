@@ -59,6 +59,23 @@ describe Board do
         end
     end
 
+    describe "get_available_squares" do
+        it "returns all available squares in a clear board" do
+            board = Board.new(%w[1 2 3 4 5 6 7 8 9])
+            expect(board.get_available_squares).to eq(CLEAR_BOARD_NUMERIC)
+        end
+
+        it "returns all available squares in a partially full board" do
+            board = Board.new(%w[1 2 X X 5 6 O O X])
+            expect(board.get_available_squares).to eq([1, 2, 5, 6])
+        end
+
+        it "returns no available squares in a full board" do
+            board = Board.new(%w[O X X X O X O O X])
+            expect(board.get_available_squares).to eq([])
+        end
+    end
+
     describe "turn_count" do
         it "returns the number of turns that have been taken in a game" do
             board = Board.new(%w[X 2 X 4 5 O O 8 9])
