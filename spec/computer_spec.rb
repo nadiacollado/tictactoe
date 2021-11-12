@@ -2,7 +2,6 @@ require 'computer'
 
 describe Computer do
     let (:marker) { Marker.new("X", "O") }
-    let (:rules) { Rules.new }
     let (:computer_player) { Computer.new(1, marker.p1_marker, COMPUTER_PLAYER)}
     let (:ai_player) { Computer.new(1, marker.p1_marker, AI_COMPUTER)}
 
@@ -30,6 +29,26 @@ describe Computer do
     end
 
     describe "get_move_ai" do
+        it "returns the best move for AI to play" do
+            board = Board.new(%w[O X X X 5 X 7 O O])
+            expect(ai_player.get_move_ai(board, marker.p1_marker)).to eq(5)
+
+            board1 = Board.new(%w[X 2 O O 5 O X X 9])
+            expect(ai_player.get_move_ai(board1, marker.p1_marker)).to eq(9)
+
+            board2 = Board.new(%w[X 2 O X 5 6 O 8 9])
+            expect(ai_player.get_move_ai(board2, marker.p1_marker)).to eq(5)
+
+            board2 = Board.new(%w[X O 3 X O 6 7 8 9])
+            expect(ai_player.get_move_ai(board2, marker.p1_marker)).to eq(7)
+
+            # Test does not pass because I have not included depth in my minimax
+            # board1 = Board.new(%w[
+            #     X 2 O
+            #     X 5 6
+            #     7 8 O])
+            # expect(ai_player.get_move_ai(board1, marker.p1_marker)).to eq(7)
+        end
     end
 
     describe "get_score" do
@@ -74,24 +93,24 @@ describe Computer do
 
     # TESTS FOR ADDED METHODS
 
-#     describe "board_full" do
-#         it "returns true if board is full" do
-#             board = ['X', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'O']
-#             expect(ai_player.board_full(board)).to eq(true)
-#         end
+    describe "board_full" do
+        it "returns true if board is full" do
+            board = ['X', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'O']
+            expect(ai_player.board_full(board)).to eq(true)
+        end
 
-#         it "returns false if board is not full" do
-#             board = ['X', 'X', 'O', '4', 'X', '6', 'O', 'O', 'O']
-#             expect(ai_player.board_full(board)).to eq(false)
-#         end
-#     end
+        it "returns false if board is not full" do
+            board = ['X', 'X', 'O', '4', 'X', '6', 'O', 'O', 'O']
+            expect(ai_player.board_full(board)).to eq(false)
+        end
+    end
 
-#     describe "copy_board" do
-#         it "makes a copy of the board" do
-#             board = %w[X 2 X 4 5 O O 8 9]
-#             expect(ai_player.copy_board(board)).to eq(%w[X 2 X 4 5 O O 8 9])
-#         end
-#     end
+    describe "copy_board" do
+        it "makes a copy of the board" do
+            board = %w[X 2 X 4 5 O O 8 9]
+            expect(ai_player.copy_board(board)).to eq(%w[X 2 X 4 5 O O 8 9])
+        end
+    end
 
 
     describe "get_available_squares" do
@@ -111,13 +130,13 @@ describe Computer do
         end
     end
 
-#     describe "mark_board" do
-#         it "marks the square in the board" do
-#             board = %w[1 2 3 4 5 6 7 8 9]
-#             ai_player.mark_board(board, 4, marker.p1_marker)
-#             expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
-#         end
-#     end
+    describe "mark_board" do
+        it "marks the square in the board" do
+            board = %w[1 2 3 4 5 6 7 8 9]
+            ai_player.mark_board(board, 4, marker.p1_marker)
+            expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
+        end
+    end
 
     describe "make_integer" do
         it "turns a move into an integer" do

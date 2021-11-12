@@ -24,3 +24,6 @@ WINNING_COMBOS = [
     [2, 4, 6]
 ]
 
+AI = "X"
+HUMAN = "O"
+

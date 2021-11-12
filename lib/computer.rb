@@ -11,8 +11,8 @@ class Computer
         rand(1..9)
     end
 
-    def get_move(board, current_player)
-        current_player.type == AI_COMPUTER ? get_move_ai(board, current_player) : get_move_easy(board)
+    def get_move(board, player)
+        player.type == AI_COMPUTER ? get_move_ai(board, player.marker) : get_move_easy(board)
     end
 
     def get_move_easy(board)
@@ -25,6 +25,69 @@ class Computer
             end
             move
         end
+    end
+
+    def get_move_ai(board, player)
+        best_score = -100000
+        best_move = nil
+
+        available_squares = get_available_squares(board.squares)
+        available_squares.each{|square|
+            square = make_integer(square)
+            board_copy = copy_board(board.squares)
+            mark_board(board_copy, square, player)
+            score = minimax(board_copy, false)
+            if score > best_score
+                best_score = score 
+                best_move = square
+            end
+        }
+        best_move
+    end
+
+    def get_score(board)
+        winner = won?(board)
+        return 0 unless winner
+        winner == marker ? 10 : -10
+    end
+
+    def minimax(board, maximixer)
+        final_score = get_score(board)
+        if final_score != 0 || draw?(board)
+            return final_score
+        end
+
+        available_squares = get_available_squares(board)
+
+        if maximixer
+            best_score = -100000
+            available_squares.each{|square|
+                square = make_integer(square)
+                board_copy = copy_board(board)
+                mark_board(board_copy, square, AI)
+                score = minimax(board_copy, false)
+                best_score = [score, best_score].max
+            }
+            return best_score
+        else
+            best_score = Float::INFINITY
+            available_squares.each{|square|
+                square = make_integer(square)
+                board_copy = copy_board(board)
+                mark_board(board_copy, square, HUMAN)
+                score = minimax(board_copy, true)
+                best_score = [score, best_score].min
+            }
+            return best_score
+        end
+    end
+
+    def board_full(board)
+        board.all? {|square| !CLEAR_BOARD.include?(square)}
+    end
+
+    def draw?(board)
+        !won?(board) && board_full(board)
     end
 
     def won?(board)
@@ -60,71 +123,5 @@ class Computer
 
     def mark_board(board, square, marker)
         board[square - 1] = marker
-    end
-
-    def get_move_ai(board, current_player)
-        best_score = -100000
-        best_move = nil
-
-        available_squares = get_available_squares(board.squares)
-        available_squares.each{|square|
-            square = make_integer(square)
-            board_copy = copy_board(board.squares)
-            mark_board(board_copy, square, current_player.marker)
-            score = minimax(board_copy, false)
-            if score > best_score
-                best_score = score 
-                best_move = square
-            end
-        }
-        best_move
-    end
-
-    def get_score(board)
-        winner = won?(board)
-        return 0 unless winner
-        winner == marker ? 10 : -10
-    end
-
-    def board_full(board)
-        board.all? {|square| !CLEAR_BOARD.include?(square)}
-    end
-
-    def draw?(board)
-        !won?(board) && board_full(board)
-    end
-
-
-    def minimax(board, maximixer)
-        # check if game has been won
-        result = get_score(board)
-        # return score if so
-        if result != 0 || draw?(board)
-            return result
-        end
-
-        avail_squares = get_available_squares(board)
-
-        if maximixer
-            best_score = -100000
-            avail_squares.each{|square|
-                square = make_integer(square)
-                board_copy = copy_board(board)
-                mark_board(board_copy, square, "X")
-                score = minimax(board_copy, false)
-                best_score = [score, best_score].max
-            }
-            return best_score
-        else
-            best_score = Float::INFINITY
-            avail_squares.each{|square|
-                square = make_integer(square)
-                board_copy = copy_board(board)
-                mark_board(board_copy, square, "O")
-                score = minimax(board_copy, true)
-                best_score = [score, best_score].min
-            }
-            return best_score
-        end
     end
 end
