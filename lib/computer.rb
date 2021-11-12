@@ -28,7 +28,7 @@ class Computer
     end
 
     def get_move_ai(board, player)
-        best_score = -100000
+        best_score = -1000
         best_move = nil
 
         available_squares = get_available_squares(board.squares)
@@ -53,33 +53,27 @@ class Computer
 
     def minimax(board, depth, maximizing)
         final_score = get_score(board, depth)
-        if final_score != 0 || draw?(board)
-            return final_score
-        end
+        return final_score if final_score != 0 || draw?(board)
 
         available_squares = get_available_squares(board)
+        best_score = maximizing ? -1000 : Float::INFINITY
 
-        if maximizing
-            best_score = -100000
-            available_squares.each{|square|
-                square = make_integer(square)
-                board_copy = copy_board(board)
-                mark_board_copy(board_copy, square, AI)
-                score = minimax(board_copy, depth + 1, false)
-                best_score = [score, best_score].max
-            }
-            return best_score
-        else
-            best_score = Float::INFINITY
-            available_squares.each{|square|
-                square = make_integer(square)
-                board_copy = copy_board(board)
-                mark_board_copy(board_copy, square, HUMAN)
-                score = minimax(board_copy, depth + 1, true)
-                best_score = [score, best_score].min
-            }
-            return best_score
-        end
+        available_squares.each{|square|
+            square = make_integer(square)
+            board_copy = copy_board(board)
+            mark_board_copy(board_copy, square, player_mark(maximizing))
+            score = minimax(board_copy, depth + 1, !maximizing)
+            best_score = score_comparison(score, best_score, maximizing)
+        }
+        return best_score
+    end
+
+    def score_comparison(score, best_score, maximizing)
+        maximizing ? [score, best_score].max : [score, best_score].min
+    end
+
+    def player_mark(maximazing)
+        maximazing ? AI : HUMAN
     end
 
     def board_full(board)
