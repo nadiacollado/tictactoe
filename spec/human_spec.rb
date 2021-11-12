@@ -1,8 +1,9 @@
 require 'human'
+require 'board'
+require 'marker'
 
 describe Human do
     let (:board) { Board.new }
-    let (:rules) { Rules.new }
     let (:marker) { Marker.new("X", "O") }
     let (:human_player) { Human.new(1, marker.p1_marker, HUMAN_PLAYER)}
 

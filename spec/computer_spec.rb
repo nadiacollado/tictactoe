@@ -42,51 +42,42 @@ describe Computer do
             board2 = Board.new(%w[X O 3 X O 6 7 8 9])
             expect(ai_player.get_move_ai(board2, marker.p1_marker)).to eq(7)
 
-            # Test does not pass because I have not included depth in my minimax
-            # board1 = Board.new(%w[
-            #     X 2 O
-            #     X 5 6
-            #     7 8 O])
-            # expect(ai_player.get_move_ai(board1, marker.p1_marker)).to eq(7)
+            board1 = Board.new(%w[X 2 O X 5 6 7 8 O])
+            expect(ai_player.get_move_ai(board1, marker.p1_marker)).to eq(7)
         end
     end
 
     describe "get_score" do
-        it "returns a score of 0 if the board is clear" do
-            board = %w[O X X X 5 X 7 O O]
-            expect(ai_player.get_score(board)).to eq(0)
-        end
-
         it "returns a score of 0 if the board is tied" do
             board = %w[X O X O X X O X O]
-            expect(ai_player.get_score(board)).to eq(0)
+            expect(ai_player.get_score(board, 8)).to eq(0)
         end
 
-        it "returns a score of 10 if AI has won the game" do
-            board = %w[X O O O 5 O X X X]
-            expect(ai_player.get_score(board)).to eq(10)
+        it "returns the a score of 10 minus depth if AI has won the game" do
+            board = %w[X 2 O X O O X X X]
+            expect(ai_player.get_score(board, 6)).to eq(4)
         end
 
-        it "returns a score of -10 if AI has lost the game" do
+        it "returns a score of -10 plus depth if AI has lost the game" do
             board = %w[X 2 O X O X O 8 9]
-            expect(ai_player.get_score(board)).to eq(-10)
+            expect(ai_player.get_score(board, 5)).to eq(-5)
         end
     end
 
     describe "minimax" do
-        it "returns a score of -10 if human player wins" do
-            board = %w[X X O X X O O O 9]
-            expect(ai_player.minimax(board, false)).to eq(-10)
+        it "returns the min score if human player wins" do
+            board = %w[X X O X X O O 8 9]
+            expect(ai_player.minimax(board, 6, false)).to eq(-3)
         end
 
-        it "returns a score of 10 if AI player wins" do
-            board = %w[X 2 3 4 5 6 7 8 O]
-            expect(ai_player.minimax(board, true)).to eq(10)
+        it "returns the max score if AI player wins" do
+            board = %w[X 2 O X 5 6 O 8 9]
+            expect(ai_player.minimax(board, 3, true)).to eq(4)
         end
 
         it "returns a score of 0 if the game ends in a tie" do
             board = %w[X 2 3 4 O 6 7 8 9]
-            expect(ai_player.minimax(board, true)).to eq(0)
+            expect(ai_player.minimax(board, 1, true)).to eq(0)
         end
     end
 
@@ -133,7 +124,7 @@ describe Computer do
     describe "mark_board_copy" do
         it "marks the square in the board" do
             board = %w[1 2 3 4 5 6 7 8 9]
-            ai_player.mark_board(board, 4, marker.p1_marker)
+            ai_player.mark_board_copy(board, 4, marker.p1_marker)
             expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
         end
     end

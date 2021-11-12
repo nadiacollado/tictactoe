@@ -36,7 +36,7 @@ class Computer
             square = make_integer(square)
             board_copy = copy_board(board.squares)
             mark_board_copy(board_copy, square, player)
-            score = minimax(board_copy, false)
+            score = minimax(board_copy, 0, false)
             if score > best_score
                 best_score = score 
                 best_move = square
@@ -45,27 +45,27 @@ class Computer
         best_move
     end
 
-    def get_score(board)
+    def get_score(board, depth)
         winner = won?(board)
         return 0 unless winner
-        winner == marker ? 10 : -10
+        winner == marker ? 10 - depth : -10 + depth
     end
 
-    def minimax(board, maximixer)
-        final_score = get_score(board)
+    def minimax(board, depth, maximizing)
+        final_score = get_score(board, depth)
         if final_score != 0 || draw?(board)
             return final_score
         end
 
         available_squares = get_available_squares(board)
 
-        if maximixer
+        if maximizing
             best_score = -100000
             available_squares.each{|square|
                 square = make_integer(square)
                 board_copy = copy_board(board)
                 mark_board_copy(board_copy, square, AI)
-                score = minimax(board_copy, false)
+                score = minimax(board_copy, depth + 1, false)
                 best_score = [score, best_score].max
             }
             return best_score
@@ -75,7 +75,7 @@ class Computer
                 square = make_integer(square)
                 board_copy = copy_board(board)
                 mark_board_copy(board_copy, square, HUMAN)
-                score = minimax(board_copy, true)
+                score = minimax(board_copy, depth + 1, true)
                 best_score = [score, best_score].min
             }
             return best_score

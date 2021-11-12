@@ -1,3 +1,4 @@
+
 class Human
     attr_accessor :id, :marker, :type
 
