@@ -55,7 +55,11 @@ class Computer
     end
 
     def make_integer(square)
-        square = square.to_i
+        square.to_i
+    end
+
+    def mark_board(board, square, marker)
+        board[square - 1] = marker
     end
 
     def get_move_ai(board, current_player)
@@ -66,7 +70,7 @@ class Computer
         available_squares.each{|square|
             square = make_integer(square)
             board_copy = copy_board(board.squares)
-            board_copy[square - 1] = current_player.marker
+            mark_board(board_copy, square, current_player.marker)
             score = minimax(board_copy, false)
             if score > best_score
                 best_score = score 
@@ -106,11 +110,9 @@ class Computer
             avail_squares.each{|square|
                 square = make_integer(square)
                 board_copy = copy_board(board)
-                board_copy[square - 1] = "X"
+                mark_board(board_copy, square, "X")
                 score = minimax(board_copy, false)
-                if score > best_score
-                    best_score = score
-                end
+                best_score = [score, best_score].max
             }
             return best_score
         else
@@ -118,11 +120,9 @@ class Computer
             avail_squares.each{|square|
                 square = make_integer(square)
                 board_copy = copy_board(board)
-                board_copy[square - 1] = "O"
+                mark_board(board_copy, square, "O")
                 score = minimax(board_copy, true)
-                if score < best_score
-                    best_score = score
-                end
+                best_score = [score, best_score].min
             }
             return best_score
         end
