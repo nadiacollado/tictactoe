@@ -57,17 +57,17 @@ describe Computer do
     describe "minimax" do
         it "returns a score of -10 if human player wins" do
             board = %w[X X O X X O O O 9]
-            expect(ai_player.minimax(board, 7, false)).to eq(-10)
+            expect(ai_player.minimax(board, false)).to eq(-10)
         end
 
         it "returns a score of 10 if AI player wins" do
             board = %w[X 2 3 4 5 6 7 8 O]
-            expect(ai_player.minimax(board, 2, true)).to eq(10)
+            expect(ai_player.minimax(board, true)).to eq(10)
         end
 
         it "returns a score of 0 if the game ends in a tie" do
             board = %w[X 2 3 4 O 6 7 8 9]
-            expect(ai_player.minimax(board, 2, true)).to eq(0)
+            expect(ai_player.minimax(board, true)).to eq(0)
         end
     end
 
@@ -94,22 +94,22 @@ describe Computer do
 #     end
 
 
-#     describe "get_available_squares" do
-#         it "returns all available squares in a clear board" do
-#             board = %w[1 2 3 4 5 6 7 8 9]
-#             expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD)
-#         end
+    describe "get_available_squares" do
+        it "returns all available squares in a clear board" do
+            board = %w[1 2 3 4 5 6 7 8 9]
+            expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD)
+        end
 
-#         it "returns all available squares in a partially full board" do
-#             board = %w[1 2 X X 5 6 O O X]
-#             expect(ai_player.get_available_squares(board)).to eq(%w[1 2 5 6])
-#         end e
+        it "returns all available squares in a partially full board" do
+            board = %w[1 2 X X 5 6 O O X]
+            expect(ai_player.get_available_squares(board)).to eq(%w[1 2 5 6])
+        end
 
-#         it "returns no available squares in a full board" do
-#             board = %w[O X X X O X O O X]
-#             expect(ai_player.get_available_squares(board)).to eq([])
-#         end
-#     end
+        it "returns no available squares in a full board" do
+            board = %w[O X X X O X O O X]
+            expect(ai_player.get_available_squares(board)).to eq([])
+        end
+    end
 
 #     describe "mark_board" do
 #         it "marks the square in the board" do
@@ -119,9 +119,9 @@ describe Computer do
 #         end
 #     end
 
-#     describe "make_integer" do
-#         it "turns a move into an integer" do
-#             expect(ai_player.make_integer("4")).to eq(4)
-#         end
-#     end
+    describe "make_integer" do
+        it "turns a move into an integer" do
+            expect(ai_player.make_integer("4")).to eq(4)
+        end
+    end
 end
