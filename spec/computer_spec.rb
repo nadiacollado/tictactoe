@@ -34,95 +34,94 @@ describe Computer do
 
     describe "get_score" do
         it "returns a score of 0 if the board is clear" do
-            board = %w[1 2 3 4 5 6 7 8 9]
+            board = %w[O X X X 5 X 7 O O]
             expect(ai_player.get_score(board)).to eq(0)
         end
 
         it "returns a score of 0 if the board is tied" do
-            board = %w[X O X
-                O X X
-                O X O]
+            board = %w[X O X O X X O X O]
             expect(ai_player.get_score(board)).to eq(0)
         end
 
         it "returns a score of 10 if AI has won the game" do
-            board = %w[
-                X O O 
-                O 5 O 
-                X X X]
+            board = %w[X O O O 5 O X X X]
             expect(ai_player.get_score(board)).to eq(10)
         end
 
         it "returns a score of -10 if AI has lost the game" do
-            board = %w[
-                X 2 O
-                X O X
-                O 8 9]
+            board = %w[X 2 O X O X O 8 9]
             expect(ai_player.get_score(board)).to eq(-10)
         end
     end
 
-    describe "maximizer" do
-        it "" do
-            
-        end
-    end
-
     describe "minimax" do
-        # it "returns a score of 0 if the board is clear" do
-        #     board = Board.new(%w[1 2 3 4 5 6 7 8 9])
-        #     expect(ai_player.minimax(board)).to eq(0)
-        # end
+        it "returns a score of -10 if human player wins" do
+            board = %w[X X O X X O O O 9]
+            expect(ai_player.minimax(board, 7, false)).to eq(-10)
+        end
 
-        # it "returns a score of 0 if the board is tied" do
-        #     board = Board.new(%w[X O X O X X O X O])
-        #     expect(ai_player.minimax(board)).to eq(0)
-        # end
-    end
+        it "returns a score of 10 if AI player wins" do
+            board = %w[X 2 3 4 5 6 7 8 O]
+            expect(ai_player.minimax(board, 2, true)).to eq(10)
+        end
 
-    describe "copy_board" do
-        it "makes a copy of the board" do
-            board = %w[X 2 X 4 5 O O 8 9]
-            expect(ai_player.copy_board(board)).to eq(%w[X 2 X 4 5 O O 8 9])
+        it "returns a score of 0 if the game ends in a tie" do
+            board = %w[X 2 3 4 O 6 7 8 9]
+            expect(ai_player.minimax(board, 2, true)).to eq(0)
         end
     end
 
 
-    describe "get_available_squares" do
-        it "returns all available squares in a clear board" do
-            board = %w[1 2 3 4 5 6 7 8 9]
-            expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD)
-        end
+    # TESTS FOR ADDED METHODS
 
-        it "returns all available squares in a partially full board" do
-            board = %w[1 2 X X 5 6 O O X]
-            expect(ai_player.get_available_squares(board)).to eq(%w[1 2 5 6])
-        end
+#     describe "board_full" do
+#         it "returns true if board is full" do
+#             board = ['X', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'O']
+#             expect(ai_player.board_full(board)).to eq(true)
+#         end
 
-        it "returns no available squares in a full board" do
-            board = %w[O X X X O X O O X]
-            expect(ai_player.get_available_squares(board)).to eq([])
-        end
-    end
+#         it "returns false if board is not full" do
+#             board = ['X', 'X', 'O', '4', 'X', '6', 'O', 'O', 'O']
+#             expect(ai_player.board_full(board)).to eq(false)
+#         end
+#     end
 
-    describe "mark_board" do
-        it "marks the square in the board" do
-            board = %w[1 2 3 4 5 6 7 8 9]
-            ai_player.mark_board(board, 4, marker.p1_marker)
-            expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
-        end
-    end
+#     describe "copy_board" do
+#         it "makes a copy of the board" do
+#             board = %w[X 2 X 4 5 O O 8 9]
+#             expect(ai_player.copy_board(board)).to eq(%w[X 2 X 4 5 O O 8 9])
+#         end
+#     end
 
-    describe "make_integer" do
-        it "turns a move into an integer" do
-            expect(ai_player.make_integer("4")).to eq(4)
-        end
-    end
 
-    describe "score_comparison" do
-        it "returns true if score is greater than best score" do
-            expect(ai_player.score_comparison(30, 20)).to eq(true)
-        end
-    end
+#     describe "get_available_squares" do
+#         it "returns all available squares in a clear board" do
+#             board = %w[1 2 3 4 5 6 7 8 9]
+#             expect(ai_player.get_available_squares(board)).to eq(CLEAR_BOARD)
+#         end
 
+#         it "returns all available squares in a partially full board" do
+#             board = %w[1 2 X X 5 6 O O X]
+#             expect(ai_player.get_available_squares(board)).to eq(%w[1 2 5 6])
+#         end e
+
+#         it "returns no available squares in a full board" do
+#             board = %w[O X X X O X O O X]
+#             expect(ai_player.get_available_squares(board)).to eq([])
+#         end
+#     end
+
+#     describe "mark_board" do
+#         it "marks the square in the board" do
+#             board = %w[1 2 3 4 5 6 7 8 9]
+#             ai_player.mark_board(board, 4, marker.p1_marker)
+#             expect(board).to eq(%w[1 2 3 X 5 6 7 8 9])
+#         end
+#     end
+
+#     describe "make_integer" do
+#         it "turns a move into an integer" do
+#             expect(ai_player.make_integer("4")).to eq(4)
+#         end
+#     end
 end
