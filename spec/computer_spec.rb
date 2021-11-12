@@ -130,7 +130,7 @@ describe Computer do
         end
     end
 
-    describe "mark_board" do
+    describe "mark_board_copy" do
         it "marks the square in the board" do
             board = %w[1 2 3 4 5 6 7 8 9]
             ai_player.mark_board(board, 4, marker.p1_marker)

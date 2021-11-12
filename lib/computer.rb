@@ -35,7 +35,7 @@ class Computer
         available_squares.each{|square|
             square = make_integer(square)
             board_copy = copy_board(board.squares)
-            mark_board(board_copy, square, player)
+            mark_board_copy(board_copy, square, player)
             score = minimax(board_copy, false)
             if score > best_score
                 best_score = score 
@@ -64,7 +64,7 @@ class Computer
             available_squares.each{|square|
                 square = make_integer(square)
                 board_copy = copy_board(board)
-                mark_board(board_copy, square, AI)
+                mark_board_copy(board_copy, square, AI)
                 score = minimax(board_copy, false)
                 best_score = [score, best_score].max
             }
@@ -74,7 +74,7 @@ class Computer
             available_squares.each{|square|
                 square = make_integer(square)
                 board_copy = copy_board(board)
-                mark_board(board_copy, square, HUMAN)
+                mark_board_copy(board_copy, square, HUMAN)
                 score = minimax(board_copy, true)
                 best_score = [score, best_score].min
             }
@@ -121,7 +121,7 @@ class Computer
         square.to_i
     end
 
-    def mark_board(board, square, marker)
+    def mark_board_copy(board, square, marker)
         board[square - 1] = marker
     end
 end
