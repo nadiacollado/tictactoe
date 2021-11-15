@@ -1,4 +1,3 @@
-
 class Human
     attr_accessor :id, :marker, :type
 
@@ -8,7 +7,7 @@ class Human
         @type = type
     end
 
-    def get_move(board, player)
+    def get_move(board)
         gets.chomp.to_i
     end
 end

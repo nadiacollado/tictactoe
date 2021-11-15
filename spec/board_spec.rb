@@ -7,17 +7,17 @@ describe Board do
 
     describe "valid_move?" do
         it "returns false message if player's move does not fall within the alloted 1-9 range" do
-            expect(board.valid_move?(25, marker.p1_marker)).to eq(false)
+            expect(board.valid_move?(25)).to eq(false)
         end
 
         it "returns false if the square is already taken" do
             board = Board.new(%w[X 2 X O 5 O O O 9])
-            expect(board.valid_move?(1, marker.p1_marker)).to eq(false)
+            expect(board.valid_move?(1)).to eq(false)
         end
 
         it "returns true if a player's move falls within range and the square is available" do
             board = Board.new(%w[X 2 3 4 5 O 7 8 9])
-            expect(board.valid_move?(4, marker.p1_marker)).to eq(true)
+            expect(board.valid_move?(4)).to eq(true)
         end
     end
 

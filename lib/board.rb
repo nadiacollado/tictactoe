@@ -1,11 +1,11 @@
 class Board
-    attr_reader :squares
+    attr_accessor :squares
 
     def initialize(squares = %w[1 2 3 4 5 6 7 8 9])
         @squares = squares
     end
 
-    def valid_move?(move, player)
+    def valid_move?(move)
         if move > 0 && move <= 9 && !square_taken?(move)
             true
         else
@@ -19,6 +19,10 @@ class Board
 
     def mark_square(move, player)
         squares[move - 1] = player
+    end
+
+    def unmark_square(move)
+        squares[move - 1] = move.to_s
     end
 
     def board_clear?
