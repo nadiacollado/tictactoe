@@ -40,6 +40,14 @@ describe Board do
         end
     end
 
+    describe "unmark_square" do
+        it "removes a player's move from the board" do
+            board = Board.new(%w[1 2 3 X O 6 7 8 9])
+            board.unmark_square(5)
+            expect(board.squares).to eq(%w[1 2 3 X 5 6 7 8 9])
+        end
+    end
+
     describe "board_clear?" do
         it "returns true is board is clear" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])

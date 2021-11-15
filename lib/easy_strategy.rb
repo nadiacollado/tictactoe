@@ -8,7 +8,7 @@ class EasyStrategy
             move = 1
         else
             move = move_generator
-            until board.valid_move?(move, marker)
+            until board.valid_move?(move)
                 move = move_generator
             end
             move

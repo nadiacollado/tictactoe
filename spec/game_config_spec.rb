@@ -19,13 +19,13 @@ describe GameConfig do
         it "creates and returns an instance of the Computer class type easy" do
             allow(game_config.display).to receive(:get_computer_type).and_return(EASY_COMPUTER)
             expect(game_config.computer_selection).to be_an_instance_of(Computer)
-            expect(game_config.computer_selection.type).to eq(EASY_COMPUTER)
+            expect(game_config.computer_selection.strategy).to be_an_instance_of(EasyStrategy)
         end
 
         it "creates and returns an instance of the Computer class type AI" do
             allow(game_config.display).to receive(:get_computer_type).and_return(AI_COMPUTER)
             expect(game_config.computer_selection).to be_an_instance_of(Computer)
-            expect(game_config.computer_selection.type).to eq(AI_COMPUTER)
+            expect(game_config.computer_selection.strategy).to be_an_instance_of(AdvancedStrategy)
         end
     end
 
@@ -34,7 +34,7 @@ describe GameConfig do
             allow(game_config.display).to receive(:get_player_type).and_return(HUMAN_PLAYER)
             expect(game_config.humans_only?).to eq(true)
             game_config.build_players
-            expect(game_config.player1.type).to eq(HUMAN_PLAYER)
+            expect(game_config.player1).to be_an_instance_of(Human)
         end
 
         it "sets player1 to the correct computer player instance when prompted" do
@@ -42,7 +42,7 @@ describe GameConfig do
             allow(game_config.display).to receive(:get_computer_type).and_return(AI_COMPUTER)
             expect(game_config.humans_only?).to eq(false)
             game_config.build_players
-            expect(game_config.player1.type).to eq(AI_COMPUTER)
+            expect(game_config.player1).to be_an_instance_of(Computer)
         end
 
         it "creates a human player instance for player 2 for human v computer games" do
@@ -50,7 +50,7 @@ describe GameConfig do
             allow(game_config.display).to receive(:get_computer_type).and_return(EASY_COMPUTER)
             expect(game_config.humans_only?).to eq(false)
             game_config.build_players
-            expect(game_config.player2.type).to eq(HUMAN_PLAYER)
+            expect(game_config.player2).to be_an_instance_of(Human)
         end
 
         it "creates a human player instance for player 2 for human v human games" do
@@ -58,7 +58,7 @@ describe GameConfig do
             allow(game_config.display).to receive(:get_computer_type).and_return(AI_COMPUTER)
             expect(game_config.humans_only?).to eq(true)
             game_config.build_players
-            expect(game_config.player2.type).to eq(HUMAN_PLAYER)
+            expect(game_config.player2).to be_an_instance_of(Human)
         end
     end
 end
