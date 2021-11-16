@@ -3,9 +3,11 @@ WELCOME = "\n                   Welcome to Tic-Tac-Toe!\n"
 INSTRUCTIONS = "\n       Each square in the board corresponds to a number 1-9.\n Make your move by entering the number in the square of your choice.\n"
 PLAYER_TYPE_CHOICE = "\n Enter 'H' to play against a human or 'C' to play against a computer."
 COMPUTER_TYPE_CHOICE = "             You've chosen to play with a bot! Fun! \nWould you prefer an easy or smart computer? Enter 'E' for easy or 'A' for smart."
+PLAYER_ORDER_CHOICE = "\n   Start a game by entering 'X' to go first or 'O' to go second."
 INVALID_MOVE = "\n    Sorry, that is not a valid move. Please try again.\n\n"
 INVALID_SELECTION = "\n    Invalid selection! Please enter 'H' for human or 'C' for computer.\n\n"
 INVALID_COMPUTER_SELECTION = "\n    Invalid selection! Please enter 'E' for an easy computer or 'A' for an advanced computer.\n\n"
+INVALID_ORDER_SELECTION = "\n    Invalid selection! Please enter 'X' to go first or 'O' to go second.\n\n"
 TIE = "\n    It's a draw! Better luck next time.\n"
 HUMAN_PLAYER = "H"
 COMPUTER_PLAYER = "C"
@@ -26,4 +28,6 @@ WINNING_COMBOS = [
 
 AI = "X"
 HUMAN = "O"
+PLAYER_ONE = "X"
+PLAYER_TWO = "O"
 

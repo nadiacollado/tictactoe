@@ -25,16 +25,42 @@ class GameConfig
     
     def computer_selection
         display.print_computer_type_prompt
-        if display.get_computer_type == EASY_COMPUTER
-            strategy = EasyStrategy.new
+        strategy = display.get_computer_type ? EasyStrategy.new : AdvancedStrategy.new
+    end
+
+    def player_order_selection(opponent_selection)
+        if !opponent_selection
+            strategy = computer_selection
+            display.print_order_selection_prompt
+            single_player_order_selection(display.get_order_selection, strategy)
         else
-            strategy = AdvancedStrategy.new
+            display.print_order_selection_prompt
+            multi_player_order_selection(display.get_order_selection)
         end
-        Computer.new(1, marker.p1_marker, strategy)
+    end
+
+    def multi_player_order_selection(order)
+        if order == PLAYER_ONE
+            @player1 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
+            @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
+        else
+            @player1 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
+            @player2 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
+        end
+    end
+
+    def single_player_order_selection(order, strategy)
+        if order == PLAYER_ONE
+            @player1 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
+            @player2 = Computer.new(2, marker.p2_marker, strategy)
+        else
+            @player1 = Computer.new(1, marker.p1_marker, strategy)
+            @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
+        end
     end
 
     def build_players
-        @player1 = humans_only? ? Human.new(1, marker.p1_marker, HUMAN_PLAYER) : computer_selection
-        @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
+        # opponent_selection = humans_only ? multi_player_order_selection : computer_selection
+        player_order_selection(humans_only?)
     end
 end

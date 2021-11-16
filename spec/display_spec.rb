@@ -81,4 +81,16 @@ describe Display do
             expect(display.validate_computer_type("Apple")).to be(false)
         end
     end
+
+    describe "get_player_order" do
+        it "returns the player's order selection via the gets method" do
+            allow(display).to receive(:gets).and_return(PLAYER_ONE)
+            expect(display.get_player_order).to eq(PLAYER_ONE)
+        end
+
+        # it "returns the player's computer selection via the gets method" do
+        #     allow(display).to receive(:gets).and_return(AI_COMPUTER)
+        #     expect(display.get_computer_type).to eq(AI_COMPUTER)
+        # end
+    end
 end

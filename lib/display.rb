@@ -50,7 +50,11 @@ class Display
         until validate_computer_type(computer_type)
             computer_type = gets.chomp
         end
-        computer_type
+        computer_type_easy?(computer_type)
+    end
+
+    def computer_type_easy?(computer_selection)
+        computer_selection == EASY_COMPUTER ? true : false
     end
 
     def validate_computer_type(computer_type)
@@ -60,6 +64,27 @@ class Display
             print(INVALID_COMPUTER_SELECTION)
             false
         end
+    end
+
+    def get_order_selection
+        order_selection = gets.chomp
+        until validate_order_selection(order_selection)
+             order_selection = gets.chomp
+        end
+        order_selection
+    end
+
+    def validate_order_selection(order_selection)
+        if order_selection == PLAYER_ONE || order_selection == PLAYER_TWO
+            true
+        else
+            print(INVALID_ORDER_SELECTION)
+            false
+        end
+    end
+
+    def print_order_selection_prompt
+        print(PLAYER_ORDER_CHOICE)
     end
 
     def print_computer_type_prompt
