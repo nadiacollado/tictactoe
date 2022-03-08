@@ -25,7 +25,12 @@ class GameConfig
     
     def computer_selection
         display.print_computer_type_prompt
-        Computer.new(1, marker.p1_marker, display.get_computer_type)
+        if display.get_computer_type == EASY_COMPUTER
+            strategy = EasyStrategy.new
+        else
+            strategy = AdvancedStrategy.new
+        end
+        Computer.new(1, marker.p1_marker, strategy)
     end
 
     def build_players
