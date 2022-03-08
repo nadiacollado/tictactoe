@@ -3,7 +3,7 @@ class Display
         @print_welcome = print(WELCOME)
         @print_board = print_board(board)
         @print_instructions = print(INSTRUCTIONS)
-        @print_player_choice = print(PLAYER_TYPE_CHOICE)
+        @print_player_mode_prompt = print(PLAYER_MODE_PROMPT)
     end
 
     def print(message)
@@ -28,67 +28,57 @@ class Display
         print("Player #{marker} has won this round!\n\n")
     end
 
-    def validate_player_type(player_type)
-        if player_type == HUMAN_PLAYER || player_type == COMPUTER_PLAYER
+    def validate_selection(selection)
+        if selection == CHOICE_ONE || selection == CHOICE_TWO
             true
         else
             print(INVALID_SELECTION)
             false
         end
     end
-
-    def get_player_type
-        player_type = gets.chomp
-        until validate_player_type(player_type)
-            player_type = gets.chomp
+    
+    def get_player_mode
+        player_mode = gets.chomp
+        until validate_selection(player_mode)
+            player_mode = gets.chomp
         end
-        player_type
+        player_mode_single?(player_mode)
     end
 
-    def get_computer_type
-        computer_type = gets.chomp
-        until validate_computer_type(computer_type)
-            computer_type = gets.chomp
-        end
-        computer_type_easy?(computer_type)
+    def player_mode_single?(selection)
+        selection == CHOICE_ONE ? true : false
     end
 
-    def computer_type_easy?(computer_selection)
-        computer_selection == EASY_COMPUTER ? true : false
+    def get_computer_mode
+        computer_mode = gets.chomp
+        until validate_selection(computer_mode)
+            computer_mode = gets.chomp
+        end
+        computer_mode_easy?(computer_mode)
     end
 
-    def validate_computer_type(computer_type)
-        if computer_type == EASY_COMPUTER || computer_type == AI_COMPUTER
-            true
-        else
-            print(INVALID_COMPUTER_SELECTION)
-            false
-        end
+    def computer_mode_easy?(selection)
+        selection == CHOICE_ONE ? true : false
     end
 
-    def get_order_selection
-        order_selection = gets.chomp
-        until validate_order_selection(order_selection)
-             order_selection = gets.chomp
+    def get_player_order
+        player_order = gets.chomp
+        until validate_selection(player_order)
+             player_order = gets.chomp
         end
-        order_selection
+        player_first?(player_order)
     end
 
-    def validate_order_selection(order_selection)
-        if order_selection == PLAYER_ONE || order_selection == PLAYER_TWO
-            true
-        else
-            print(INVALID_ORDER_SELECTION)
-            false
-        end
+    def player_first?(selection)
+        selection == CHOICE_ONE ? true : false
     end
 
     def print_order_selection_prompt
-        print(PLAYER_ORDER_CHOICE)
+        print(PLAYER_ORDER_PROMPT)
     end
 
-    def print_computer_type_prompt
-        print(COMPUTER_TYPE_CHOICE)
+    def print_computer_mode_prompt
+        print(COMPUTER_MODE_PROMPT)
     end
 end
 

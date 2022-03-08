@@ -1,11 +1,11 @@
 require 'computer'
 
 describe Computer do
-    let (:marker) { Marker.new("X", "O") }
+    let (:marker) { Markers.new("X", "O") }
     let (:easy_strategy) { EasyStrategy.new }
     let (:advanced_strategy) { AdvancedStrategy.new }
-    let (:computer_player) { Computer.new(1, marker.p1_marker, easy_strategy) }
-    let (:ai_player) { Computer.new(1, marker.p1_marker, advanced_strategy) }
+    let (:computer_player) { Computer.new(1, marker.p1, easy_strategy) }
+    let (:ai_player) { Computer.new(1, marker.p1, advanced_strategy) }
 
     describe "initialize" do
         it "creates a computer player with given arguments" do

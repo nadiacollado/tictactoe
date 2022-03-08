@@ -4,14 +4,15 @@ describe Game do
     let (:board) { Board.new }
     let (:rules) { Rules.new }
     let (:display) { Display.new(board) }
-    let (:marker) { Marker.new("X", "O") }
-    let (:test_player1) { Human.new(1, marker.p1_marker, HUMAN_PLAYER)}
-    let (:test_player2) { Computer.new(2, marker.p2_marker, COMPUTER_PLAYER)}
+    let (:marker) { Markers.new("X", "O") }
+    let (:strategy) { EasyStrategy.new }
+    let (:test_player1) { Human.new(1, marker.p1) }
+    let (:test_player2) { Computer.new(2, marker.p2, strategy) }
     let (:game) { Game.new(board, test_player1, test_player2, display) }
 
     describe "switch_player" do
         it "sets and returns current player" do
-            expect(game.get_current_player.marker).to eq(marker.p1_marker)
+            expect(game.get_current_player.marker).to eq(marker.p1)
         end
     end
 
@@ -47,7 +48,7 @@ describe Game do
             board = Board.new(%w[X X O X O X X O O])
             game.instance_variable_set(:@board, board)
             game.play
-            expect(rules.game_over?(board)).to eq(marker.p1_marker)
+            expect(rules.game_over?(board)).to eq(marker.p1)
             expect(game).not_to receive(:turn)
         end
         

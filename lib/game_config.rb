@@ -3,7 +3,7 @@ class GameConfig
 
     def initialize
         @board = Board.new
-        @marker = Marker.new
+        @marker = Markers.new
         @display = Display.new(board)
         @game = nil
     end
@@ -19,48 +19,43 @@ class GameConfig
         @game.play
     end
     
-    def humans_only?
-        display.get_player_type == HUMAN_PLAYER ? true : false
+    def single_player?
+        display.get_player_mode 
     end
     
-    def computer_selection
-        display.print_computer_type_prompt
-        strategy = display.get_computer_type ? EasyStrategy.new : AdvancedStrategy.new
+    def strategy_selection
+        display.print_computer_mode_prompt
+        strategy = display.get_computer_mode ? EasyStrategy.new : AdvancedStrategy.new
     end
 
-    def player_order_selection(opponent_selection)
-        if !opponent_selection
-            strategy = computer_selection
+    def player_order_selection(player_mode)
+        if player_mode 
+            strategy = strategy_selection
             display.print_order_selection_prompt
-            single_player_order_selection(display.get_order_selection, strategy)
+            single_player_builder(display.get_player_order, strategy)
         else
             display.print_order_selection_prompt
-            multi_player_order_selection(display.get_order_selection)
+            display.get_player_order
+            multi_player_builder
         end
     end
 
-    def multi_player_order_selection(order)
-        if order == PLAYER_ONE
-            @player1 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
-            @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
-        else
-            @player1 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
-            @player2 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
-        end
+    def multi_player_builder
+        @player1 = Human.new(1, marker.p1)
+        @player2 = Human.new(2, marker.p2)
     end
 
-    def single_player_order_selection(order, strategy)
-        if order == PLAYER_ONE
-            @player1 = Human.new(1, marker.p1_marker, HUMAN_PLAYER)
-            @player2 = Computer.new(2, marker.p2_marker, strategy)
+    def single_player_builder(order, strategy)
+        if order
+            @player1 = Human.new(1, marker.p1)
+            @player2 = Computer.new(2, marker.p2, strategy)
         else
-            @player1 = Computer.new(1, marker.p1_marker, strategy)
-            @player2 = Human.new(2, marker.p2_marker, HUMAN_PLAYER)
+            @player1 = Computer.new(1, marker.p1, strategy)
+            @player2 = Human.new(2, marker.p2)
         end
     end
 
     def build_players
-        # opponent_selection = humans_only ? multi_player_order_selection : computer_selection
-        player_order_selection(humans_only?)
+        player_order_selection(single_player?)
     end
 end

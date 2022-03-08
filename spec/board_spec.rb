@@ -2,8 +2,8 @@ require 'board'
 
 describe Board do
     let (:board) { Board.new }
-    let (:marker) { Marker.new("X", "O") }
-    let (:test_player) { Human.new("1", marker.p1_marker, HUMAN_PLAYER) }
+    let (:marker) { Markers.new("X", "O") }
+    let (:test_player) { Human.new("1", marker.p1) }
 
     describe "valid_move?" do
         it "returns false message if player's move does not fall within the alloted 1-9 range" do

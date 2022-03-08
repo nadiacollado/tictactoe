@@ -2,8 +2,8 @@ require 'easy_strategy'
 
 describe EasyStrategy do
     let (:strategy) { EasyStrategy.new }
-    let (:marker) { Marker.new("X", "O") }
-    let (:player) { Computer.new(1, marker.p1_marker, strategy) }
+    let (:marker) { Markers.new("X", "O") }
+    let (:player) { Computer.new(1, marker.p1, strategy) }
 
     describe "move_generator" do
         it "randomly selects a number 1-9" do

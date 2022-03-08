@@ -2,8 +2,8 @@ require 'advanced_strategy'
 
 describe AdvancedStrategy do
     let (:strategy) { AdvancedStrategy.new }
-    let (:marker) { Marker.new("X", "O") }
-    let (:player) { Computer.new(1, marker.p1_marker, strategy) }
+    let (:marker) { Markers.new("X", "O") }
+    let (:player) { Computer.new(1, marker.p1, strategy) }
 
     describe "get_move" do
         it "returns the best move for AI to play" do
@@ -70,11 +70,11 @@ describe AdvancedStrategy do
 
     describe "player_mark" do
         it "returns AI's mark when it's the maximizer's turn" do
-            expect(strategy.player_mark(true)).to eq(AI)
+            expect(strategy.player_mark(true, player.marker)).to eq(PLAYER_ONE)
         end
 
         it "returns the human player's when it's not the maximizer's turn" do
-            expect(strategy.player_mark(false)).to eq(HUMAN)
+            expect(strategy.player_mark(false, player.marker)).to eq(PLAYER_TWO)
         end
     end
 

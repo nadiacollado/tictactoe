@@ -3,7 +3,7 @@ require 'constants'
 require 'computer'
 
 describe Display do
-    let (:marker) { Marker.new("Y", "Z") }
+    let (:marker) { Markers.new("Y", "Z") }
     let (:board) { Board.new }
     let (:display) { Display.new(board) }
 
@@ -21,13 +21,13 @@ describe Display do
 
     describe "print_turn_prompt" do
         it "prints a message prompting next player to make a move" do
-            expect {display.print_turn_prompt(marker.p2_marker)}.to output(a_string_including("Player Z, you're up!")).to_stdout
+            expect {display.print_turn_prompt(marker.p2)}.to output(a_string_including("Player Z, you're up!")).to_stdout
         end
     end
 
     describe "print_winner" do
         it "prints a message pronouncing the winner of the game" do
-            expect {display.print_winner(marker.p1_marker)}.to output(a_string_including("Player Y has won this round!")).to_stdout
+            expect {display.print_winner(marker.p1)}.to output(a_string_including("Player Y has won this round!")).to_stdout
         end
     end
 
@@ -87,10 +87,5 @@ describe Display do
             allow(display).to receive(:gets).and_return(PLAYER_ONE)
             expect(display.get_player_order).to eq(PLAYER_ONE)
         end
-
-        # it "returns the player's computer selection via the gets method" do
-        #     allow(display).to receive(:gets).and_return(AI_COMPUTER)
-        #     expect(display.get_computer_type).to eq(AI_COMPUTER)
-        # end
     end
 end
