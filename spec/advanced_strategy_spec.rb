@@ -27,34 +27,34 @@ describe AdvancedStrategy do
     describe "get_score" do
         it "returns a score of 0 if the board is tied" do
             board = Board.new(%w[X O X O X X O X O])
-            expect(strategy.get_score(board, 8)).to eq(0)
+            expect(strategy.get_score(board, 8, player.marker)).to eq(0)
         end
 
         it "returns the a score of 10 minus depth if AI has won the game" do
             board = Board.new(%w[X 2 O X O O X X X])
-            expect(strategy.get_score(board, 6)).to eq(4)
+            expect(strategy.get_score(board, 6, player.marker)).to eq(4)
         end
 
         it "returns a score of -10 plus depth if AI has lost the game" do
             board = Board.new(%w[X 2 O X O X O 8 9])
-            expect(strategy.get_score(board, 5)).to eq(-5)
+            expect(strategy.get_score(board, 5, player.marker)).to eq(-5)
         end
     end
 
     describe "minimax" do
         it "returns the min score if human player wins" do
             board = Board.new(%w[X X O X X O O 8 9])
-            expect(strategy.minimax(board, 6, false)).to eq(-3)
+            expect(strategy.minimax(board, 6, false, player.marker)).to eq(-3)
         end
 
         it "returns the max score if AI player wins" do
             board = Board.new(%w[X 2 O X 5 6 O 8 9])
-            expect(strategy.minimax(board, 3, true)).to eq(4)
+            expect(strategy.minimax(board, 3, true, player.marker)).to eq(4)
         end
 
         it "returns a score of 0 if the game ends in a tie" do
             board = Board.new(%w[X 2 3 4 O 6 7 8 9])
-            expect(strategy.minimax(board, 1, true)).to eq(0)
+            expect(strategy.minimax(board, 1, true, player.marker)).to eq(0)
         end
     end
 

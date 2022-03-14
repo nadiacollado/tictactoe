@@ -28,6 +28,14 @@ class Display
         print("Player #{marker} has won this round!\n\n")
     end
 
+    def print_order_selection_prompt
+        print(PLAYER_ORDER_PROMPT)
+    end
+
+    def print_computer_mode_prompt
+        print(COMPUTER_MODE_PROMPT)
+    end
+
     def validate_selection(selection)
         if selection == CHOICE_ONE || selection == CHOICE_TWO
             true
@@ -45,20 +53,12 @@ class Display
         player_mode_single?(player_mode)
     end
 
-    def player_mode_single?(selection)
-        selection == CHOICE_ONE ? true : false
-    end
-
     def get_computer_mode
         computer_mode = gets.chomp
         until validate_selection(computer_mode)
             computer_mode = gets.chomp
         end
         computer_mode_easy?(computer_mode)
-    end
-
-    def computer_mode_easy?(selection)
-        selection == CHOICE_ONE ? true : false
     end
 
     def get_player_order
@@ -69,16 +69,18 @@ class Display
         player_first?(player_order)
     end
 
+    private
+
     def player_first?(selection)
         selection == CHOICE_ONE ? true : false
     end
 
-    def print_order_selection_prompt
-        print(PLAYER_ORDER_PROMPT)
+    def player_mode_single?(selection)
+        selection == CHOICE_ONE ? true : false
     end
 
-    def print_computer_mode_prompt
-        print(COMPUTER_MODE_PROMPT)
+    def computer_mode_easy?(selection)
+        selection == CHOICE_ONE ? true : false
     end
 end
 

@@ -1,6 +1,6 @@
-require 'marker'
+require 'markers'
 
-describe Marker do
+describe Markers do
     let (:marker) { Markers.new("Y", "N") }
 
     describe "p1" do
