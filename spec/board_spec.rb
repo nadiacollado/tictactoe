@@ -2,8 +2,8 @@ require 'board'
 
 describe Board do
     let (:board) { Board.new }
-    let (:marker) { Marker.new("X", "O") }
-    let (:test_player) { Human.new("1", marker.p1_marker, HUMAN_PLAYER) }
+    let (:marker) { Markers.new("X", "O") }
+    let (:test_player) { Human.new("1", marker.p1) }
 
     describe "valid_move?" do
         it "returns false message if player's move does not fall within the alloted 1-9 range" do
@@ -49,7 +49,7 @@ describe Board do
     end
 
     describe "board_clear?" do
-        it "returns true is board is clear" do
+        it "returns true if board is clear" do
             board = Board.new(%w[1 2 3 4 5 6 7 8 9])
             expect(board.board_clear?).to be(true)
         end

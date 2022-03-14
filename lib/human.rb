@@ -1,10 +1,9 @@
 class Human
-    attr_accessor :id, :marker, :type
+    attr_accessor :id, :marker
 
-    def initialize(id, marker, type)
+    def initialize(id, marker)
         @id = id
         @marker = marker
-        @type = type
     end
 
     def get_move(board)
